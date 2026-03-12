@@ -1,29 +1,49 @@
 /* ===========================================
    NAMOU PROPERTIES — Homepage Styles
-   Dark/bold design inspired by starlink.com
-   Brand: #00B073 green, #121212 black, Graphik font
+   Light default with dark mode toggle
+   Brand: #00B073 green
+   Headings: DM Sans / Body: Roboto Mono
    =========================================== */
 
-/* --- CSS Custom Properties --- */
+/* --- CSS Custom Properties (Light Mode — Default) --- */
 :root {
-  --color-bg: #0A0A0A;
-  --color-bg-alt: #111111;
-  --color-bg-card: #161616;
-  --color-bg-card-hover: #1C1C1C;
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F5F5F5;
+  --color-bg-card: #FFFFFF;
+  --color-bg-card-hover: #F9F9F9;
   --color-green: #00B073;
   --color-green-hover: #00C980;
-  --color-green-subtle: rgba(0, 176, 115, 0.12);
-  --color-white: #FFFFFF;
-  --color-text: #B0B0B0;
-  --color-text-light: #808080;
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-green-subtle: rgba(0, 176, 115, 0.1);
+  --color-heading: #121212;
+  --color-text: #555555;
+  --color-text-light: #888888;
+  --color-border: rgba(0, 0, 0, 0.08);
   --color-wa: #25D366;
-  --font-primary: "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-nav-bg: rgba(255, 255, 255, 0.85);
+  --color-nav-bg-scroll: rgba(255, 255, 255, 0.95);
+  --color-mobile-menu-bg: rgba(255, 255, 255, 0.98);
+  --font-heading: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Roboto Mono", "SF Mono", "Fira Code", monospace;
   --container-max: 1200px;
   --nav-height: 72px;
   --radius: 12px;
   --radius-sm: 8px;
   --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* --- Dark Mode --- */
+[data-theme="dark"] {
+  --color-bg: #0A0A0A;
+  --color-bg-alt: #111111;
+  --color-bg-card: #161616;
+  --color-bg-card-hover: #1C1C1C;
+  --color-heading: #FFFFFF;
+  --color-text: #B0B0B0;
+  --color-text-light: #808080;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-nav-bg: rgba(10, 10, 10, 0.85);
+  --color-nav-bg-scroll: rgba(10, 10, 10, 0.95);
+  --color-mobile-menu-bg: rgba(10, 10, 10, 0.98);
 }
 
 /* --- Reset & Base --- */
@@ -40,11 +60,16 @@ html {
 }
 
 body {
-  font-family: var(--font-primary);
+  font-family: var(--font-body);
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
 
 a {
@@ -72,7 +97,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-primary);
+  font-family: var(--font-heading);
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -102,12 +127,12 @@ img {
 
 .btn--outline {
   background: transparent;
-  color: var(--color-white);
-  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--color-heading);
+  border-color: var(--color-border);
 }
 .btn--outline:hover {
-  border-color: var(--color-white);
-  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-heading);
+  background: var(--color-bg-alt);
 }
 
 .btn--lg {
@@ -131,7 +156,7 @@ img {
   right: 0;
   z-index: 1000;
   height: var(--nav-height);
-  background: rgba(10, 10, 10, 0.85);
+  background: var(--color-nav-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border);
@@ -167,7 +192,17 @@ img {
   letter-spacing: 0.01em;
 }
 .nav__link:hover {
-  color: var(--color-white);
+  color: var(--color-heading);
+}
+
+.nav__link {
+  font-family: var(--font-heading);
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .nav__toggle {
@@ -184,7 +219,7 @@ img {
   display: block;
   width: 22px;
   height: 2px;
-  background: var(--color-white);
+  background: var(--color-heading);
   border-radius: 2px;
   transition: all var(--transition);
 }
@@ -230,7 +265,7 @@ img {
   font-size: clamp(36px, 6vw, 72px);
   font-weight: 500;
   line-height: 1.1;
-  color: var(--color-white);
+  color: var(--color-heading);
   letter-spacing: -0.02em;
 }
 
@@ -274,7 +309,7 @@ img {
   transition: all var(--transition);
 }
 .action-card:hover {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-green);
   transform: translateY(-2px);
 }
 
@@ -305,7 +340,7 @@ img {
 .action-card__title {
   font-size: 26px;
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-heading);
   line-height: 1.2;
 }
 
@@ -333,7 +368,7 @@ img {
 .section-title {
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-heading);
   line-height: 1.15;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
@@ -382,7 +417,7 @@ img {
 .advantage h3 {
   font-size: 18px;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-heading);
   margin-bottom: 10px;
 }
 
@@ -420,7 +455,7 @@ img {
 .stat__number {
   font-size: clamp(48px, 6vw, 72px);
   font-weight: 400;
-  color: var(--color-white);
+  color: var(--color-heading);
   line-height: 1;
   display: inline;
 }
@@ -528,9 +563,9 @@ img {
   transition: all var(--transition);
 }
 .property-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-green);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .property-card__image {
@@ -571,7 +606,7 @@ img {
 .property-card__title {
   font-size: 18px;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-heading);
 }
 
 .property-card__detail {
@@ -603,7 +638,7 @@ img {
 .contact__title {
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-heading);
   line-height: 1.15;
   margin-bottom: 16px;
 }
@@ -639,7 +674,7 @@ img {
   display: block;
   font-size: 15px;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-heading);
   margin-bottom: 4px;
 }
 
@@ -700,7 +735,7 @@ img {
   transition: color var(--transition);
 }
 .footer__links a:hover {
-  color: var(--color-white);
+  color: var(--color-heading);
 }
 
 .footer__bottom {
@@ -712,6 +747,54 @@ img {
 .footer__bottom p {
   font-size: 13px;
   color: var(--color-text-light);
+}
+
+
+/* ===========================================
+   DARK MODE TOGGLE
+   =========================================== */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  color: var(--color-heading);
+  border-color: var(--color-heading);
+}
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+.theme-toggle .icon-moon { display: block; }
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+/* Light mode card shadows */
+:root .action-card,
+:root .advantage,
+:root .property-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .action-card,
+[data-theme="dark"] .advantage,
+[data-theme="dark"] .property-card {
+  box-shadow: none;
+}
+
+[data-theme="dark"] .property-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -801,7 +884,7 @@ img {
     right: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(10, 10, 10, 0.98);
+    background: var(--color-mobile-menu-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
@@ -818,7 +901,7 @@ img {
 
   .nav__menu .nav__link {
     font-size: 20px;
-    color: var(--color-white);
+    color: var(--color-heading);
   }
 
   .nav__menu .btn {

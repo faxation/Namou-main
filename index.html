@@ -11,6 +11,9 @@
   <meta property="og:url" content="https://namou.ae/">
   <meta property="og:image" content="https://namou.ae/assets/images/logo.png">
   <link rel="icon" href="assets/images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -24,11 +27,17 @@
         <img src="assets/images/logo.png" alt="Namou Properties" width="120" height="44">
       </a>
 
+      <div class="nav__right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" data-analytics="theme-toggle" data-section="nav">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
       <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" data-analytics="nav-toggle" data-section="nav">
         <span></span>
         <span></span>
         <span></span>
       </button>
+      </div>
 
       <div class="nav__menu" id="navMenu">
         <a href="/featured-property" class="nav__link" data-analytics="nav-link" data-section="nav">Featured Properties</a>

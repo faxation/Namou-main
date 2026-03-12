@@ -1,10 +1,34 @@
 /* ===========================================
    NAMOU PROPERTIES — Main JavaScript
-   Mobile nav, scroll reveal, stat counter
+   Dark mode toggle, mobile nav, scroll reveal, stat counter
    =========================================== */
 
 (function () {
   'use strict';
+
+  // --- Dark Mode Toggle ---
+  var themeToggle = document.getElementById('themeToggle');
+  var root = document.documentElement;
+
+  // Check saved preference or default to light
+  var savedTheme = localStorage.getItem('namou-theme') || 'light';
+  if (savedTheme === 'dark') {
+    root.setAttribute('data-theme', 'dark');
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var isDark = root.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        root.removeAttribute('data-theme');
+        localStorage.setItem('namou-theme', 'light');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+        localStorage.setItem('namou-theme', 'dark');
+      }
+    });
+  }
+
 
   // --- Mobile Navigation Toggle ---
   var navToggle = document.getElementById('navToggle');
@@ -67,7 +91,6 @@
     statNumbers.forEach(function (el) {
       var target = parseInt(el.getAttribute('data-target'), 10);
       var duration = 1800;
-      var start = 0;
       var startTime = null;
 
       function step(timestamp) {
@@ -124,9 +147,9 @@
   if (nav) {
     window.addEventListener('scroll', function () {
       if (window.scrollY > 50) {
-        nav.style.background = 'rgba(10, 10, 10, 0.95)';
+        nav.style.background = 'var(--color-nav-bg-scroll)';
       } else {
-        nav.style.background = 'rgba(10, 10, 10, 0.85)';
+        nav.style.background = 'var(--color-nav-bg)';
       }
     }, { passive: true });
   }
