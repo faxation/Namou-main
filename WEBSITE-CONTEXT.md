@@ -124,3 +124,4 @@ namou-website/
 | 2026-03-13 | `21be6b3` | Switch to white default with dark mode toggle, DM Sans + Roboto Mono fonts |
 | 2026-03-13 | `a1f1a0a` | UX copy overhaul, Starlink-style hero with glass router cards, Material Symbols icons |
 | 2026-03-13 | `acef152` | Visual overhaul: bento lanes grid, grain texture, atmospheric gradients, hero entrance animation, staggered reveals, green glow hovers, gradient stat numbers |
+| 2026-03-13 | `3600537` | Revert lanes to 3-col horizontal, add Material Symbols stat icons, replace flat gray stats bg with atmospheric green gradients |
