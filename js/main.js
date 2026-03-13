@@ -53,15 +53,27 @@
   }
 
 
-  // --- Scroll Reveal Animation ---
-  var revealElements = document.querySelectorAll(
-    '.router-card, .lane, .stat, .broker-feature, .property-card, .contact__text, .contact__info'
-  );
+  // --- Scroll Reveal Animation (staggered) ---
+  var revealGroups = [
+    '.lane',
+    '.stat',
+    '.broker-feature',
+    '.property-card',
+    '.contact__text, .contact__info'
+  ];
 
-  // Add reveal class
-  revealElements.forEach(function (el) {
-    el.classList.add('reveal');
+  var allRevealElements = [];
+
+  revealGroups.forEach(function (selector) {
+    var elements = document.querySelectorAll(selector);
+    elements.forEach(function (el, i) {
+      el.classList.add('reveal');
+      el.style.transitionDelay = (i * 0.08) + 's';
+      allRevealElements.push(el);
+    });
   });
+
+  var revealElements = allRevealElements;
 
   var revealObserver = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
