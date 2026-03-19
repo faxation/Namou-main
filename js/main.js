@@ -42,7 +42,7 @@
     });
 
     // Close menu when a nav link is clicked
-    var navLinks = navMenu.querySelectorAll('.nav__link');
+    var navLinks = navMenu.querySelectorAll('a');
     navLinks.forEach(function (link) {
       link.addEventListener('click', function () {
         navToggle.classList.remove('is-active');
