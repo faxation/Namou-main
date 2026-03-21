@@ -72,6 +72,17 @@ Standalone landing page with simplified UI for conversion-focused traffic.
 
 ---
 
+## Site Structure — `/buy` (buy/index.html)
+
+Buyer inquiry form page for serious land acquisition leads. Matches `/home` branding (logo + theme toggle nav, premium minimal layout).
+
+1. **Nav** — Logo (left), dark mode toggle (right). Same as `/home`.
+2. **Hero** — "Find the right land opportunity in RAK" heading with supporting text.
+3. **Form** — Six-section inquiry: land type, area, acquirer, investment goals, budget (radio cards), plus name and contact method (email or phone toggle). Submit button bottom-right.
+4. **No backend** — Form logs to console. Front-end ready for future integration.
+
+---
+
 ## File Map
 
 ```
@@ -79,6 +90,8 @@ namou-website/
 ├── index.html              ← Full root landing page (/)
 ├── home/
 │   └── index.html          ← Simplified /home landing page (hero + router cards only)
+├── buy/
+│   └── index.html          ← Buyer inquiry form page (/buy)
 ├── css/
 │   └── styles.css          ← All styles (light + dark mode, responsive)
 ├── js/
@@ -140,3 +153,5 @@ namou-website/
 | 2026-03-14 | `a82dfbe` | Glass card treatment (backdrop-filter blur, semi-transparent bg, inset highlights), cooler alt backgrounds (#EBEEF2 / #0D0F13) |
 | 2026-03-21 | `a8f7882` | (reverted) Mistakenly applied /home changes to root index.html |
 | 2026-03-21 | `ad69be9` | Correct route targeting: revert root `/` to original, apply nav/hero/card changes to `/home` only |
+| 2026-03-21 | `b643c87` | Style /home CTA buttons: center, larger text, green fill |
+| 2026-03-21 | `pending` | Add /buy buyer inquiry page with radio-card form, contact method toggle, front-end validation |

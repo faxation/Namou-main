@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy Land in RAK — Namou Properties</title>
+  <meta name="description" content="Submit a buyer inquiry for verified land opportunities in Ras Al Khaimah. Residential, commercial, industrial, and mixed-use plots.">
+  <meta property="og:title" content="Buy Land in RAK — Namou Properties">
+  <meta property="og:description" content="Submit a buyer inquiry for verified land opportunities in Ras Al Khaimah.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://namou.ae/buy">
+  <meta property="og:image" content="https://namou.ae/assets/images/logo.png">
+  <link rel="icon" href="../assets/images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    /* === /buy page styles === */
+    .buy-page {
+      min-height: 100vh;
+      padding: calc(var(--nav-height) + 60px) 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .buy-hero {
+      text-align: center;
+      max-width: 600px;
+      margin-bottom: 56px;
+    }
+
+    .buy-hero__title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--color-heading);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .buy-hero__subtitle {
+      font-size: clamp(14px, 1.6vw, 17px);
+      line-height: 1.6;
+      color: var(--color-text);
+    }
+
+    .buy-form {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .buy-form__group {
+      margin-bottom: 36px;
+    }
+
+    .buy-form__label {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-heading);
+      margin-bottom: 12px;
+    }
+
+    /* Radio card grid */
+    .radio-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .radio-cards--wide {
+      grid-template-columns: 1fr;
+    }
+
+    .radio-card {
+      position: relative;
+    }
+
+    .radio-card input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .radio-card__label {
+      display: block;
+      padding: 14px 18px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text);
+      cursor: pointer;
+      transition: all var(--transition);
+      text-align: center;
+    }
+
+    .radio-card__label:hover {
+      border-color: var(--color-green);
+      color: var(--color-heading);
+    }
+
+    .radio-card input:checked + .radio-card__label {
+      border-color: var(--color-green);
+      background: var(--color-green-subtle);
+      color: var(--color-heading);
+    }
+
+    .radio-card input:focus-visible + .radio-card__label {
+      outline: 2px solid var(--color-green);
+      outline-offset: 2px;
+    }
+
+    /* Contact method toggle */
+    .contact-toggle {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .contact-toggle__option {
+      position: relative;
+      flex: 1;
+    }
+
+    .contact-toggle__option input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .contact-toggle__label {
+      display: block;
+      padding: 12px 18px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-text);
+      cursor: pointer;
+      transition: all var(--transition);
+      text-align: center;
+    }
+
+    .contact-toggle__label:hover {
+      border-color: var(--color-green);
+      color: var(--color-heading);
+    }
+
+    .contact-toggle__option input:checked + .contact-toggle__label {
+      border-color: var(--color-green);
+      background: var(--color-green-subtle);
+      color: var(--color-heading);
+    }
+
+    .contact-toggle__option input:focus-visible + .contact-toggle__label {
+      outline: 2px solid var(--color-green);
+      outline-offset: 2px;
+    }
+
+    /* Text inputs */
+    .buy-form__input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--color-heading);
+      background: transparent;
+      transition: border-color var(--transition);
+    }
+
+    .buy-form__input::placeholder {
+      color: var(--color-text-light);
+    }
+
+    .buy-form__input:focus {
+      outline: none;
+      border-color: var(--color-green);
+    }
+
+    .buy-form__input--hidden {
+      display: none;
+    }
+
+    /* Validation error */
+    .buy-form__error {
+      font-size: 13px;
+      color: #E53935;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .buy-form__group--error .buy-form__input {
+      border-color: #E53935;
+    }
+
+    .buy-form__group--error .buy-form__error {
+      display: block;
+    }
+
+    /* Submit row */
+    .buy-form__submit {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 44px;
+    }
+
+    .buy-form__submit .btn {
+      background-color: var(--color-green);
+      color: #fff;
+      border-color: var(--color-green);
+    }
+
+    .buy-form__submit .btn:hover {
+      background-color: var(--color-green-hover);
+      border-color: var(--color-green-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 176, 115, 0.2);
+    }
+
+    /* Success state */
+    .buy-form__success {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .buy-form__success h2 {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--color-heading);
+      margin-bottom: 12px;
+    }
+
+    .buy-form__success p {
+      font-size: 15px;
+      color: var(--color-text);
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .buy-page {
+        padding: calc(var(--nav-height) + 32px) 20px 60px;
+      }
+
+      .buy-hero {
+        margin-bottom: 40px;
+      }
+
+      .radio-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation — matches /home -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo" data-analytics="nav-logo" data-section="nav">
+        <img src="../assets/images/logo.png" alt="Namou Properties" width="120" height="44">
+      </a>
+      <div class="nav__right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" data-analytics="theme-toggle" data-section="nav">
+          <span class="material-symbols-outlined icon-moon">dark_mode</span>
+          <span class="material-symbols-outlined icon-sun">light_mode</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="buy-page">
+    <div class="buy-hero">
+      <h1 class="buy-hero__title">Find the right land opportunity in RAK</h1>
+      <p class="buy-hero__subtitle">Tell us what you're looking for. We'll match you with verified opportunities.</p>
+    </div>
+
+    <form class="buy-form" id="buyForm" novalidate>
+
+      <!-- A. Land type -->
+      <fieldset class="buy-form__group">
+        <legend class="buy-form__label">What type of land are you looking for?</legend>
+        <div class="radio-cards">
+          <label class="radio-card">
+            <input type="radio" name="land_type" value="Residential" required>
+            <span class="radio-card__label">Residential</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="land_type" value="Commercial">
+            <span class="radio-card__label">Commercial</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="land_type" value="Industrial">
+            <span class="radio-card__label">Industrial</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="land_type" value="Mixed-Use">
+            <span class="radio-card__label">Mixed-Use</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- B. Area -->
+      <fieldset class="buy-form__group">
+        <legend class="buy-form__label">What area are you looking for?</legend>
+        <div class="radio-cards">
+          <label class="radio-card">
+            <input type="radio" name="area" value="Al Marjan Beach District" required>
+            <span class="radio-card__label">Al Marjan Beach District</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="area" value="RAK Central">
+            <span class="radio-card__label">RAK Central</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="area" value="Al Maireed">
+            <span class="radio-card__label">Al Maireed</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="area" value="Sharjah">
+            <span class="radio-card__label">Sharjah</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- C. Acquirer -->
+      <fieldset class="buy-form__group">
+        <legend class="buy-form__label">Who's acquiring the land?</legend>
+        <div class="radio-cards">
+          <label class="radio-card">
+            <input type="radio" name="acquirer" value="Myself" required>
+            <span class="radio-card__label">Myself</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="acquirer" value="A Client">
+            <span class="radio-card__label">A Client</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- D. Investment goals -->
+      <fieldset class="buy-form__group">
+        <legend class="buy-form__label">What are your investment goals?</legend>
+        <div class="radio-cards">
+          <label class="radio-card">
+            <input type="radio" name="investment_goal" value="Buy & Hold" required>
+            <span class="radio-card__label">Buy &amp; Hold</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="investment_goal" value="Buy & Flip">
+            <span class="radio-card__label">Buy &amp; Flip</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="investment_goal" value="Buy & Build">
+            <span class="radio-card__label">Buy &amp; Build</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- E. Budget -->
+      <fieldset class="buy-form__group">
+        <legend class="buy-form__label">What is your budget (in AED)?</legend>
+        <div class="radio-cards radio-cards--wide">
+          <label class="radio-card">
+            <input type="radio" name="budget" value="1000000-10000000" required>
+            <span class="radio-card__label">1,000,000 &ndash; 10,000,000</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="budget" value="10000000-50000000">
+            <span class="radio-card__label">10,000,000 &ndash; 50,000,000</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="budget" value="50000000-100000000">
+            <span class="radio-card__label">50,000,000 &ndash; 100,000,000</span>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="budget" value="100000000+">
+            <span class="radio-card__label">100,000,000+</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- F. Contact info -->
+      <div class="buy-form__group" id="contactGroup">
+        <label class="buy-form__label" for="buyName">Your name</label>
+        <input type="text" id="buyName" name="name" class="buy-form__input" placeholder="Full name" required autocomplete="name">
+        <p class="buy-form__error" id="nameError">Name is required.</p>
+      </div>
+
+      <fieldset class="buy-form__group" id="contactMethodGroup">
+        <legend class="buy-form__label">Preferred contact method</legend>
+        <div class="contact-toggle">
+          <label class="contact-toggle__option">
+            <input type="radio" name="contact_method" value="email" required>
+            <span class="contact-toggle__label">Email</span>
+          </label>
+          <label class="contact-toggle__option">
+            <input type="radio" name="contact_method" value="phone">
+            <span class="contact-toggle__label">Phone</span>
+          </label>
+        </div>
+        <input type="email" id="buyEmail" name="email" class="buy-form__input buy-form__input--hidden" placeholder="you@example.com" autocomplete="email">
+        <input type="tel" id="buyPhone" name="phone" class="buy-form__input buy-form__input--hidden" placeholder="+971 XX XXX XXXX" autocomplete="tel">
+        <p class="buy-form__error" id="contactError">Please provide your contact details.</p>
+      </fieldset>
+
+      <div class="buy-form__submit">
+        <button type="submit" class="btn" data-analytics="buy-submit" data-section="buy">Submit Inquiry</button>
+      </div>
+    </form>
+
+    <div class="buy-form__success" id="buySuccess">
+      <h2>Inquiry received.</h2>
+      <p>Our team will review your requirements and reach out shortly.</p>
+    </div>
+  </main>
+
+  <script src="../js/main.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var form = document.getElementById('buyForm');
+      var emailInput = document.getElementById('buyEmail');
+      var phoneInput = document.getElementById('buyPhone');
+      var nameInput = document.getElementById('buyName');
+      var contactMethodRadios = document.querySelectorAll('input[name="contact_method"]');
+      var contactGroup = document.getElementById('contactGroup');
+      var contactMethodGroup = document.getElementById('contactMethodGroup');
+
+      // Show/hide contact input based on method selection
+      contactMethodRadios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          if (this.value === 'email') {
+            emailInput.classList.remove('buy-form__input--hidden');
+            phoneInput.classList.add('buy-form__input--hidden');
+            phoneInput.value = '';
+            phoneInput.removeAttribute('required');
+            emailInput.setAttribute('required', '');
+          } else {
+            phoneInput.classList.remove('buy-form__input--hidden');
+            emailInput.classList.add('buy-form__input--hidden');
+            emailInput.value = '';
+            emailInput.removeAttribute('required');
+            phoneInput.setAttribute('required', '');
+          }
+          contactMethodGroup.classList.remove('buy-form__group--error');
+        });
+      });
+
+      // Clear error on name input
+      nameInput.addEventListener('input', function () {
+        contactGroup.classList.remove('buy-form__group--error');
+      });
+
+      // Form submission
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var valid = true;
+
+        // Validate name
+        if (!nameInput.value.trim()) {
+          contactGroup.classList.add('buy-form__group--error');
+          valid = false;
+        } else {
+          contactGroup.classList.remove('buy-form__group--error');
+        }
+
+        // Validate contact method selected and value provided
+        var selectedMethod = form.querySelector('input[name="contact_method"]:checked');
+        if (!selectedMethod) {
+          contactMethodGroup.classList.add('buy-form__group--error');
+          valid = false;
+        } else if (selectedMethod.value === 'email' && !emailInput.value.trim()) {
+          contactMethodGroup.classList.add('buy-form__group--error');
+          valid = false;
+        } else if (selectedMethod.value === 'phone' && !phoneInput.value.trim()) {
+          contactMethodGroup.classList.add('buy-form__group--error');
+          valid = false;
+        } else {
+          contactMethodGroup.classList.remove('buy-form__group--error');
+        }
+
+        if (!valid) return;
+
+        // Collect form data (front-end ready — no backend wired yet)
+        var data = {
+          land_type: (form.querySelector('input[name="land_type"]:checked') || {}).value || '',
+          area: (form.querySelector('input[name="area"]:checked') || {}).value || '',
+          acquirer: (form.querySelector('input[name="acquirer"]:checked') || {}).value || '',
+          investment_goal: (form.querySelector('input[name="investment_goal"]:checked') || {}).value || '',
+          budget: (form.querySelector('input[name="budget"]:checked') || {}).value || '',
+          name: nameInput.value.trim(),
+          contact_method: selectedMethod.value,
+          contact_value: selectedMethod.value === 'email' ? emailInput.value.trim() : phoneInput.value.trim()
+        };
+
+        console.log('Buy inquiry submitted:', data);
+
+        // Show success state
+        form.style.display = 'none';
+        document.querySelector('.buy-hero').style.display = 'none';
+        document.getElementById('buySuccess').style.display = 'block';
+      });
+    })();
+  </script>
+</body>
+</html>
