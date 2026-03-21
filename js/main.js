@@ -30,6 +30,27 @@
   }
 
 
+  // --- Mobile Navigation Toggle ---
+  var navToggle = document.getElementById('navToggle');
+  var navMenu = document.getElementById('navMenu');
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function () {
+      navToggle.classList.toggle('is-active');
+      navMenu.classList.toggle('is-open');
+      document.body.style.overflow = navMenu.classList.contains('is-open') ? 'hidden' : '';
+    });
+
+    // Close menu when a nav link is clicked
+    var navLinks = navMenu.querySelectorAll('a');
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        navToggle.classList.remove('is-active');
+        navMenu.classList.remove('is-open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
 
 
   // --- Scroll Reveal Animation (staggered) ---
