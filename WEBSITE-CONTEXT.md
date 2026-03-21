@@ -126,4 +126,4 @@ namou-website/
 | 2026-03-13 | `acef152` | Visual overhaul: bento lanes grid, grain texture, atmospheric gradients, hero entrance animation, staggered reveals, green glow hovers, gradient stat numbers |
 | 2026-03-13 | `3600537` | Revert lanes to 3-col horizontal, add Material Symbols stat icons, replace flat gray stats bg with atmospheric green gradients |
 | 2026-03-14 | `a82dfbe` | Glass card treatment (backdrop-filter blur, semi-transparent bg, inset highlights), cooler alt backgrounds (#EBEEF2 / #0D0F13) |
-| 2026-03-21 | `e947cb6` | Homepage simplification: strip nav to logo + theme toggle, remove hero buttons, update router cards ("Invest in RAK" / "Sell Your Land") with new copy and single CTA each, remove mobile hamburger JS |
+| 2026-03-21 | `a8f7882` | Homepage simplification: strip nav to logo + theme toggle, remove hero buttons, update router cards ("Invest in RAK" / "Sell Your Land") with new copy and single CTA each, remove mobile hamburger JS |
