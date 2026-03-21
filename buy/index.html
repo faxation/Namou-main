@@ -83,26 +83,46 @@
     .buy-form {
       width: 100%;
       max-width: 640px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(0, 61, 46, 0.06);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    [data-theme="dark"] .buy-form {
+      background: rgba(135, 198, 174, 0.03);
+      border-color: rgba(135, 198, 174, 0.06);
     }
 
     .buy-form__group {
-      margin-bottom: 36px;
+      margin-bottom: 0;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(184, 221, 208, 0.3);
+    }
+    .buy-form__group:first-child {
+      padding-top: 0;
+    }
+    [data-theme="dark"] .buy-form__group {
+      border-bottom-color: rgba(135, 198, 174, 0.1);
     }
 
     .buy-form__label {
       display: block;
       font-family: var(--font-heading);
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 600;
-      color: var(--color-heading);
-      margin-bottom: 12px;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
     }
 
     /* Radio card grid */
     .radio-cards {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
 
     .radio-cards--wide {
@@ -122,7 +142,7 @@
 
     .radio-card__label {
       display: block;
-      padding: 14px 18px;
+      padding: 16px 20px;
       border: 1px solid var(--color-border);
       border-radius: var(--radius-sm);
       font-family: var(--font-heading);
@@ -153,8 +173,8 @@
     /* Contact method toggle */
     .contact-toggle {
       display: flex;
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
 
     .contact-toggle__option {
@@ -171,7 +191,7 @@
 
     .contact-toggle__label {
       display: block;
-      padding: 12px 18px;
+      padding: 16px 20px;
       border: 1px solid var(--color-border);
       border-radius: var(--radius-sm);
       font-family: var(--font-heading);
@@ -245,7 +265,7 @@
     .buy-form__submit {
       display: flex;
       justify-content: flex-end;
-      margin-top: 44px;
+      padding-top: 36px;
     }
 
     .buy-form__submit .btn {
@@ -287,11 +307,20 @@
     /* Mobile */
     @media (max-width: 640px) {
       .buy-page {
-        padding: calc(var(--nav-height) + 32px) 20px 60px;
+        padding: calc(var(--nav-height) + 32px) 16px 60px;
       }
 
       .buy-hero {
-        margin-bottom: 40px;
+        margin-bottom: 32px;
+      }
+
+      .buy-form {
+        padding: 28px 24px;
+        border-radius: 20px;
+      }
+
+      .buy-form__group {
+        padding: 24px 0;
       }
 
       .radio-cards {
