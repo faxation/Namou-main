@@ -139,4 +139,4 @@ namou-website/
 | 2026-03-13 | `3600537` | Revert lanes to 3-col horizontal, add Material Symbols stat icons, replace flat gray stats bg with atmospheric green gradients |
 | 2026-03-14 | `a82dfbe` | Glass card treatment (backdrop-filter blur, semi-transparent bg, inset highlights), cooler alt backgrounds (#EBEEF2 / #0D0F13) |
 | 2026-03-21 | `a8f7882` | (reverted) Mistakenly applied /home changes to root index.html |
-| 2026-03-21 | `pending` | Correct route targeting: revert root `/` to original, apply nav/hero/card changes to `/home` only |
+| 2026-03-21 | `ad69be9` | Correct route targeting: revert root `/` to original, apply nav/hero/card changes to `/home` only |
