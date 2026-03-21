@@ -50,9 +50,9 @@
 
 ## Site Structure (Homepage Sections)
 
-1. **Nav** — Logo, 5 anchor links, dark mode toggle, mobile hamburger
-2. **Hero** — Bold headline, subtitle, primary WhatsApp CTA
-3. **Action Cards** — Two cards: "Buy Land & Commercial" (with broker-team.jpg) and "Sell Your Property" (with hero-sell.jpg), each with a WhatsApp CTA
+1. **Nav** — Logo (left), dark mode toggle (right). No nav links, no hamburger menu.
+2. **Hero** — Bold headline, subtitle. No buttons.
+3. **Action Cards** — Two cards: "Invest in RAK" and "Sell Your Land", each with a single CTA button linking to WhatsApp
 4. **Advantages** — 6 advantage cards (3 buying, 3 selling) in a 3-column grid
 5. **Stats** — 4 animated counters (200+ properties, 50+ brokers, 12+ years, 98% satisfaction)
 6. **Broker Collaboration** — Split layout (text left, hero-buy.jpg right), 3 feature items, WhatsApp CTA
@@ -126,3 +126,4 @@ namou-website/
 | 2026-03-13 | `acef152` | Visual overhaul: bento lanes grid, grain texture, atmospheric gradients, hero entrance animation, staggered reveals, green glow hovers, gradient stat numbers |
 | 2026-03-13 | `3600537` | Revert lanes to 3-col horizontal, add Material Symbols stat icons, replace flat gray stats bg with atmospheric green gradients |
 | 2026-03-14 | `a82dfbe` | Glass card treatment (backdrop-filter blur, semi-transparent bg, inset highlights), cooler alt backgrounds (#EBEEF2 / #0D0F13) |
+| 2026-03-21 | `e947cb6` | Homepage simplification: strip nav to logo + theme toggle, remove hero buttons, update router cards ("Invest in RAK" / "Sell Your Land") with new copy and single CTA each, remove mobile hamburger JS |
