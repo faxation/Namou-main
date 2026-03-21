@@ -94,6 +94,18 @@
       background: rgba(135, 198, 174, 0.03);
       border-color: rgba(135, 198, 174, 0.06);
     }
+    [data-theme="dark"] .radio-card__label,
+    [data-theme="dark"] .contact-toggle__label,
+    [data-theme="dark"] .buy-form__input {
+      background: rgba(135, 198, 174, 0.06);
+    }
+    [data-theme="dark"] .radio-card__label:hover,
+    [data-theme="dark"] .contact-toggle__label:hover {
+      background: rgba(135, 198, 174, 0.1);
+    }
+    [data-theme="dark"] .buy-form__input:focus {
+      background: rgba(135, 198, 174, 0.08);
+    }
 
     .buy-form__group {
       margin-bottom: 0;
@@ -143,26 +155,27 @@
     .radio-card__label {
       display: block;
       padding: 16px 20px;
-      border: 1px solid var(--color-border);
+      border: none;
       border-radius: var(--radius-sm);
       font-family: var(--font-heading);
       font-size: 14px;
       font-weight: 500;
       color: var(--color-text);
+      background: rgba(0, 61, 46, 0.04);
       cursor: pointer;
       transition: all var(--transition);
       text-align: center;
     }
 
     .radio-card__label:hover {
-      border-color: var(--color-green);
+      background: rgba(0, 61, 46, 0.07);
       color: var(--color-heading);
     }
 
     .radio-card input:checked + .radio-card__label {
-      border-color: var(--color-green);
       background: var(--color-green-subtle);
       color: var(--color-heading);
+      box-shadow: inset 0 0 0 2px var(--color-green);
     }
 
     .radio-card input:focus-visible + .radio-card__label {
@@ -192,26 +205,27 @@
     .contact-toggle__label {
       display: block;
       padding: 16px 20px;
-      border: 1px solid var(--color-border);
+      border: none;
       border-radius: var(--radius-sm);
       font-family: var(--font-heading);
       font-size: 14px;
       font-weight: 500;
       color: var(--color-text);
+      background: rgba(0, 61, 46, 0.04);
       cursor: pointer;
       transition: all var(--transition);
       text-align: center;
     }
 
     .contact-toggle__label:hover {
-      border-color: var(--color-green);
+      background: rgba(0, 61, 46, 0.07);
       color: var(--color-heading);
     }
 
     .contact-toggle__option input:checked + .contact-toggle__label {
-      border-color: var(--color-green);
       background: var(--color-green-subtle);
       color: var(--color-heading);
+      box-shadow: inset 0 0 0 2px var(--color-green);
     }
 
     .contact-toggle__option input:focus-visible + .contact-toggle__label {
@@ -223,13 +237,13 @@
     .buy-form__input {
       width: 100%;
       padding: 14px 18px;
-      border: 1px solid var(--color-border);
+      border: none;
       border-radius: var(--radius-sm);
       font-family: var(--font-body);
       font-size: 14px;
       color: var(--color-heading);
-      background: transparent;
-      transition: border-color var(--transition);
+      background: rgba(0, 61, 46, 0.04);
+      transition: background var(--transition), box-shadow var(--transition);
     }
 
     .buy-form__input::placeholder {
@@ -238,7 +252,8 @@
 
     .buy-form__input:focus {
       outline: none;
-      border-color: var(--color-green);
+      background: rgba(0, 61, 46, 0.06);
+      box-shadow: inset 0 0 0 2px var(--color-green);
     }
 
     .buy-form__input--hidden {
@@ -254,7 +269,7 @@
     }
 
     .buy-form__group--error .buy-form__input {
-      border-color: #E53935;
+      box-shadow: inset 0 0 0 2px #E53935;
     }
 
     .buy-form__group--error .buy-form__error {
@@ -348,7 +363,7 @@
 
   <main class="buy-page">
     <div class="buy-hero">
-      <h1 class="buy-hero__title">Find the right land opportunity in RAK</h1>
+      <h1 class="buy-hero__title">Find Your Land in RAK</h1>
       <p class="buy-hero__subtitle">Tell us what you're looking for. We'll match you with verified opportunities.</p>
     </div>
 
