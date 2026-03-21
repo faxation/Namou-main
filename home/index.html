@@ -17,6 +17,64 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <style>
+    /* Mint/Forest branding — scoped to /home */
+    :root {
+      --color-bg: #f7fbf8;
+      --color-bg-alt: #e8f4ee;
+      --color-heading: #003d2e;
+      --color-text: #314158;
+      --color-text-light: #5a8b7a;
+      --color-border: rgba(0, 61, 46, 0.1);
+      --color-green: #003d2e;
+      --color-green-hover: #005a44;
+      --color-green-subtle: rgba(0, 61, 46, 0.06);
+      --color-nav-bg: rgba(247, 251, 248, 0.85);
+      --color-nav-bg-scroll: rgba(247, 251, 248, 0.95);
+      --radius: 16px;
+      --radius-sm: 12px;
+    }
+    [data-theme="dark"] {
+      --color-bg: #0a1a14;
+      --color-bg-alt: #0f231b;
+      --color-heading: #e8f4ee;
+      --color-text: #7aab9a;
+      --color-text-light: #5a8b7a;
+      --color-border: rgba(135, 198, 174, 0.12);
+      --color-green: #87c6ae;
+      --color-green-hover: #b8ddd0;
+      --color-green-subtle: rgba(135, 198, 174, 0.08);
+      --color-nav-bg: rgba(10, 26, 20, 0.85);
+      --color-nav-bg-scroll: rgba(10, 26, 20, 0.95);
+    }
+
+    /* Hero gradient — mint */
+    .hero::before {
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(184, 221, 208, 0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(184, 221, 208, 0.08) 0%, transparent 50%);
+    }
+
+    /* Router cards */
+    :root .router-card {
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 1px 4px rgba(0, 61, 46, 0.04);
+    }
+    :root .router-card:hover {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(0, 61, 46, 0.15);
+      box-shadow: 0 4px 20px rgba(0, 61, 46, 0.06);
+    }
+    [data-theme="dark"] .router-card {
+      background: rgba(135, 198, 174, 0.05);
+      box-shadow: none;
+    }
+    [data-theme="dark"] .router-card:hover {
+      background: rgba(135, 198, 174, 0.08);
+      border-color: rgba(135, 198, 174, 0.15);
+      box-shadow: 0 4px 20px rgba(135, 198, 174, 0.06);
+    }
+
+    /* CTA buttons */
     .router-card__actions { justify-content: center; }
     .router-card__actions .btn {
       font-size: 16px;
@@ -24,10 +82,16 @@
       background-color: var(--color-green);
       color: #fff;
       border-color: var(--color-green);
+      border-radius: 12px;
     }
     .router-card__actions .btn:hover {
       background-color: var(--color-green-hover);
       border-color: var(--color-green-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0, 61, 46, 0.15);
+    }
+    [data-theme="dark"] .router-card__actions .btn:hover {
+      box-shadow: 0 6px 20px rgba(135, 198, 174, 0.15);
     }
   </style>
 </head>

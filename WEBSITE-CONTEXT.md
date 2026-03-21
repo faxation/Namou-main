@@ -155,3 +155,5 @@ namou-website/
 | 2026-03-21 | `ad69be9` | Correct route targeting: revert root `/` to original, apply nav/hero/card changes to `/home` only |
 | 2026-03-21 | `b643c87` | Style /home CTA buttons: center, larger text, green fill |
 | 2026-03-21 | `8050a7b` | Add /buy buyer inquiry page with radio-card form, contact method toggle, front-end validation |
+| 2026-03-21 | `82edeac` | Wire /home buy CTA to navigate to /buy |
+| 2026-03-21 | `pending` | Apply mint/forest branding from namou-ae1 reference to /home and /buy only (scoped token overrides) |
