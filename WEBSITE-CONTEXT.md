@@ -74,12 +74,13 @@ Standalone landing page with simplified UI for conversion-focused traffic.
 
 ## Site Structure — `/buy` (buy/index.html)
 
-Buyer inquiry form page for serious land acquisition leads. Matches `/home` branding (logo + theme toggle nav, premium minimal layout).
+Buyer inquiry form page for serious land acquisition leads. Matches `/home` branding (logo + theme toggle nav, premium minimal layout) and now uses a mobile-first single-frame question flow.
 
 1. **Nav** — Logo (left), dark mode toggle (right). Same as `/home`.
-2. **Hero** — "Find the right land opportunity in RAK" heading with supporting text.
-3. **Form** — Six-section inquiry: land type, area, acquirer, investment goals, budget (radio cards), plus name and contact method (email or phone toggle). Submit button bottom-right.
-4. **No backend** — Form logs to console. Front-end ready for future integration.
+2. **Hero** — "Find Your Land in RAK" heading with supporting text.
+3. **Form** — One-question-at-a-time inquiry flow inside a single card. Radio answers auto-advance, back button lets users revise earlier selections, then name and preferred contact method are collected before submit.
+4. **Success state** — Submit replaces the form card content with: "Thank you for your interest" and "A Namou specialist will be in contact with you shortly."
+5. **No backend** — Form logs to console. Front-end ready for future integration.
 
 ---
 
@@ -121,6 +122,7 @@ namou-website/
 - **localStorage key:** `namou-theme` (values: `light` or `dark`)
 - **IntersectionObserver** for scroll-reveal animations and stat counter trigger
 - **Responsive breakpoints:** 900px (tablet), 640px (mobile)
+- **/buy interaction model:** mobile-first single-card stepper with delayed auto-advance on radio selection, manual continue for name, and inline contact validation
 - **Mobile nav:** hamburger toggle, locks body scroll when open
 - **Smooth scroll** for all `#anchor` links, offset by nav height
 - **38+ `data-analytics` attributes** on interactive elements, ready for PostHog Phase 2
