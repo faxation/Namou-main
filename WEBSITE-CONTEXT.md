@@ -79,8 +79,9 @@ Buyer inquiry form page for serious land acquisition leads. Matches `/home` bran
 1. **Nav** — Logo (left), dark mode toggle (right). Same as `/home`.
 2. **Hero** — "Find Your Land in RAK" heading with supporting text.
 3. **Form** — One-question-at-a-time inquiry flow inside a single card. Radio answers auto-advance, back button lets users revise earlier selections, then name and preferred contact method are collected before submit.
-4. **Success state** — Submit replaces the form card content with: "Thank you for your interest" and "A Namou specialist will be in contact with you shortly."
-5. **No backend** — Form logs to console. Front-end ready for future integration.
+4. **Mobile fit** — Card and step content are centered for small screens, with safe-area-aware page padding and stacked progress controls on very narrow devices.
+5. **Success state** — Submit replaces the form card content with: "Thank you for your interest" and "A Namou specialist will be in contact with you shortly."
+6. **No backend** — Form logs to console. Front-end ready for future integration.
 
 ---
 
@@ -122,7 +123,7 @@ namou-website/
 - **localStorage key:** `namou-theme` (values: `light` or `dark`)
 - **IntersectionObserver** for scroll-reveal animations and stat counter trigger
 - **Responsive breakpoints:** 900px (tablet), 640px (mobile)
-- **/buy interaction model:** mobile-first single-card stepper with delayed auto-advance on radio selection, manual continue for name, and inline contact validation
+- **/buy interaction model:** mobile-first single-card stepper with delayed auto-advance on radio selection, manual continue for name, inline contact validation, and narrow-screen centering safeguards
 - **Mobile nav:** hamburger toggle, locks body scroll when open
 - **Smooth scroll** for all `#anchor` links, offset by nav height
 - **38+ `data-analytics` attributes** on interactive elements, ready for PostHog Phase 2
