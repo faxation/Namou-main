@@ -25,9 +25,9 @@
       --color-text: #314158;
       --color-text-light: #5a8b7a;
       --color-border: rgba(0, 61, 46, 0.1);
-      --color-green: #003d2e;
-      --color-green-hover: #005a44;
-      --color-green-subtle: rgba(0, 61, 46, 0.06);
+      --color-green: #00b073;
+      --color-green-hover: #00c980;
+      --color-green-subtle: rgba(0, 176, 115, 0.1);
       --color-nav-bg: rgba(247, 251, 248, 0.85);
       --color-nav-bg-scroll: rgba(247, 251, 248, 0.95);
       --radius: 16px;
@@ -40,9 +40,9 @@
       --color-text: #7aab9a;
       --color-text-light: #5a8b7a;
       --color-border: rgba(135, 198, 174, 0.12);
-      --color-green: #87c6ae;
-      --color-green-hover: #b8ddd0;
-      --color-green-subtle: rgba(135, 198, 174, 0.08);
+      --color-green: #00b073;
+      --color-green-hover: #00c980;
+      --color-green-subtle: rgba(0, 176, 115, 0.16);
       --color-nav-bg: rgba(10, 26, 20, 0.85);
       --color-nav-bg-scroll: rgba(10, 26, 20, 0.95);
     }
@@ -93,6 +93,46 @@
     [data-theme="dark"] .router-card__actions .btn:hover {
       box-shadow: 0 6px 20px rgba(135, 198, 174, 0.15);
     }
+
+    .nav__right {
+      gap: 10px;
+    }
+
+    .nav__broker-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid var(--color-green);
+      background: var(--color-green);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      transition: all var(--transition);
+    }
+
+    .nav__broker-link:hover {
+      background: var(--color-green-hover);
+      border-color: var(--color-green-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 176, 115, 0.2);
+    }
+
+    @media (max-width: 640px) {
+      .nav__right {
+        gap: 8px;
+      }
+
+      .nav__broker-link {
+        padding: 0 12px;
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -107,10 +147,11 @@
       </a>
 
       <div class="nav__right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" data-analytics="theme-toggle" data-section="nav">
-        <span class="material-symbols-outlined icon-moon">dark_mode</span>
-        <span class="material-symbols-outlined icon-sun">light_mode</span>
-      </button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" data-analytics="theme-toggle" data-section="nav">
+          <span class="material-symbols-outlined icon-moon">dark_mode</span>
+          <span class="material-symbols-outlined icon-sun">light_mode</span>
+        </button>
+        <a href="https://wa.me/971569636360?text=I%27m%20a%20broker%20interested%20in%20working%20with%20Namou" target="_blank" rel="noopener" class="nav__broker-link" data-analytics="broker-cta" data-section="nav">I'm a broker</a>
       </div>
     </div>
   </nav>
@@ -121,7 +162,7 @@
        ============================================ -->
   <section class="hero" id="hero">
     <div class="hero__content">
-      <h1 class="hero__title">Land and commercial<br>real estate in RAK.</h1>
+      <h1 class="hero__title">Real Estate Done Right</h1>
       <p class="hero__subtitle">Verified listings. Qualified buyers. One WhatsApp message.</p>
     </div>
 

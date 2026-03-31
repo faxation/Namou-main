@@ -66,8 +66,8 @@
 
 Standalone landing page with simplified UI for conversion-focused traffic.
 
-1. **Nav** — Logo (left), dark mode toggle (right). No nav links, no hamburger.
-2. **Hero** — Bold headline, subtitle. No buttons.
+1. **Nav** — Logo (left), dark mode toggle, and "I'm a broker" WhatsApp CTA (right). No nav links, no hamburger.
+2. **Hero** — Bold headline ("Real Estate Done Right") and subtitle. No buttons.
 3. **Action Cards** — Two cards: "Invest in RAK" (single CTA) and "Sell Your Land" (single CTA), both linking to WhatsApp.
 
 ---
