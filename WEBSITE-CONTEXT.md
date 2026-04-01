@@ -67,6 +67,7 @@ Standalone landing page with simplified UI for paid-traffic routing.
 1. **Nav** - Logo (left), dark mode toggle, and "I'm a broker" route CTA (right). No nav links, no hamburger.
 2. **Hero** - Bold headline ("Real Estate Done Right") and subtitle. No hero buttons.
 3. **Action Cards** - "Invest in RAK" routes to `/buy`, "Sell Your Land" routes to `/sell`, and the broker CTA routes to `/broker`.
+4. **Micro-proof strip** - Compact trust line under the router cards covering market coverage, verified listings, and WhatsApp-based support.
 
 ---
 
@@ -75,10 +76,12 @@ Standalone landing page with simplified UI for paid-traffic routing.
 Buyer sub-site for land acquisition and investment leads. Mobile-first, branded to match `/home`, and designed to end in WhatsApp with the buyer brief prefilled.
 
 1. **Nav** - Logo routes to `/home`, dark mode toggle on the right
-2. **Hero** - Buyer-focused investment headline, supporting copy, and land-category tags
-3. **Trust / Process Sections** - Mock-data panels for why buyers use Namou and how the qualification flow works
-4. **Form** - One-question-at-a-time intake for land type, area, budget, objective, name, and contact details
-5. **Final destination** - Submit opens WhatsApp with a structured buyer lead summary
+2. **Hero** - Buyer-focused investment headline, supporting copy, land-category tags, and stronger inventory/proof framing
+3. **Trust / Value Sections** - Expanded panels for verified market access, investment-led guidance, RAK opportunity types, and buyer-proof signals
+4. **What happens next** - Added process section describing brief review, qualified WhatsApp continuation, and video-call onboarding
+5. **Pitch deck layer** - Buyer onboarding can include a video call using the Namou visual deck at `https://namou-ae1.vercel.app/home` to explain curated plots, ROI framing, and ownership path
+6. **Form** - One-question-at-a-time intake for land type, area, budget, objective, name, and contact details
+7. **Final destination** - Submit opens WhatsApp with a structured buyer lead summary
 
 ---
 
@@ -87,10 +90,11 @@ Buyer sub-site for land acquisition and investment leads. Mobile-first, branded 
 Seller sub-site for landowners and representatives in RAK. Mobile-first, branded to match `/home`, and designed to collect sale-critical details before WhatsApp.
 
 1. **Nav** - Logo routes to `/home`, dark mode toggle on the right
-2. **Hero** - Seller-focused headline with qualification framing
-3. **Trust / Support Sections** - Mock-data panels covering paperwork readiness, buyer-network access, and faster specialist follow-up
-4. **Form** - One-question-at-a-time intake for location, plot size, paperwork status, ownership papers, name, and contact details
-5. **Final destination** - Submit opens WhatsApp with a structured seller lead summary
+2. **Hero** - Seller-focused headline with qualification framing and stronger seriousness/readiness copy
+3. **Trust / Support Sections** - Expanded panels covering buyer-network access, sale-readiness, document visibility, controlled first contact, and practical valuation framing
+4. **What happens next** - Added seller process section describing initial review, readiness discussion, and next-step guidance after WhatsApp
+5. **Form** - One-question-at-a-time intake for location, plot size, paperwork status, ownership papers, name, and contact details
+6. **Final destination** - Submit opens WhatsApp with a structured seller lead summary
 
 ---
 
@@ -99,10 +103,13 @@ Seller sub-site for landowners and representatives in RAK. Mobile-first, branded
 Broker partnership sub-site for broker-to-broker collaboration and buyer briefs. Mobile-first, branded to match `/home`, and designed to gather client requirements before WhatsApp.
 
 1. **Nav** - Logo routes to `/home`, dark mode toggle on the right
-2. **Hero** - Broker-partnership headline with mock partnership positioning
-3. **Trust / Partnership Sections** - Panels covering fair commissions, dedicated support, collaboration expectations, and a clearer explanation of how Namou works with brokers after the first brief
-4. **Form** - One-question-at-a-time intake for the broker's client brief plus broker name, agency, and contact details
-5. **Final destination** - Submit opens WhatsApp with a structured broker/client summary
+2. **Hero** - Broker-partnership headline with stronger commercial framing
+3. **Trust / Partnership Sections** - Expanded panels covering fair commissions, support, mandate quality, collaboration mechanics, and what brokers can expect
+4. **What happens next** - Added sections describing post-brief alignment, ongoing coordination, and how the broker stays visible in the process
+5. **Pitch deck layer** - Qualified broker leads can move into a video call using the Namou visual deck at `https://namou-ae1.vercel.app/home`
+6. **Commercial clarity note** - Page now states what can be said confidently today and flags missing policy details that still need explicit Namou guidance
+7. **Form** - One-question-at-a-time intake for the broker's client brief plus broker name, agency, and contact details
+8. **Final destination** - Submit opens WhatsApp with a structured broker/client summary
 
 ---
 
@@ -111,7 +118,8 @@ Broker partnership sub-site for broker-to-broker collaboration and buyer briefs.
 - **Primary public reference used:** https://namou.ae/
 - **Broker partnership guide:** Google Doc provided by user, not directly accessible from this environment during the draft pass
 - **Company profile folder:** Google Drive folder provided by user, not directly accessible from this environment during the draft pass
-- **Draft content status:** sections use current site reference plus mock copy structure where deeper company-profile text was unavailable
+- **Draft content status:** sections now mix current site reference, user-provided process guidance, and mock structure where exact policy or commercial wording is still unavailable
+- **Buyer / broker onboarding note:** after qualified onboarding, Namou may use a video call plus the visual deck at `https://namou-ae1.vercel.app/home`
 
 ---
 
@@ -159,6 +167,7 @@ namou-website/
 - **Sub-site interaction model:** `/buy`, `/sell`, and `/broker` use mobile-first single-card steppers with delayed auto-advance on radio selection, manual continue for text steps, inline validation, safe-area-aware padding, and centered content
 - **WhatsApp handoff:** submit compiles the captured answers into a prefilled `wa.me` message and redirects the user to WhatsApp
 - **No backend:** all forms are front-end only in this draft
+- **Known missing policy detail:** broker protection structure, exclusivity model, and closing-commission mechanics still need explicit Namou-approved wording before publication as hard claims
 
 ---
 
@@ -192,4 +201,5 @@ namou-website/
 | 2026-03-21 | `82edeac` | Wire `/home` buy CTA to `/buy` |
 | 2026-03-21 | `d75f465` | Apply mint/forest branding from reference to `/home` and `/buy` |
 | 2026-04-01 | `06dc4ec` | First draft intent-based sub-sites: `/buy`, `/sell`, and `/broker`, with `/home` routing updated |
-| 2026-04-01 | `pending` | Expand `/broker` content to explain how Namou works with brokers after the brief is shared |
+| 2026-04-01 | `e25402f` | Expand `/broker` content to explain how Namou works with brokers after the brief is shared |
+| 2026-04-01 | `pending` | Add proof, value, and what-happens-next content across `/home`, `/buy`, `/sell`, and `/broker`, including buyer/broker video-call pitch-deck references |

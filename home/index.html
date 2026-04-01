@@ -133,6 +133,35 @@
         font-size: 12px;
       }
     }
+
+    .home-proof {
+      width: 100%;
+      max-width: 920px;
+      margin: 18px auto 0;
+      padding: 14px 16px;
+      border: 1px solid rgba(0, 61, 46, 0.08);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.58);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 14px;
+    }
+
+    [data-theme="dark"] .home-proof {
+      background: rgba(135, 198, 174, 0.04);
+      border-color: rgba(135, 198, 174, 0.08);
+    }
+
+    .home-proof__item {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-heading);
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -183,6 +212,12 @@
           <a href="/sell" class="btn btn--outline btn--sm" data-analytics="router-cta" data-section="hero-sell">I want to sell my land in RAK</a>
         </div>
       </div>
+    </div>
+
+    <div class="home-proof" aria-label="Namou proof points">
+      <span class="home-proof__item">1500+ lands tracked across RAK</span>
+      <span class="home-proof__item">Verified listings and market updates</span>
+      <span class="home-proof__item">Buyer, seller, and broker support on WhatsApp</span>
     </div>
   </section>
 
