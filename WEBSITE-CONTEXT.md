@@ -1,4 +1,4 @@
-# Namou Properties — Website Context
+# Namou Properties - Website Context
 
 > **Purpose:** This file captures the full project context so any future AI chat session can pick up where the last one left off without running into context window limits. **Update this file every time a change is made.**
 
@@ -19,124 +19,155 @@
 
 - **Domain:** namou.ae (hosted on Vercel)
 - **Repo:** https://github.com/will-rads/namou-website.git
-- **Stack:** Static HTML / CSS / vanilla JS — no framework, no build step
+- **Stack:** Static HTML / CSS / vanilla JS - no framework, no build step
 - **Hosting:** Vercel, preset "Other", root directory "./"
-- **Phase:** Phase 1 complete (homepage). Phase 2 = PostHog analytics.
+- **Phase:** Intent-based funnel draft. `/home` routes users into separate `/buy`, `/sell`, and `/broker` sub-sites.
 
 ---
 
 ## Design Direction
 
-- **Inspiration:** [starlink.com](https://starlink.com) — simple, clean, bold, modern, premium feel
-- **Theme:** White/light default with a dark mode toggle (localStorage persists choice)
+- **Inspiration:** [starlink.com](https://starlink.com) - simple, clean, bold, modern, premium feel
+- **Theme:** White/light default with a dark mode toggle (`localStorage` persists choice)
 - **Fonts (Google Fonts):**
-  - **DM Sans** — headings, buttons, nav
-  - **Roboto Mono** — body text
-- **Primary brand color:** `#00B073` (green)
+  - **DM Sans** - headings, buttons, nav
+  - **Roboto Mono** - body text
+- **Primary brand color:** `#00B073`
 - **WhatsApp green:** `#25D366`
 - **Light mode BG:** `#FFFFFF` / alt `#F5F5F5`
 - **Dark mode BG:** `#0A0A0A`
+- **Critical UX rule:** mobile-first, content centered, safe on narrow screens, no side clipping
 
 ---
 
 ## Core Conversion Goal
 
-**WhatsApp clicks are the #1 conversion metric.** Every section of the site includes a WhatsApp CTA. The site currently has 10 WhatsApp buttons, each with:
-- `data-analytics="whatsapp-cta"`
-- A descriptive `data-section` attribute (e.g., `data-section="hero"`, `data-section="broker-feature-3"`)
-- Pre-filled WhatsApp messages via `wa.me/971569636360?text=...`
+**WhatsApp conversations are the primary conversion goal.** Each intent-specific sub-site collects qualification data first, then opens WhatsApp with a prefilled lead brief so the Namou specialist can continue with context.
 
 ---
 
-## Site Structure — Root `/` (index.html)
+## Site Structure - Root `/` (index.html)
 
-1. **Nav** — Logo, 5 anchor links, dark mode toggle, mobile hamburger
-2. **Hero** — Bold headline, subtitle, primary WhatsApp CTA
-3. **Action Cards** — Two cards: "Buy Land & Commercial" and "Sell Your Property", each with a WhatsApp CTA
-4. **Advantages** — 6 advantage cards (3 buying, 3 selling) in a 3-column grid
-5. **Stats** — 4 animated counters (200+ properties, 50+ brokers, 12+ years, 98% satisfaction)
-6. **Broker Collaboration** — Split layout (text left, hero-buy.jpg right), 3 feature items, WhatsApp CTA
-7. **Featured Properties** — 3 property cards (placeholder images), each with a WhatsApp CTA
-8. **Contact CTA** — Final call-to-action with phone, email, WhatsApp
-9. **Footer** — Logo, quick links, contact info, copyright
-
----
-
-## Site Structure — `/home` (home/index.html)
-
-Standalone landing page with simplified UI for conversion-focused traffic.
-
-1. **Nav** — Logo (left), dark mode toggle, and "I'm a broker" WhatsApp CTA (right). No nav links, no hamburger.
-2. **Hero** — Bold headline ("Real Estate Done Right") and subtitle. No buttons.
-3. **Action Cards** — Two cards: "Invest in RAK" (single CTA) and "Sell Your Land" (single CTA), both linking to WhatsApp.
+1. **Nav** - Logo, 5 anchor links, dark mode toggle, mobile hamburger
+2. **Hero** - Bold headline, subtitle, primary WhatsApp CTA
+3. **Action Cards** - Two cards: "Buy Land & Commercial" and "Sell Your Property", each with a WhatsApp CTA
+4. **Advantages** - 6 advantage cards in a 3-column grid
+5. **Stats** - 4 animated counters
+6. **Broker Collaboration** - Split layout with image, feature items, and WhatsApp CTA
+7. **Featured Properties** - 3 property cards with WhatsApp CTAs
+8. **Contact CTA** - Final call-to-action with phone, email, WhatsApp
+9. **Footer** - Logo, quick links, contact info, copyright
 
 ---
 
-## Site Structure — `/buy` (buy/index.html)
+## Site Structure - `/home` (home/index.html)
 
-Buyer inquiry form page for serious land acquisition leads. Matches `/home` branding (logo + theme toggle nav, premium minimal layout) and now uses a mobile-first single-frame question flow.
+Standalone landing page with simplified UI for paid-traffic routing.
 
-1. **Nav** — Logo (left), dark mode toggle (right). Same as `/home`.
-2. **Hero** — "Find Your Land in RAK" heading with supporting text.
-3. **Form** — One-question-at-a-time inquiry flow inside a single card. Radio answers auto-advance, back button lets users revise earlier selections, then name and preferred contact method are collected before submit.
-4. **Mobile fit** — Card and step content are centered for small screens, with safe-area-aware page padding and stacked progress controls on very narrow devices.
-5. **Success state** — Submit replaces the form card content with: "Thank you for your interest" and "A Namou specialist will be in contact with you shortly."
-6. **No backend** — Form logs to console. Front-end ready for future integration.
+1. **Nav** - Logo (left), dark mode toggle, and "I'm a broker" route CTA (right). No nav links, no hamburger.
+2. **Hero** - Bold headline ("Real Estate Done Right") and subtitle. No hero buttons.
+3. **Action Cards** - "Invest in RAK" routes to `/buy`, "Sell Your Land" routes to `/sell`, and the broker CTA routes to `/broker`.
+
+---
+
+## Site Structure - `/buy` (buy/index.html)
+
+Buyer sub-site for land acquisition and investment leads. Mobile-first, branded to match `/home`, and designed to end in WhatsApp with the buyer brief prefilled.
+
+1. **Nav** - Logo routes to `/home`, dark mode toggle on the right
+2. **Hero** - Buyer-focused investment headline, supporting copy, and land-category tags
+3. **Trust / Process Sections** - Mock-data panels for why buyers use Namou and how the qualification flow works
+4. **Form** - One-question-at-a-time intake for land type, area, budget, objective, name, and contact details
+5. **Final destination** - Submit opens WhatsApp with a structured buyer lead summary
+
+---
+
+## Site Structure - `/sell` (sell/index.html)
+
+Seller sub-site for landowners and representatives in RAK. Mobile-first, branded to match `/home`, and designed to collect sale-critical details before WhatsApp.
+
+1. **Nav** - Logo routes to `/home`, dark mode toggle on the right
+2. **Hero** - Seller-focused headline with qualification framing
+3. **Trust / Support Sections** - Mock-data panels covering paperwork readiness, buyer-network access, and faster specialist follow-up
+4. **Form** - One-question-at-a-time intake for location, plot size, paperwork status, ownership papers, name, and contact details
+5. **Final destination** - Submit opens WhatsApp with a structured seller lead summary
+
+---
+
+## Site Structure - `/broker` (broker/index.html)
+
+Broker partnership sub-site for broker-to-broker collaboration and buyer briefs. Mobile-first, branded to match `/home`, and designed to gather client requirements before WhatsApp.
+
+1. **Nav** - Logo routes to `/home`, dark mode toggle on the right
+2. **Hero** - Broker-partnership headline with mock partnership positioning
+3. **Trust / Partnership Sections** - Mock-data panels covering fair commissions, dedicated support, and collaboration expectations
+4. **Form** - One-question-at-a-time intake for the broker's client brief plus broker name, agency, and contact details
+5. **Final destination** - Submit opens WhatsApp with a structured broker/client summary
+
+---
+
+## Reference Notes
+
+- **Primary public reference used:** https://namou.ae/
+- **Broker partnership guide:** Google Doc provided by user, not directly accessible from this environment during the draft pass
+- **Company profile folder:** Google Drive folder provided by user, not directly accessible from this environment during the draft pass
+- **Draft content status:** sections use current site reference plus mock copy structure where deeper company-profile text was unavailable
 
 ---
 
 ## File Map
 
-```
+```text
 namou-website/
-├── index.html              ← Full root landing page (/)
-├── home/
-│   └── index.html          ← Simplified /home landing page (hero + router cards only)
-├── buy/
-│   └── index.html          ← Buyer inquiry form page (/buy)
-├── css/
-│   └── styles.css          ← All styles (light + dark mode, responsive)
-├── js/
-│   └── main.js             ← Dark mode toggle, mobile nav, scroll reveal, stat counter
-├── assets/
-│   └── images/
-│       ├── logo.png
-│       ├── hero-buy.jpg        (team grid headshots — used in broker section)
-│       ├── hero-sell.jpg       (WhatsApp seller mockup — used in Sell action card)
-│       ├── broker-team.jpg     (WhatsApp buyer mockup — used in Buy action card)
-│       ├── property-1.webp
-│       ├── property-2.webp
-│       └── property-3.webp
-├── posthog-plan/
-│   └── posthog-plan.md     ← Phase 2 PostHog analytics plan
-├── jads-request.md          ← Jad's original redesign brief
-├── context/                 ← Old site files + PDFs (git-ignored)
-├── .gitignore
-└── WEBSITE-CONTEXT.md       ← This file
+|-- index.html
+|-- home/
+|   |-- index.html
+|-- buy/
+|   |-- index.html
+|-- sell/
+|   |-- index.html
+|-- broker/
+|   |-- index.html
+|-- css/
+|   |-- styles.css
+|-- js/
+|   |-- main.js
+|-- assets/
+|   |-- images/
+|       |-- logo.png
+|       |-- hero-buy.jpg
+|       |-- hero-sell.jpg
+|       |-- broker-team.jpg
+|       |-- property-1.webp
+|       |-- property-2.webp
+|       |-- property-3.webp
+|-- posthog-plan/
+|   |-- posthog-plan.md
+|-- jads-request.md
+|-- .gitignore
+|-- README.md
+`-- WEBSITE-CONTEXT.md
 ```
 
 ---
 
 ## Technical Details
 
-- **CSS custom properties** for theming — light mode in `:root`, dark mode in `[data-theme="dark"]`
+- **CSS custom properties** for theming - light mode in `:root`, dark mode in `[data-theme="dark"]`
 - **localStorage key:** `namou-theme` (values: `light` or `dark`)
-- **IntersectionObserver** for scroll-reveal animations and stat counter trigger
-- **Responsive breakpoints:** 900px (tablet), 640px (mobile)
-- **/buy interaction model:** mobile-first single-card stepper with delayed auto-advance on radio selection, manual continue for name, inline contact validation, and narrow-screen centering safeguards
-- **Mobile nav:** hamburger toggle, locks body scroll when open
-- **Smooth scroll** for all `#anchor` links, offset by nav height
-- **38+ `data-analytics` attributes** on interactive elements, ready for PostHog Phase 2
+- **Responsive breakpoints:** shared site styles use 900px and 640px; sub-site pages add narrow-screen handling for tighter mobile widths
+- **Sub-site interaction model:** `/buy`, `/sell`, and `/broker` use mobile-first single-card steppers with delayed auto-advance on radio selection, manual continue for text steps, inline validation, safe-area-aware padding, and centered content
+- **WhatsApp handoff:** submit compiles the captured answers into a prefilled `wa.me` message and redirects the user to WhatsApp
+- **No backend:** all forms are front-end only in this draft
 
 ---
 
 ## Future Plans
 
-- **Phase 2:** PostHog analytics — see `posthog-plan/posthog-plan.md`
-- **Subpages:** /broker, /landowner, /featured-property (not yet built)
-- **Arabic version:** planned but not in Phase 1
-- **Meta Pixel / Google Ads tags:** Phase 3 (separate from PostHog)
-- **A/B testing:** Hero section headline + CTA via PostHog feature flags
+- Replace mock copy with approved company-profile content and broker-partnership guide details
+- Add Arabic versions after English intent funnels are approved
+- Add analytics instrumentation for funnel drop-off and WhatsApp handoff quality
+- Add Meta Pixel / Google Ads tags after funnel structure is locked
 
 ---
 
@@ -147,16 +178,17 @@ namou-website/
 | Date | Commit | Description |
 |------|--------|-------------|
 | 2026-03-13 | `55f1aa1` | Initial commit (GitHub repo setup) |
-| 2026-03-13 | `71abffd` | Phase 1: Namou homepage redesign — dark/bold Starlink-inspired design |
+| 2026-03-13 | `71abffd` | Phase 1: Namou homepage redesign |
 | 2026-03-13 | `cd5d6e3` | Add images to action cards and broker section |
 | 2026-03-13 | `21be6b3` | Switch to white default with dark mode toggle, DM Sans + Roboto Mono fonts |
-| 2026-03-13 | `a1f1a0a` | UX copy overhaul, Starlink-style hero with glass router cards, Material Symbols icons |
-| 2026-03-13 | `acef152` | Visual overhaul: bento lanes grid, grain texture, atmospheric gradients, hero entrance animation, staggered reveals, green glow hovers, gradient stat numbers |
-| 2026-03-13 | `3600537` | Revert lanes to 3-col horizontal, add Material Symbols stat icons, replace flat gray stats bg with atmospheric green gradients |
-| 2026-03-14 | `a82dfbe` | Glass card treatment (backdrop-filter blur, semi-transparent bg, inset highlights), cooler alt backgrounds (#EBEEF2 / #0D0F13) |
-| 2026-03-21 | `a8f7882` | (reverted) Mistakenly applied /home changes to root index.html |
-| 2026-03-21 | `ad69be9` | Correct route targeting: revert root `/` to original, apply nav/hero/card changes to `/home` only |
-| 2026-03-21 | `b643c87` | Style /home CTA buttons: center, larger text, green fill |
-| 2026-03-21 | `8050a7b` | Add /buy buyer inquiry page with radio-card form, contact method toggle, front-end validation |
-| 2026-03-21 | `82edeac` | Wire /home buy CTA to navigate to /buy |
-| 2026-03-21 | `d75f465` | Apply mint/forest branding from namou-ae1 reference to /home and /buy only (scoped token overrides) |
+| 2026-03-13 | `a1f1a0a` | UX copy overhaul, Starlink-style hero with glass router cards |
+| 2026-03-13 | `acef152` | Visual overhaul: gradients, grain texture, hero motion, staggered reveals |
+| 2026-03-13 | `3600537` | Revert lanes to 3-col horizontal and refine stat section visuals |
+| 2026-03-14 | `a82dfbe` | Glass card treatment and cooler alternate backgrounds |
+| 2026-03-21 | `a8f7882` | Reverted mistaken `/home` changes on root index |
+| 2026-03-21 | `ad69be9` | Apply routing-page changes to `/home` only |
+| 2026-03-21 | `b643c87` | Style `/home` CTA buttons |
+| 2026-03-21 | `8050a7b` | Add initial `/buy` buyer inquiry page |
+| 2026-03-21 | `82edeac` | Wire `/home` buy CTA to `/buy` |
+| 2026-03-21 | `d75f465` | Apply mint/forest branding from reference to `/home` and `/buy` |
+| 2026-04-01 | `pending` | First draft intent-based sub-sites: `/buy`, `/sell`, and `/broker`, with `/home` routing updated |
