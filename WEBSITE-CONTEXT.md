@@ -100,7 +100,7 @@ Broker partnership sub-site for broker-to-broker collaboration and buyer briefs.
 
 1. **Nav** - Logo routes to `/home`, dark mode toggle on the right
 2. **Hero** - Broker-partnership headline with mock partnership positioning
-3. **Trust / Partnership Sections** - Mock-data panels covering fair commissions, dedicated support, and collaboration expectations
+3. **Trust / Partnership Sections** - Panels covering fair commissions, dedicated support, collaboration expectations, and a clearer explanation of how Namou works with brokers after the first brief
 4. **Form** - One-question-at-a-time intake for the broker's client brief plus broker name, agency, and contact details
 5. **Final destination** - Submit opens WhatsApp with a structured broker/client summary
 
@@ -191,4 +191,5 @@ namou-website/
 | 2026-03-21 | `8050a7b` | Add initial `/buy` buyer inquiry page |
 | 2026-03-21 | `82edeac` | Wire `/home` buy CTA to `/buy` |
 | 2026-03-21 | `d75f465` | Apply mint/forest branding from reference to `/home` and `/buy` |
-| 2026-04-01 | `pending` | First draft intent-based sub-sites: `/buy`, `/sell`, and `/broker`, with `/home` routing updated |
+| 2026-04-01 | `06dc4ec` | First draft intent-based sub-sites: `/buy`, `/sell`, and `/broker`, with `/home` routing updated |
+| 2026-04-01 | `pending` | Expand `/broker` content to explain how Namou works with brokers after the brief is shared |
