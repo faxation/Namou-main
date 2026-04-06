@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your details — Namou Properties</title>
+  <meta name="description" content="Send your land investment brief to a Namou specialist via WhatsApp.">
+  <link rel="icon" href="../../assets/images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/funnel.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="../../assets/images/logo.png" alt="Namou Properties" width="120" height="44">
+      </a>
+      <div class="nav__right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="material-symbols-outlined icon-moon">dark_mode</span>
+          <span class="material-symbols-outlined icon-sun">light_mode</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="funnel-page">
+
+    <div class="funnel-progress">
+      <div class="funnel-progress__segment funnel-progress__segment--complete"></div>
+      <div class="funnel-progress__segment funnel-progress__segment--complete"></div>
+      <div class="funnel-progress__segment funnel-progress__segment--complete"></div>
+      <div class="funnel-progress__segment funnel-progress__segment--complete"></div>
+      <div class="funnel-progress__segment funnel-progress__segment--complete"></div>
+      <div class="funnel-progress__segment funnel-progress__segment--active"></div>
+    </div>
+
+    <a href="/funnel/stage-5" class="funnel-back">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Back
+    </a>
+
+    <div class="funnel-stage">
+      <h1 class="funnel-stage__title">Where should we send matches?</h1>
+      <p class="funnel-stage__subtitle">A specialist will reply within 5 minutes.</p>
+
+      <form id="contactForm" novalidate>
+        <div class="funnel-input-group" id="nameGroup">
+          <label for="nameInput">Your name</label>
+          <input class="funnel-input" id="nameInput" type="text" placeholder="Full name" autocomplete="name" required>
+          <div class="funnel-error">Name is required.</div>
+        </div>
+
+        <div class="funnel-input-group" id="phoneGroup">
+          <label for="phoneInput">WhatsApp number</label>
+          <div class="funnel-phone-row">
+            <input class="funnel-input funnel-phone-prefix" value="+971" readonly tabindex="-1" aria-label="Country code">
+            <input class="funnel-input funnel-phone-number" id="phoneInput" type="tel" placeholder="50 123 4567" autocomplete="tel-national" required>
+          </div>
+          <div class="funnel-error">A valid WhatsApp number is required.</div>
+        </div>
+
+        <div class="funnel-input-group" id="emailGroup">
+          <label for="emailInput">Email <span style="color: var(--color-text-light); font-weight: 400;">(optional)</span></label>
+          <input class="funnel-input" id="emailInput" type="email" placeholder="you@example.com" autocomplete="email">
+        </div>
+
+        <div class="funnel-input-group" id="notesGroup">
+          <label for="notesInput">Anything else? <span style="color: var(--color-text-light); font-weight: 400;">(optional)</span></label>
+          <textarea class="funnel-input funnel-textarea" id="notesInput" placeholder="Specific requirements, timeline notes, or questions" maxlength="280"></textarea>
+          <div class="funnel-char-count" id="charCount">280 characters remaining</div>
+        </div>
+
+        <div class="funnel-continue">
+          <button class="btn" type="submit">Open WhatsApp with my brief →</button>
+        </div>
+      </form>
+    </div>
+
+  </main>
+
+  <script src="../../js/main.js"></script>
+  <script src="../../js/funnel.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('contactForm');
+      var nameInput = document.getElementById('nameInput');
+      var phoneInput = document.getElementById('phoneInput');
+      var emailInput = document.getElementById('emailInput');
+      var notesInput = document.getElementById('notesInput');
+      var charCount = document.getElementById('charCount');
+
+      // Restore previous values if returning via Back
+      var state = Funnel.getState();
+      if (state.contact) {
+        nameInput.value = state.contact.name || '';
+        phoneInput.value = (state.contact.whatsapp || '').replace(/^\+971/, '');
+        emailInput.value = state.contact.email || '';
+        notesInput.value = state.contact.notes || '';
+        updateCharCount();
+      }
+
+      // Character counter
+      function updateCharCount() {
+        var remaining = 280 - notesInput.value.length;
+        charCount.textContent = remaining + ' characters remaining';
+      }
+      notesInput.addEventListener('input', function() {
+        if (this.value.length > 280) {
+          this.value = this.value.substring(0, 280);
+        }
+        updateCharCount();
+      });
+
+      // Clear error on input
+      nameInput.addEventListener('input', function() {
+        document.getElementById('nameGroup').classList.remove('funnel-input-group--error');
+      });
+      phoneInput.addEventListener('input', function() {
+        document.getElementById('phoneGroup').classList.remove('funnel-input-group--error');
+      });
+
+      // Submit
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var valid = true;
+
+        // Validate name
+        if (!nameInput.value.trim()) {
+          document.getElementById('nameGroup').classList.add('funnel-input-group--error');
+          valid = false;
+        }
+
+        // Validate phone — strip spaces, check length
+        var phone = phoneInput.value.trim().replace(/[\s\-()]/g, '');
+        if (!phone || phone.length < 7 || !/^\d+$/.test(phone)) {
+          document.getElementById('phoneGroup').classList.add('funnel-input-group--error');
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        // Save contact
+        Funnel.setState({
+          contact: {
+            name: nameInput.value.trim(),
+            whatsapp: '+971' + phone,
+            email: emailInput.value.trim() || undefined,
+            notes: notesInput.value.trim() || undefined
+          }
+        });
+
+        // TODO: POST payload to /api/leads (Supabase) before redirect
+
+        window.location.href = '/funnel/handoff';
+      });
+    });
+  </script>
+</body>
+</html>

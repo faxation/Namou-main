@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plot preferences — Namou Properties</title>
+  <meta name="description" content="Choose your preferred zones and plot type in RAK.">
+  <link rel="icon" href="../../assets/images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/funnel.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="../../assets/images/logo.png" alt="Namou Properties" width="120" height="44">
+      </a>
+      <div class="nav__right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="material-symbols-outlined icon-moon">dark_mode</span>
+          <span class="material-symbols-outlined icon-sun">light_mode</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="funnel-page">
+
+    <div class="funnel-progress">
+      <div class="funnel-progress__segment funnel-progress__segment--complete"></div>
+      <div class="funnel-progress__segment funnel-progress__segment--complete"></div>
+      <div class="funnel-progress__segment funnel-progress__segment--complete"></div>
+      <div class="funnel-progress__segment funnel-progress__segment--active"></div>
+      <div class="funnel-progress__segment"></div>
+      <div class="funnel-progress__segment"></div>
+    </div>
+
+    <a href="/funnel/stage-3" class="funnel-back">
+      <span class="material-symbols-outlined">arrow_back</span>
+      Back
+    </a>
+
+    <div class="funnel-stage">
+      <h1 class="funnel-stage__title">Where in RAK?</h1>
+      <p class="funnel-stage__subtitle">Pick your preferred zones, zoning type, and plot size.</p>
+
+      <!-- TODO: Mapbox GL JS map with RAK zone polygons -->
+
+      <div class="funnel-field">
+        <span class="funnel-field__label">Zones</span>
+        <div class="funnel-chips" id="zoneChips">
+          <button class="funnel-chip" data-value="Al Marjan Island" type="button">Al Marjan Island</button>
+          <button class="funnel-chip" data-value="Al Hamra" type="button">Al Hamra</button>
+          <button class="funnel-chip" data-value="Mina Al Arab" type="button">Mina Al Arab</button>
+          <button class="funnel-chip" data-value="Al Jazeera Al Hamra" type="button">Al Jazeera Al Hamra</button>
+          <button class="funnel-chip" data-value="RAK Central" type="button">RAK Central</button>
+          <button class="funnel-chip" data-value="RAK Mainland" type="button">RAK Mainland</button>
+          <button class="funnel-chip" data-value="Any" type="button">Any</button>
+        </div>
+      </div>
+
+      <div class="funnel-field">
+        <span class="funnel-field__label">Zoning</span>
+        <div class="funnel-chips" id="zoningChips">
+          <button class="funnel-chip" data-value="Residential" type="button">Residential</button>
+          <button class="funnel-chip" data-value="Mixed-use" type="button">Mixed-use</button>
+          <button class="funnel-chip" data-value="Commercial" type="button">Commercial</button>
+          <button class="funnel-chip" data-value="Hospitality" type="button">Hospitality</button>
+          <button class="funnel-chip" data-value="Industrial" type="button">Industrial</button>
+          <button class="funnel-chip" data-value="Not sure" type="button">Not sure</button>
+        </div>
+      </div>
+
+      <div class="funnel-field">
+        <span class="funnel-field__label">Size band</span>
+        <div class="funnel-chips" id="sizeChips">
+          <button class="funnel-chip" data-value="under-10k" type="button">&lt;10k sqft</button>
+          <button class="funnel-chip" data-value="10-25k" type="button">10–25k sqft</button>
+          <button class="funnel-chip" data-value="25-50k" type="button">25–50k sqft</button>
+          <button class="funnel-chip" data-value="50k-plus" type="button">50k+ sqft</button>
+        </div>
+      </div>
+
+      <!-- TODO: live match count from lib/funnel/matching.ts -->
+      <div class="funnel-match-count" id="matchCount">
+        Match count will appear here once plot data is connected.
+      </div>
+    </div>
+
+    <div class="funnel-continue">
+      <button class="btn" id="continueBtn" type="button">Continue</button>
+    </div>
+
+  </main>
+
+  <script src="../../js/main.js"></script>
+  <script src="../../js/funnel.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      Funnel.initChips('zoneChips', 'zones', 'multi');
+      Funnel.initChips('zoningChips', 'zoning', 'multi');
+      Funnel.initChips('sizeChips', 'sizeBand', 'single');
+
+      document.getElementById('continueBtn').addEventListener('click', function() {
+        window.location.href = '/funnel/stage-5';
+      });
+    });
+  </script>
+</body>
+</html>
