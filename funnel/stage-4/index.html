@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="../../css/funnel.css">
 </head>
@@ -49,7 +50,8 @@
       <h1 class="funnel-stage__title">Where in RAK?</h1>
       <p class="funnel-stage__subtitle">Pick your preferred zones, zoning type, and plot size.</p>
 
-      <!-- TODO: Mapbox GL JS map with RAK zone polygons -->
+      <!-- Map -->
+      <div id="map" class="funnel-map"></div>
 
       <div class="funnel-field">
         <span class="funnel-field__label">Zones</span>
@@ -86,9 +88,8 @@
         </div>
       </div>
 
-      <!-- TODO: live match count from lib/funnel/matching.ts -->
       <div class="funnel-match-count" id="matchCount">
-        Match count will appear here once plot data is connected.
+        Select preferences to see matching plots.
       </div>
     </div>
 
@@ -99,12 +100,129 @@
   </main>
 
   <script src="../../js/main.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
   <script src="../../js/funnel.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      var plots = [];
+
       Funnel.initChips('zoneChips', 'zones', 'multi');
       Funnel.initChips('zoningChips', 'zoning', 'multi');
       Funnel.initChips('sizeChips', 'sizeBand', 'single');
+
+      // Load plot data and run initial match
+      fetch('../../data/plots.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          plots = data;
+          updateMatchCount();
+        })
+        .catch(function() { /* plots.json not available yet */ });
+
+      function updateMatchCount() {
+        var state = Funnel.getState();
+        var result = Funnel.matchPlots(state, plots);
+        var el = document.getElementById('matchCount');
+
+        if (result.state === 'perfect') {
+          el.innerHTML = '<strong>' + result.plots.length + ' plot' + (result.plots.length === 1 ? '' : 's') + ' match</strong> your criteria exactly.';
+        } else if (result.state === 'partial') {
+          el.innerHTML = '<strong>' + result.plots.length + ' close match' + (result.plots.length === 1 ? '' : 'es') + '</strong> — relaxing one criterion.';
+        } else {
+          el.textContent = 'No exact matches \u2014 we source weekly and will notify you.';
+        }
+
+        var ids = (result.plots || []).map(function(p) { return p.id; });
+        Funnel.setState({
+          matchedPlotIds: ids,
+          noMatchBrief: result.state === 'no-match'
+        });
+      }
+
+      // Update match count on any chip change
+      ['zoneChips', 'zoningChips', 'sizeChips'].forEach(function(id) {
+        document.getElementById(id).addEventListener('chipchange', updateMatchCount);
+      });
+
+      // Map initialization
+      if (typeof mapboxgl !== 'undefined' && Funnel.MAPBOX_TOKEN) {
+        mapboxgl.accessToken = Funnel.MAPBOX_TOKEN;
+
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var map = new mapboxgl.Map({
+          container: 'map',
+          style: isDark ? 'mapbox://styles/mapbox/dark-v11' : 'mapbox://styles/mapbox/light-v11',
+          center: [55.87, 25.78],
+          zoom: 10,
+          attributionControl: false
+        });
+
+        map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+        map.on('load', function() {
+          fetch('../../data/rak-zones.geojson')
+            .then(function(r) { return r.json(); })
+            .then(function(geojson) {
+              map.addSource('zones', { type: 'geojson', data: geojson });
+
+              map.addLayer({
+                id: 'zone-fills',
+                type: 'fill',
+                source: 'zones',
+                paint: {
+                  'fill-color': '#003d2e',
+                  'fill-opacity': 0.12
+                }
+              });
+
+              map.addLayer({
+                id: 'zone-borders',
+                type: 'line',
+                source: 'zones',
+                paint: {
+                  'line-color': '#003d2e',
+                  'line-width': 2,
+                  'line-opacity': 0.4
+                }
+              });
+
+              map.addLayer({
+                id: 'zone-labels',
+                type: 'symbol',
+                source: 'zones',
+                layout: {
+                  'text-field': ['get', 'name'],
+                  'text-size': 11,
+                  'text-font': ['DIN Pro Medium', 'Arial Unicode MS Regular']
+                },
+                paint: {
+                  'text-color': '#003d2e',
+                  'text-halo-color': '#ffffff',
+                  'text-halo-width': 1.5
+                }
+              });
+
+              // Click zone to toggle chip
+              map.on('click', 'zone-fills', function(e) {
+                if (e.features && e.features.length) {
+                  var zoneName = e.features[0].properties.name;
+                  var chip = document.querySelector('#zoneChips [data-value="' + zoneName + '"]');
+                  if (chip) chip.click();
+                }
+              });
+
+              map.on('mouseenter', 'zone-fills', function() {
+                map.getCanvas().style.cursor = 'pointer';
+              });
+              map.on('mouseleave', 'zone-fills', function() {
+                map.getCanvas().style.cursor = '';
+              });
+            });
+        });
+      } else {
+        document.getElementById('map').innerHTML =
+          '<div class="funnel-map__fallback">Interactive map available when Mapbox token is configured.<br>Use the zone chips below to select your preferred areas.</div>';
+      }
 
       document.getElementById('continueBtn').addEventListener('click', function() {
         window.location.href = '/funnel/stage-5';

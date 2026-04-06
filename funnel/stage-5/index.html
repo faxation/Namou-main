@@ -49,7 +49,6 @@
       <h1 class="funnel-stage__title">Your indicative ROI</h1>
       <p class="funnel-stage__subtitle" id="roiContext">Based on your selections.</p>
 
-      <!-- TODO: Pull real ROI numbers from the existing JV ROI simulator -->
       <div class="funnel-roi">
         <div class="funnel-roi__grid">
           <div class="funnel-roi__item">
@@ -71,11 +70,10 @@
         </div>
       </div>
 
-      <!-- TODO: Horizontal scrollable PlotMatchPreview cards from matching results -->
       <div class="funnel-matches" id="matchPreview">
         <div class="funnel-match-card">
-          <div class="funnel-match-card__title">We're sourcing this</div>
-          <div class="funnel-match-card__detail">Leave your details and we'll be in touch within 24 hours with matched opportunities.</div>
+          <div class="funnel-match-card__title">Loading matches…</div>
+          <div class="funnel-match-card__detail"></div>
         </div>
       </div>
     </div>
@@ -90,11 +88,19 @@
   <script src="../../js/funnel.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Mark value moment as viewed (adds +10 to score)
+      // Mark value moment as viewed (+10 to score)
       Funnel.setState({ viewedValueMoment: true });
 
-      // Build context subtitle from state
       var state = Funnel.getState();
+
+      // ROI calculation
+      var roi = Funnel.calculateROI(state);
+      document.getElementById('roiLandCost').textContent  = Funnel.formatAED(roi.landCost);
+      document.getElementById('roiBuildCost').textContent = Funnel.formatAED(roi.buildCost);
+      document.getElementById('roiGdv').textContent       = Funnel.formatAED(roi.gdv);
+      document.getElementById('roiMargin').textContent    = roi.margin + '%';
+
+      // Context subtitle
       var parts = [];
       if (state.budgetBand && Funnel.LABELS.budgetBand[state.budgetBand]) {
         parts.push(Funnel.LABELS.budgetBand[state.budgetBand]);
@@ -109,12 +115,53 @@
         parts.push(state.zones[0]);
       }
       if (parts.length) {
-        document.getElementById('roiContext').textContent = 'Based on ' + parts.join(' · ');
+        document.getElementById('roiContext').textContent = 'Based on ' + parts.join(' \u00b7 ');
       }
+
+      // Load matched plots
+      fetch('../../data/plots.json')
+        .then(function(r) { return r.json(); })
+        .then(function(plots) {
+          var result = Funnel.matchPlots(state, plots);
+          var container = document.getElementById('matchPreview');
+
+          if (result.state === 'perfect' || result.state === 'partial') {
+            var html = '';
+            var label = result.state === 'partial' ? ' (close match)' : '';
+            result.plots.slice(0, 3).forEach(function(plot) {
+              html += '<div class="funnel-match-card">';
+              html += '<div class="funnel-match-card__title">' + escapeHtml(plot.title) + label + '</div>';
+              html += '<div class="funnel-match-card__detail">';
+              html += escapeHtml(plot.zone) + ' \u00b7 ' + escapeHtml(plot.zoning) + '<br>';
+              html += Funnel.formatAED(plot.price_aed) + ' \u00b7 ' + plot.size_sqft.toLocaleString() + ' sqft';
+              html += '</div></div>';
+            });
+            container.innerHTML = html;
+          } else {
+            container.innerHTML =
+              '<div class="funnel-match-card">' +
+              '<div class="funnel-match-card__title">We\u2019re sourcing this</div>' +
+              '<div class="funnel-match-card__detail">Leave your details and we\u2019ll be in touch within 24 hours with matched opportunities.</div>' +
+              '</div>';
+          }
+        })
+        .catch(function() {
+          document.getElementById('matchPreview').innerHTML =
+            '<div class="funnel-match-card">' +
+            '<div class="funnel-match-card__title">We\u2019re sourcing this</div>' +
+            '<div class="funnel-match-card__detail">Leave your details and we\u2019ll be in touch within 24 hours.</div>' +
+            '</div>';
+        });
 
       document.getElementById('continueBtn').addEventListener('click', function() {
         window.location.href = '/funnel/stage-6';
       });
+
+      function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
     });
   </script>
 </body>

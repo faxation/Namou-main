@@ -241,6 +241,136 @@
     if (btn) btn.disabled = !enabled;
   }
 
+  /* ----- Plot matching ----- */
+
+  function plotInBudget(plot, band) {
+    switch (band) {
+      case 'under-2m':  return plot.price_aed < 2000000;
+      case '2-10m':     return plot.price_aed >= 2000000  && plot.price_aed < 10000000;
+      case '10-30m':    return plot.price_aed >= 10000000 && plot.price_aed < 30000000;
+      case '30m-plus':  return plot.price_aed >= 30000000;
+      case 'unsure':    return true;
+      default:          return true;
+    }
+  }
+
+  function plotInSize(plot, band) {
+    switch (band) {
+      case 'under-10k': return plot.size_sqft < 10000;
+      case '10-25k':    return plot.size_sqft >= 10000 && plot.size_sqft < 25000;
+      case '25-50k':    return plot.size_sqft >= 25000 && plot.size_sqft < 50000;
+      case '50k-plus':  return plot.size_sqft >= 50000;
+      default:          return true;
+    }
+  }
+
+  /**
+   * Match plots against funnel state.
+   * Returns { state: 'perfect'|'partial'|'no-match', plots: [] }
+   */
+  function matchPlots(state, plots) {
+    if (!plots || !plots.length) {
+      return { state: 'no-match', plots: [], suggestions: [] };
+    }
+
+    var exact = [];
+    var partial = [];
+
+    plots.forEach(function(plot) {
+      var checks = 0;
+      var hits = 0;
+
+      if (state.budgetBand) {
+        checks++;
+        if (plotInBudget(plot, state.budgetBand)) hits++;
+      }
+      if (state.zones && state.zones.length) {
+        checks++;
+        if (state.zones.indexOf(plot.zone) !== -1 || state.zones.indexOf('Any') !== -1) hits++;
+      }
+      if (state.zoning && state.zoning.length) {
+        checks++;
+        if (state.zoning.indexOf(plot.zoning) !== -1 || state.zoning.indexOf('Not sure') !== -1) hits++;
+      }
+      if (state.sizeBand) {
+        checks++;
+        if (plotInSize(plot, state.sizeBand)) hits++;
+      }
+
+      if (checks > 0) {
+        if (hits === checks) exact.push(plot);
+        else if (hits >= checks - 1) partial.push(plot);
+      }
+    });
+
+    if (exact.length > 0)   return { state: 'perfect', plots: exact };
+    if (partial.length > 0) return { state: 'partial',  plots: partial };
+    return { state: 'no-match', plots: [], suggestions: [] };
+  }
+
+
+  /* ----- ROI calculator ----- */
+
+  var ROI_ASSUMPTIONS = {
+    'Residential':  { landCost: 200, buildCost: 350, gdv: 900 },
+    'Mixed-use':    { landCost: 250, buildCost: 400, gdv: 1100 },
+    'Commercial':   { landCost: 300, buildCost: 450, gdv: 1200 },
+    'Hospitality':  { landCost: 350, buildCost: 500, gdv: 1500 },
+    'Industrial':   { landCost: 100, buildCost: 250, gdv: 500 },
+    'Not sure':     { landCost: 200, buildCost: 350, gdv: 900 }
+  };
+
+  var ZONE_PREMIUM = {
+    'Al Marjan Island':     1.6,
+    'Al Hamra':             1.3,
+    'Mina Al Arab':         1.2,
+    'Al Jazeera Al Hamra':  0.9,
+    'RAK Central':          1.0,
+    'RAK Mainland':         0.8,
+    'Any':                  1.0
+  };
+
+  var BUDGET_TO_SIZE = {
+    'under-2m':  5000,
+    '2-10m':     15000,
+    '10-30m':    35000,
+    '30m-plus':  75000,
+    'unsure':    15000
+  };
+
+  function calculateROI(state) {
+    var zoning = (state.zoning && state.zoning.length) ? state.zoning[0] : 'Residential';
+    var zone   = (state.zones  && state.zones.length)  ? state.zones[0]  : 'Any';
+    var size   = BUDGET_TO_SIZE[state.budgetBand] || 15000;
+
+    var base    = ROI_ASSUMPTIONS[zoning] || ROI_ASSUMPTIONS['Residential'];
+    var premium = ZONE_PREMIUM[zone]      || 1.0;
+
+    var landCost  = Math.round(base.landCost  * premium * size);
+    var buildCost = Math.round(base.buildCost * premium * size);
+    var gdv       = Math.round(base.gdv       * premium * size);
+    var totalCost = landCost + buildCost;
+    var profit    = gdv - totalCost;
+    var margin    = totalCost > 0 ? Math.round((profit / totalCost) * 100) : 0;
+
+    return { landCost: landCost, buildCost: buildCost, gdv: gdv, margin: margin };
+  }
+
+
+  /* ----- Formatting ----- */
+
+  function formatAED(num) {
+    if (num >= 1000000) return 'AED ' + (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000)    return 'AED ' + Math.round(num / 1000) + 'K';
+    return 'AED ' + num;
+  }
+
+
+  /* ----- Mapbox token ----- */
+  // TODO: Replace with your Mapbox access token
+  var MAPBOX_TOKEN = '';
+
+
   /* ----- Expose ----- */
 
   window.Funnel = {
@@ -250,11 +380,15 @@
     calculateScore:    calculateScore,
     getTier:           getTier,
     buildWhatsAppLink: buildWhatsAppLink,
+    matchPlots:        matchPlots,
+    calculateROI:      calculateROI,
+    formatAED:         formatAED,
     initChips:         initChips,
     toggleContinue:    toggleContinue,
     LABELS:            LABELS,
     ZONES:             ZONES,
-    WHATSAPP_NUMBER:   WHATSAPP_NUMBER
+    WHATSAPP_NUMBER:   WHATSAPP_NUMBER,
+    MAPBOX_TOKEN:      MAPBOX_TOKEN
   };
 
 })();

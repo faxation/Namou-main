@@ -515,6 +515,43 @@
 
 
 /* =============================================
+   MAP (stage 4)
+   ============================================= */
+
+.funnel-map {
+  width: 100%;
+  height: 280px;
+  border-radius: 16px;
+  margin-bottom: 28px;
+  overflow: hidden;
+  background: rgba(0, 61, 46, 0.04);
+}
+
+.funnel-map__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-light);
+  text-align: center;
+  padding: 24px;
+}
+
+[data-theme="dark"] .funnel-map {
+  background: rgba(135, 198, 174, 0.06);
+}
+
+@media (max-width: 480px) {
+  .funnel-map {
+    height: 220px;
+    border-radius: 12px;
+  }
+}
+
+
+/* =============================================
    MATCH COUNT BADGE (stage 4)
    ============================================= */
 
