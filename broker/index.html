@@ -3,13 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Broker Partnership - Namou Properties</title>
-  <meta name="description" content="Broker partnership intake for Namou Properties in Ras Al Khaimah. Share your client brief, budget, and target land requirements before opening WhatsApp.">
-  <meta property="og:title" content="Broker Partnership - Namou Properties">
-  <meta property="og:description" content="Fair, fast, WhatsApp-first broker partnership intake for Ras Al Khaimah opportunities.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://namou.ae/broker">
-  <meta property="og:image" content="https://namou.ae/assets/images/logo.png">
+  <title>Broker Partnership — Namou Properties</title>
+  <meta name="description" content="Partner with Namou. Verified inventory, fair commissions, WhatsApp-first workflow for brokers in Ras Al Khaimah.">
   <link rel="icon" href="../assets/images/logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +25,6 @@
       --color-nav-bg: rgba(247, 251, 248, 0.85);
       --color-nav-bg-scroll: rgba(247, 251, 248, 0.95);
     }
-
     [data-theme="dark"] {
       --color-bg: #0a1a14;
       --color-bg-alt: #0f231b;
@@ -45,472 +39,197 @@
       --color-nav-bg-scroll: rgba(10, 26, 20, 0.95);
     }
 
-    .page {
-      padding: calc(var(--nav-height) + 22px) max(16px, env(safe-area-inset-right)) 64px max(16px, env(safe-area-inset-left));
-      background:
-        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(184, 221, 208, 0.14) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(184, 221, 208, 0.08) 0%, transparent 50%);
-    }
+    .bp { padding: calc(var(--nav-height) + 40px) 20px 80px; }
+    .bp-wrap { max-width: 720px; margin: 0 auto; }
 
-    .wrap {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      display: grid;
-      gap: 18px;
-    }
-
-    .hero,
-    .split {
-      display: grid;
-      gap: 18px;
-    }
-
-    .panel,
-    .funnel {
-      border: 1px solid rgba(0, 61, 46, 0.08);
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.66);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 18px 50px rgba(0, 61, 46, 0.08);
-    }
-
-    [data-theme="dark"] .panel,
-    [data-theme="dark"] .funnel {
-      background: rgba(135, 198, 174, 0.04);
-      border-color: rgba(135, 198, 174, 0.08);
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
-    }
-
-    .panel {
-      padding: 24px 20px;
-    }
-
-    .hero-image {
-      overflow: hidden;
-      min-height: 280px;
-      padding: 0;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
+    /* Hero */
+    .bp-hero { text-align: center; margin-bottom: 56px; }
+    .bp-hero__label {
+      display: inline-block;
+      padding: 6px 14px;
       border-radius: 999px;
       background: var(--color-green-subtle);
       color: var(--color-green);
       font-family: var(--font-heading);
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
-
-    .title {
-      font-size: clamp(34px, 9vw, 56px);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-      color: var(--color-heading);
-      margin-bottom: 16px;
-    }
-
-    .text {
-      font-size: 14px;
-      line-height: 1.75;
-      color: var(--color-text);
-      max-width: 46ch;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0 16px;
-    }
-
-    .chip {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(0, 61, 46, 0.05);
-      color: var(--color-heading);
+    .bp-hero h1 {
       font-family: var(--font-heading);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .panel h2 {
-      font-size: 24px;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      font-size: clamp(28px, 7vw, 44px);
+      font-weight: 700;
       color: var(--color-heading);
-      margin-bottom: 10px;
+      line-height: 1.1;
+      margin-bottom: 14px;
     }
-
-    .panel p {
-      font-size: 14px;
-      line-height: 1.75;
+    .bp-hero p {
+      font-family: var(--font-body);
+      font-size: 15px;
       color: var(--color-text);
+      line-height: 1.6;
+      max-width: 50ch;
+      margin: 0 auto;
     }
 
-    .card-grid {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
+    /* Process tree */
+    .bp-tree { position: relative; padding-left: 36px; margin-bottom: 56px; }
+    .bp-tree::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-green), var(--color-green-subtle));
+      border-radius: 2px;
     }
 
-    .card {
-      padding: 18px;
-      border: 1px solid rgba(0, 61, 46, 0.08);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.52);
+    .bp-step { position: relative; padding-bottom: 40px; }
+    .bp-step:last-child { padding-bottom: 0; }
+
+    .bp-step__dot {
+      position: absolute;
+      left: -36px;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-green);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      z-index: 1;
     }
 
-    [data-theme="dark"] .card {
-      background: rgba(135, 198, 174, 0.03);
-      border-color: rgba(135, 198, 174, 0.08);
+    .bp-step h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-heading);
+      margin-bottom: 6px;
+      line-height: 1.2;
     }
-
-    .card .material-symbols-outlined {
-      color: var(--color-green);
-      font-size: 26px;
+    .bp-step > p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-text);
+      line-height: 1.6;
       margin-bottom: 12px;
     }
 
-    .card h3 {
-      font-size: 18px;
-      line-height: 1.2;
+    .bp-step__details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .bp-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0, 61, 46, 0.04);
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-heading);
+    }
+    [data-theme="dark"] .bp-tag { background: rgba(135, 198, 174, 0.06); }
+    .bp-tag .material-symbols-outlined { font-size: 15px; color: var(--color-green); }
+
+    /* Why section */
+    .bp-why { margin-bottom: 56px; }
+    .bp-why h2 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-heading);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .bp-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .bp-card {
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      background: rgba(255, 255, 255, 0.6);
+      text-align: center;
+    }
+    [data-theme="dark"] .bp-card {
+      background: rgba(135, 198, 174, 0.04);
+      border-color: rgba(135, 198, 174, 0.08);
+    }
+    .bp-card .material-symbols-outlined {
+      font-size: 28px;
+      color: var(--color-green);
+      margin-bottom: 8px;
+    }
+    .bp-card h3 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-heading);
+      margin-bottom: 4px;
+    }
+    .bp-card p {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    /* CTA */
+    .bp-cta {
+      text-align: center;
+      padding: 40px 20px;
+      border-radius: 24px;
+      border: 1px solid var(--color-border);
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    [data-theme="dark"] .bp-cta {
+      background: rgba(135, 198, 174, 0.04);
+      border-color: rgba(135, 198, 174, 0.08);
+    }
+    .bp-cta h2 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
       color: var(--color-heading);
       margin-bottom: 8px;
     }
-
-    .card p {
-      font-size: 13px;
-      line-height: 1.7;
-      color: var(--color-text);
-    }
-
-    .funnel {
-      padding: 18px 16px;
-    }
-
-    .funnel__intro {
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .funnel__intro h2 {
-      font-size: clamp(28px, 8vw, 40px);
-      line-height: 1.04;
-      letter-spacing: -0.04em;
-      color: var(--color-heading);
-      margin-bottom: 10px;
-    }
-
-    .funnel__intro p,
-    .step__text {
-      font-size: 14px;
-      line-height: 1.75;
-      color: var(--color-text);
-    }
-
-    .funnel__progress {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .back {
-      appearance: none;
-      border: 1px solid var(--color-border);
-      background: transparent;
-      color: var(--color-heading);
-      border-radius: 999px;
-      min-width: 76px;
-      padding: 11px 16px;
-      font-family: var(--font-heading);
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .back:hover:not(:disabled) {
-      border-color: var(--color-green);
-      background: var(--color-green-subtle);
-    }
-
-    .back:disabled {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .meta {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .count {
-      display: block;
-      margin-bottom: 10px;
-      font-family: var(--font-heading);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--color-text-light);
-    }
-
-    .bar {
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(0, 61, 46, 0.08);
-      overflow: hidden;
-    }
-
-    .bar span {
-      display: block;
-      width: 14.285%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--color-green), var(--color-green-hover));
-      transition: width 0.25s ease;
-    }
-
-    .step {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 16px;
-      min-height: 390px;
-      padding: 8px 2px 2px;
-      animation: fadeInStep 0.24s ease;
-    }
-
-    .step.is-active {
-      display: flex;
-    }
-
-    .step__title {
-      font-size: clamp(26px, 8vw, 36px);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      color: var(--color-heading);
-    }
-
-    .options,
-    .field,
-    .actions {
-      width: 100%;
-    }
-
-    .options {
-      display: grid;
-      gap: 12px;
-      border: 0;
-      padding: 0;
-      margin: 0;
-    }
-
-    .choice {
-      position: relative;
-    }
-
-    .choice input {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .choice span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 62px;
-      padding: 16px;
-      border-radius: 18px;
-      border: 1px solid transparent;
-      background: rgba(0, 61, 46, 0.04);
-      color: var(--color-text);
-      font-family: var(--font-heading);
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.35;
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--transition);
-      overflow-wrap: anywhere;
-    }
-
-    [data-theme="dark"] .choice span,
-    [data-theme="dark"] .input {
-      background: rgba(135, 198, 174, 0.06);
-    }
-
-    .choice span:hover {
-      background: rgba(0, 61, 46, 0.08);
-      color: var(--color-heading);
-    }
-
-    .choice input:checked + span {
-      background: var(--color-green-subtle);
-      border-color: var(--color-green);
-      box-shadow: inset 0 0 0 1px var(--color-green);
-      color: var(--color-heading);
-    }
-
-    .input {
-      width: 100%;
-      padding: 18px;
-      border: 1px solid transparent;
-      border-radius: 18px;
-      background: rgba(0, 61, 46, 0.04);
-      color: var(--color-heading);
+    .bp-cta p {
       font-family: var(--font-body);
       font-size: 14px;
-      transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
-      margin-bottom: 12px;
+      color: var(--color-text);
+      margin-bottom: 20px;
+    }
+    .bp-cta .btn {
+      border-radius: 12px;
+      font-size: 16px;
+      padding: 14px 28px;
     }
 
-    .input::placeholder {
-      color: var(--color-text-light);
-    }
-
-    .input:focus {
-      outline: none;
-      border-color: var(--color-green);
-      box-shadow: inset 0 0 0 1px var(--color-green);
-      background: rgba(0, 61, 46, 0.06);
-    }
-
-    .input--hidden {
-      display: none;
-    }
-
-    .button {
-      width: 100%;
-      justify-content: center;
-      min-height: 56px;
-      border-radius: 16px;
-      background: var(--color-green);
-      color: #fff;
-      border-color: var(--color-green);
-    }
-
-    .button:hover {
-      background: var(--color-green-hover);
-      border-color: var(--color-green-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(0, 176, 115, 0.2);
-    }
-
-    .error {
-      display: none;
-      width: 100%;
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.6;
-      color: #d32f2f;
-    }
-
-    .step--error .error {
-      display: block;
-    }
-
-    .step--error .input {
-      border-color: #d32f2f;
-      box-shadow: inset 0 0 0 1px #d32f2f;
-    }
-
-    .hint {
-      margin-top: 12px;
-      text-align: center;
-      font-size: 12px;
-      line-height: 1.7;
-      color: var(--color-text-light);
-    }
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    @keyframes fadeInStep {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (min-width: 720px) {
-      .card-grid--three,
-      .options--two {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 960px) {
-      .page {
-        padding: calc(var(--nav-height) + 36px) max(24px, env(safe-area-inset-right)) 88px max(24px, env(safe-area-inset-left));
-      }
-
-      .hero,
-      .split {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .panel,
-      .funnel {
-        padding-left: 28px;
-        padding-right: 28px;
-      }
-    }
-
-    @media (max-width: 479px) {
-      .page {
-        padding: calc(var(--nav-height) + 18px) max(12px, env(safe-area-inset-right)) 48px max(12px, env(safe-area-inset-left));
-      }
-
-      .panel,
-      .funnel {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
-      .funnel__progress {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .back {
-        width: 100%;
-      }
+    @media (max-width: 480px) {
+      .bp-grid { grid-template-columns: 1fr; }
+      .bp-hero h1 { font-size: 26px; }
     }
   </style>
 </head>
 <body>
+
   <nav class="nav" id="nav">
     <div class="nav__inner">
       <a href="/" class="nav__logo" data-analytics="nav-logo" data-section="nav">
@@ -525,406 +244,104 @@
     </div>
   </nav>
 
-  <main class="page">
-    <div class="wrap">
-      <section class="hero">
-        <article class="panel">
-          <span class="eyebrow">Broker Partnership</span>
-          <h1 class="title">Partnership conversations that start with a real client brief.</h1>
-          <p class="text">Namou wants broker partnerships that move quickly, transparently, and with clear buyer intent. This intake gathers the client brief before WhatsApp so the team can assess fit faster, align on the mandate earlier, and continue the conversation with more commercial clarity.</p>
-          <div class="chips">
-            <span class="chip">Fair collaboration</span>
-            <span class="chip">Dedicated support</span>
-            <span class="chip">Buyer-ready briefs</span>
-          </div>
-          <p class="text">Namou already frames broker relationships around fair commissions, dedicated support, documentation sharing, and quicker access to property details once the opportunity is genuinely aligned.</p>
-        </article>
-        <article class="panel hero-image">
-          <img src="../assets/images/broker-team.jpg" alt="Namou broker partnership">
-        </article>
-      </section>
+  <main class="bp">
+    <div class="bp-wrap">
 
-      <section class="split">
-        <article class="panel">
-          <h2>Why partner with Namou</h2>
-          <p>The broker page needs to answer a practical question fast: why should I bring this buyer brief to Namou? The answer has to be commercial, not decorative, and it starts with speed, support, and a working relationship built around real mandates.</p>
-          <div class="card-grid card-grid--three">
-            <div class="card"><span class="material-symbols-outlined">handshake</span><h3>Fair commissions</h3><p>Competitive and transparent collaboration structures help both sides move with more confidence.</p></div>
-            <div class="card"><span class="material-symbols-outlined">support_agent</span><h3>Dedicated broker support</h3><p>Namou's in-house team can share listings, property details, and documentation faster when the brief is already clear.</p></div>
-            <div class="card"><span class="material-symbols-outlined">chat</span><h3>WhatsApp-first workflow</h3><p>The handoff starts in WhatsApp, but with enough context to make the conversation useful from message one.</p></div>
-          </div>
-        </article>
+      <!-- Hero -->
+      <div class="bp-hero">
+        <span class="bp-hero__label">Broker partnership</span>
+        <h1>Close faster with Namou</h1>
+        <p>Verified inventory. Fair commissions. One WhatsApp message to start.</p>
+      </div>
 
-        <article class="panel">
-          <h2>What we need from brokers</h2>
-          <p>Namou is not trying to collect vague interest. The broker flow is built to capture the same core data a serious buyer would share, then layer broker identity on top so the conversation starts with a mandate rather than a loose inquiry.</p>
-          <div class="card-grid card-grid--three">
-            <div class="card"><span class="material-symbols-outlined">description</span><h3>Client brief, not just interest</h3><p>Land type, target area, budget, and objective help filter out soft inquiries and move toward better matches.</p></div>
-            <div class="card"><span class="material-symbols-outlined">apartment</span><h3>Land-specific demand</h3><p>This draft is geared toward commercial, residential, and hospitality land requirements in Ras Al Khaimah.</p></div>
-            <div class="card"><span class="material-symbols-outlined">bolt</span><h3>Low-friction handoff</h3><p>We keep the flow short, but serious enough to reduce random clicks and improve the quality of broker conversations.</p></div>
-          </div>
-        </article>
-      </section>
+      <!-- Process tree -->
+      <div class="bp-tree">
 
-      <section class="split">
-        <article class="panel">
-          <h2>How we work with brokers</h2>
-          <p>We want the broker to understand what happens after the first message. Namou uses the intake to shorten the back-and-forth, qualify the client faster, and make the partnership process more predictable for both sides without forcing the broker to restart the conversation from zero.</p>
-          <div class="card-grid card-grid--three">
-            <div class="card"><span class="material-symbols-outlined">looks_one</span><h3>You send the client brief</h3><p>You share the client's land type, preferred area, budget, and objective so Namou starts with real demand rather than generic browsing.</p></div>
-            <div class="card"><span class="material-symbols-outlined">looks_two</span><h3>Namou filters the match</h3><p>Our team reviews the brief, qualifies the seriousness of the request, and narrows the conversation toward opportunities that fit the mandate.</p></div>
-            <div class="card"><span class="material-symbols-outlined">looks_3</span><h3>We continue together</h3><p>Once aligned, Namou supports with listing details, documentation sharing, next-step coordination, and deal progression with the broker still in view.</p></div>
+        <div class="bp-step">
+          <div class="bp-step__dot">1</div>
+          <h3>The reach out</h3>
+          <p>Message us on WhatsApp with your client's requirement — budget, location, and purpose.</p>
+          <div class="bp-step__details">
+            <span class="bp-tag"><span class="material-symbols-outlined">chat</span>WhatsApp-first</span>
+            <span class="bp-tag"><span class="material-symbols-outlined">bolt</span>Reply in minutes</span>
           </div>
-        </article>
-
-        <article class="panel">
-          <h2>What brokers can expect from Namou</h2>
-          <p>The goal is not only access to opportunities, but a clearer working relationship. This is the picture the broker should see before opening WhatsApp: faster response, better documentation flow, and clearer coordination once a buyer brief is qualified.</p>
-          <div class="card-grid card-grid--three">
-            <div class="card"><span class="material-symbols-outlined">schedule</span><h3>Fast response</h3><p>When the buyer brief is already qualified, our team can respond faster and avoid losing time on incomplete conversations.</p></div>
-            <div class="card"><span class="material-symbols-outlined">inventory_2</span><h3>Shared documentation flow</h3><p>When relevant, Namou can support with property details, paperwork clarification, and document exchange to keep the process moving.</p></div>
-            <div class="card"><span class="material-symbols-outlined">diversity_3</span><h3>Respect for collaboration</h3><p>The partnership model is built around practical cooperation, transparent communication, and fair handling of broker relationships.</p></div>
-          </div>
-        </article>
-      </section>
-
-      <section class="split">
-        <article class="panel">
-          <h2>What happens after the brief is shared</h2>
-          <p>For qualified broker leads, Namou can move beyond WhatsApp into a more structured working session. That is where the brief becomes a real acquisition conversation rather than a simple intro message.</p>
-          <div class="card-grid card-grid--three">
-            <div class="card"><span class="material-symbols-outlined">forum</span><h3>WhatsApp alignment</h3><p>The initial message arrives with the client brief already structured, making it easier to confirm fit and next-step logic quickly.</p></div>
-            <div class="card"><span class="material-symbols-outlined">videocam</span><h3>Video call with the buyer journey in view</h3><p>After onboarding, Namou can use a video call to align with the broker around the client's strategy, land type logic, and the most relevant opportunity framing.</p></div>
-            <div class="card"><span class="material-symbols-outlined">route</span><h3>Coordinated continuation</h3><p>From there, the discussion can continue with listing detail, document support, and next-step coordination while keeping the broker context visible.</p></div>
-          </div>
-        </article>
-
-        <article class="panel">
-          <h2>How the Namou deck helps the broker conversation</h2>
-          <p>During qualified onboarding, Namou can use its visual pitch deck in the video call to explain strategic land investment opportunities across Ras Al Khaimah. The deck helps structure the conversation around curated plots, transparent ROI framing, clear ownership path, and land-type based opportunity review.</p>
-          <div class="card-grid card-grid--three">
-            <div class="card"><span class="material-symbols-outlined">dashboard</span><h3>Mandate clarity</h3><p>The deck gives the broker and buyer a cleaner frame for discussing opportunity type and strategy fit instead of abstract inquiry language.</p></div>
-            <div class="card"><span class="material-symbols-outlined">monitoring</span><h3>ROI-oriented discussion</h3><p>It helps bring return logic, development logic, and ownership path into the conversation earlier, which is useful for serious investment mandates.</p></div>
-            <div class="card"><span class="material-symbols-outlined">map</span><h3>RAK-specific opportunity framing</h3><p>It allows Namou to explain the market through land type and opportunity grouping, helping the broker understand how the buyer brief may translate into action.</p></div>
-          </div>
-        </article>
-      </section>
-
-      <section class="split">
-        <article class="panel">
-          <h2>Commercial clarity we can state today</h2>
-          <p>What we can communicate clearly from the current Namou positioning is this: the model is built around fair commissions, transparent communication, dedicated broker support, and documentation sharing. The detailed protection structure, exclusivity model, and closing mechanics still need explicit Namou guidance before they should be published more precisely.</p>
-          <div class="card-grid card-grid--three">
-            <div class="card"><span class="material-symbols-outlined">paid</span><h3>Fair commission positioning</h3><p>Namou already presents broker collaboration around fair commissions rather than vague partnership language.</p></div>
-            <div class="card"><span class="material-symbols-outlined">support</span><h3>Operational support</h3><p>The relationship is framed around practical support: listings, property details, documentation, and faster response once the brief is real.</p></div>
-            <div class="card"><span class="material-symbols-outlined">rule</span><h3>Policy detail still to be defined</h3><p>Formal broker protection, fee-splitting structure, and exclusivity rules should be added once Namou confirms the exact wording to publish.</p></div>
-          </div>
-        </article>
-
-        <article class="panel">
-          <h2>How Namou keeps the broker in the picture</h2>
-          <p>The broker experience should not feel like a blind handoff. The page now makes clearer that Namou can continue with the buyer brief, explain fit, share documentation, and coordinate next steps while keeping the broker relationship visible in the process.</p>
-          <div class="card-grid card-grid--three">
-            <div class="card"><span class="material-symbols-outlined">visibility</span><h3>Context stays attached</h3><p>The buyer brief is carried into the next conversation so the broker does not lose the logic already established.</p></div>
-            <div class="card"><span class="material-symbols-outlined">description</span><h3>Documents move faster</h3><p>Where relevant, Namou can support with property details, documentation flow, and clarification to keep the opportunity progressing.</p></div>
-            <div class="card"><span class="material-symbols-outlined">group</span><h3>Collaboration stays practical</h3><p>The working model is framed around communication, support, and deal progression rather than a one-message lead drop.</p></div>
-          </div>
-        </article>
-      </section>
-
-      <section class="funnel">
-        <div class="funnel__intro">
-          <h2>Share your client brief.</h2>
-          <p>This is a short intake for brokers and agencies. Once completed, we continue on WhatsApp with the brief already written out.</p>
         </div>
 
-        <form id="brokerForm" novalidate>
-          <div class="funnel__progress">
-            <button type="button" class="back" id="brokerBack" aria-label="Go to previous question">Back</button>
-            <div class="meta">
-              <span class="count" id="brokerCount">Question 1 of 6</span>
-              <div class="bar" aria-hidden="true"><span id="brokerBar"></span></div>
-            </div>
+        <div class="bp-step">
+          <div class="bp-step__dot">2</div>
+          <h3>The agreement</h3>
+          <p>Before sharing sensitive details, we align on terms to protect both sides.</p>
+          <div class="bp-step__details">
+            <span class="bp-tag"><span class="material-symbols-outlined">lock</span>NDA signed</span>
+            <span class="bp-tag"><span class="material-symbols-outlined">handshake</span>A2A agreement</span>
+            <span class="bp-tag"><span class="material-symbols-outlined">paid</span>Commission split confirmed</span>
           </div>
+        </div>
 
-          <div>
-            <section class="step is-active" data-step-kind="choice">
-              <h3 class="step__title">What type of land is your client looking for?</h3>
-              <p class="step__text">Pick the closest fit so the partnership chat starts with the right opportunity type.</p>
-              <fieldset class="options">
-                <legend class="sr-only">Client land type</legend>
-                <label class="choice"><input type="radio" name="land_type" value="Commercial land" required><span>Commercial land</span></label>
-                <label class="choice"><input type="radio" name="land_type" value="Residential land"><span>Residential land</span></label>
-                <label class="choice"><input type="radio" name="land_type" value="Hospitality land"><span>Hospitality land</span></label>
-                <label class="choice"><input type="radio" name="land_type" value="Mixed-use land"><span>Mixed-use land</span></label>
-              </fieldset>
-            </section>
-
-            <section class="step" data-step-kind="choice">
-              <h3 class="step__title">Which area is the client targeting?</h3>
-              <p class="step__text">Choose the target zone or mark it flexible.</p>
-              <fieldset class="options options--two">
-                <legend class="sr-only">Client area</legend>
-                <label class="choice"><input type="radio" name="area" value="Al Marjan and hospitality corridor" required><span>Al Marjan and hospitality corridor</span></label>
-                <label class="choice"><input type="radio" name="area" value="Al Hamra area"><span>Al Hamra area</span></label>
-                <label class="choice"><input type="radio" name="area" value="Mina and coastal growth areas"><span>Mina and coastal growth areas</span></label>
-                <label class="choice"><input type="radio" name="area" value="RAK Central and city districts"><span>RAK Central and city districts</span></label>
-                <label class="choice"><input type="radio" name="area" value="Al Maireed and nearby districts"><span>Al Maireed and nearby districts</span></label>
-                <label class="choice"><input type="radio" name="area" value="Flexible for the right opportunity"><span>Flexible for the right opportunity</span></label>
-              </fieldset>
-            </section>
-
-            <section class="step" data-step-kind="choice">
-              <h3 class="step__title">What is the client budget?</h3>
-              <p class="step__text">A budget range helps remove noise and speed up matching.</p>
-              <fieldset class="options">
-                <legend class="sr-only">Client budget</legend>
-                <label class="choice"><input type="radio" name="budget" value="Up to AED 5M" required><span>Up to AED 5M</span></label>
-                <label class="choice"><input type="radio" name="budget" value="AED 5M to AED 15M"><span>AED 5M to AED 15M</span></label>
-                <label class="choice"><input type="radio" name="budget" value="AED 15M to AED 50M"><span>AED 15M to AED 50M</span></label>
-                <label class="choice"><input type="radio" name="budget" value="Above AED 50M"><span>Above AED 50M</span></label>
-              </fieldset>
-            </section>
-
-            <section class="step" data-step-kind="choice">
-              <h3 class="step__title">What is the client objective?</h3>
-              <p class="step__text">Choose the outcome the client is optimizing for.</p>
-              <fieldset class="options">
-                <legend class="sr-only">Client objective</legend>
-                <label class="choice"><input type="radio" name="objective" value="Buy and flip" required><span>Buy and flip</span></label>
-                <label class="choice"><input type="radio" name="objective" value="Buy and build"><span>Buy and build</span></label>
-                <label class="choice"><input type="radio" name="objective" value="Buy and rent or lease"><span>Buy and rent or lease</span></label>
-              </fieldset>
-            </section>
-
-            <section class="step" data-step-kind="text" id="brokerNameStep">
-              <h3 class="step__title">Tell us about yourself.</h3>
-              <p class="step__text">We only need enough to know who is reaching out and which brokerage or agency is involved.</p>
-              <div class="field">
-                <label class="sr-only" for="brokerName">Broker name</label>
-                <input class="input" id="brokerName" name="name" type="text" placeholder="Your full name" autocomplete="name" required>
-                <label class="sr-only" for="brokerAgency">Agency or company</label>
-                <input class="input" id="brokerAgency" name="agency" type="text" placeholder="Agency or company name" autocomplete="organization" required>
-              </div>
-              <p class="error">Please add your name and company to continue.</p>
-              <div class="actions"><button type="button" class="btn button" id="brokerContinue">Continue</button></div>
-            </section>
-
-            <section class="step" data-step-kind="contact" id="brokerContactStep">
-              <h3 class="step__title">Where should the team reply?</h3>
-              <p class="step__text">Choose the best detail for the Namou team to use after the WhatsApp handoff.</p>
-              <fieldset class="options options--two">
-                <legend class="sr-only">Preferred contact method</legend>
-                <label class="choice"><input type="radio" name="contact_method" value="Email" required><span>Email</span></label>
-                <label class="choice"><input type="radio" name="contact_method" value="Phone"><span>Phone</span></label>
-              </fieldset>
-              <div class="field">
-                <label class="sr-only" for="brokerEmail">Email</label>
-                <input class="input input--hidden" id="brokerEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email">
-                <label class="sr-only" for="brokerPhone">Phone</label>
-                <input class="input input--hidden" id="brokerPhone" name="phone" type="tel" placeholder="+971 XX XXX XXXX" autocomplete="tel">
-              </div>
-              <p class="error">Please add your preferred contact details.</p>
-              <div class="actions"><button type="submit" class="btn button" data-analytics="broker-whatsapp-submit" data-section="broker-funnel">Continue to WhatsApp</button></div>
-              <p class="hint">The WhatsApp message will include the client brief and your broker details so the team can pick up quickly.</p>
-            </section>
+        <div class="bp-step">
+          <div class="bp-step__dot">3</div>
+          <h3>The handoff</h3>
+          <p>We send exactly what you need to present to your client — no generic packages.</p>
+          <div class="bp-step__details">
+            <span class="bp-tag"><span class="material-symbols-outlined">location_on</span>Location pins</span>
+            <span class="bp-tag"><span class="material-symbols-outlined">image</span>HD images &amp; video</span>
+            <span class="bp-tag"><span class="material-symbols-outlined">description</span>Brochures &amp; fact sheets</span>
+            <span class="bp-tag"><span class="material-symbols-outlined">sell</span>Pricing &amp; availability</span>
           </div>
-        </form>
-      </section>
+        </div>
+
+        <div class="bp-step">
+          <div class="bp-step__dot">4</div>
+          <h3>The closing</h3>
+          <p>We support contracts, transfer, and coordination for a smooth close.</p>
+          <div class="bp-step__details">
+            <span class="bp-tag"><span class="material-symbols-outlined">gavel</span>Full transaction support</span>
+            <span class="bp-tag"><span class="material-symbols-outlined">verified</span>Commission per A2A — no surprises</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Why brokers work with us -->
+      <div class="bp-why">
+        <h2>Why brokers work with us</h2>
+        <div class="bp-grid">
+          <div class="bp-card">
+            <span class="material-symbols-outlined">paid</span>
+            <h3>Fair commissions</h3>
+            <p>Splits confirmed in writing before details are shared.</p>
+          </div>
+          <div class="bp-card">
+            <span class="material-symbols-outlined">inventory_2</span>
+            <h3>Verified inventory</h3>
+            <p>Real listings with realistic pricing. No ghost listings.</p>
+          </div>
+          <div class="bp-card">
+            <span class="material-symbols-outlined">bolt</span>
+            <h3>Fast answers</h3>
+            <p>Direct WhatsApp access to a decision-maker.</p>
+          </div>
+          <div class="bp-card">
+            <span class="material-symbols-outlined">forward_to_inbox</span>
+            <h3>Ready-to-forward assets</h3>
+            <p>Brochures, images, and pins you can share instantly.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="bp-cta">
+        <h2>Ready to partner?</h2>
+        <p>Send your client requirement. We'll handle the agreements and get you moving.</p>
+        <a href="https://wa.me/971507696494?text=Hi%2C%20I%27m%20a%20broker%20and%20I%20have%20a%20client%20requirement." target="_blank" rel="noopener" class="btn btn--wa" data-analytics="whatsapp-cta" data-section="broker-cta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp us
+        </a>
+      </div>
+
     </div>
   </main>
 
   <script src="../js/main.js"></script>
-  <script>
-    (function () {
-      'use strict';
-      var whatsappBase = 'https://wa.me/971569636360?text=';
-      var form = document.getElementById('brokerForm');
-      var steps = Array.prototype.slice.call(form.querySelectorAll('.step'));
-      var backButton = document.getElementById('brokerBack');
-      var countLabel = document.getElementById('brokerCount');
-      var progressBar = document.getElementById('brokerBar');
-      var nameStep = document.getElementById('brokerNameStep');
-      var contactStep = document.getElementById('brokerContactStep');
-      var brokerName = document.getElementById('brokerName');
-      var brokerAgency = document.getElementById('brokerAgency');
-      var continueButton = document.getElementById('brokerContinue');
-      var emailInput = document.getElementById('brokerEmail');
-      var phoneInput = document.getElementById('brokerPhone');
-      var currentStep = 0;
-      var autoAdvanceTimer = null;
-
-      function updateProgress() {
-        countLabel.textContent = 'Question ' + (currentStep + 1) + ' of ' + steps.length;
-        progressBar.style.width = (((currentStep + 1) / steps.length) * 100) + '%';
-        backButton.disabled = currentStep === 0;
-      }
-
-      function focusStep() {
-        if (steps[currentStep] === nameStep) {
-          brokerName.focus();
-          return;
-        }
-        if (steps[currentStep] === contactStep) {
-          var method = form.querySelector('input[name="contact_method"]:checked');
-          if (!method) {
-            form.querySelector('input[name="contact_method"]').focus();
-          } else if (method.value === 'Email') {
-            emailInput.focus();
-          } else {
-            phoneInput.focus();
-          }
-        }
-      }
-
-      function showStep(index) {
-        currentStep = index;
-        steps.forEach(function (step, stepIndex) {
-          step.classList.toggle('is-active', stepIndex === index);
-        });
-        updateProgress();
-        window.clearTimeout(autoAdvanceTimer);
-        window.requestAnimationFrame(focusStep);
-      }
-
-      function nextStep() {
-        if (currentStep < steps.length - 1) showStep(currentStep + 1);
-      }
-
-      function scheduleNext() {
-        window.clearTimeout(autoAdvanceTimer);
-        autoAdvanceTimer = window.setTimeout(nextStep, 170);
-      }
-
-      function setError(step, isError) {
-        step.classList.toggle('step--error', isError);
-      }
-
-      function updateContactInput() {
-        var method = form.querySelector('input[name="contact_method"]:checked');
-        emailInput.classList.add('input--hidden');
-        phoneInput.classList.add('input--hidden');
-        emailInput.removeAttribute('required');
-        phoneInput.removeAttribute('required');
-        if (!method) return;
-        if (method.value === 'Email') {
-          emailInput.classList.remove('input--hidden');
-          emailInput.setAttribute('required', '');
-          phoneInput.value = '';
-        } else {
-          phoneInput.classList.remove('input--hidden');
-          phoneInput.setAttribute('required', '');
-          emailInput.value = '';
-        }
-      }
-
-      function validateBrokerInfo() {
-        var valid = !!brokerName.value.trim() && !!brokerAgency.value.trim();
-        setError(nameStep, !valid);
-        if (!valid) brokerName.focus();
-        return valid;
-      }
-
-      function validateContact() {
-        var method = form.querySelector('input[name="contact_method"]:checked');
-        var valid = true;
-        if (!method) {
-          valid = false;
-        } else if (method.value === 'Email') {
-          valid = !!emailInput.value.trim() && emailInput.checkValidity();
-        } else {
-          valid = !!phoneInput.value.trim();
-        }
-        setError(contactStep, !valid);
-        if (!valid) {
-          if (!method) {
-            form.querySelector('input[name="contact_method"]').focus();
-          } else if (method.value === 'Email') {
-            emailInput.focus();
-          } else {
-            phoneInput.focus();
-          }
-        }
-        return valid;
-      }
-
-      steps.forEach(function (step) {
-        if (step.getAttribute('data-step-kind') !== 'choice') return;
-        Array.prototype.slice.call(step.querySelectorAll('input[type="radio"]')).forEach(function (radio) {
-          radio.addEventListener('change', scheduleNext);
-        });
-      });
-
-      backButton.addEventListener('click', function () {
-        if (currentStep > 0) showStep(currentStep - 1);
-      });
-
-      continueButton.addEventListener('click', function () {
-        if (validateBrokerInfo()) nextStep();
-      });
-
-      brokerName.addEventListener('input', function () {
-        if (brokerName.value.trim() && brokerAgency.value.trim()) setError(nameStep, false);
-      });
-
-      brokerAgency.addEventListener('input', function () {
-        if (brokerName.value.trim() && brokerAgency.value.trim()) setError(nameStep, false);
-      });
-
-      Array.prototype.slice.call(form.querySelectorAll('input[name="contact_method"]')).forEach(function (radio) {
-        radio.addEventListener('change', function () {
-          setError(contactStep, false);
-          updateContactInput();
-          window.requestAnimationFrame(focusStep);
-        });
-      });
-
-      emailInput.addEventListener('input', function () {
-        if (emailInput.value.trim()) setError(contactStep, false);
-      });
-
-      phoneInput.addEventListener('input', function () {
-        if (phoneInput.value.trim()) setError(contactStep, false);
-      });
-
-      form.addEventListener('keydown', function (event) {
-        if (event.key === 'Enter' && steps[currentStep] === nameStep) {
-          event.preventDefault();
-          if (validateBrokerInfo()) nextStep();
-        }
-      });
-
-      form.addEventListener('submit', function (event) {
-        var method;
-        var lines;
-        event.preventDefault();
-        if (!validateBrokerInfo()) {
-          showStep(4);
-          return;
-        }
-        if (!validateContact()) {
-          showStep(5);
-          return;
-        }
-        method = form.querySelector('input[name="contact_method"]:checked');
-        lines = [
-          'Broker lead from namou.ae/broker',
-          '',
-          'Client land type: ' + form.querySelector('input[name="land_type"]:checked').value,
-          'Client target area: ' + form.querySelector('input[name="area"]:checked').value,
-          'Client budget: ' + form.querySelector('input[name="budget"]:checked').value,
-          'Client objective: ' + form.querySelector('input[name="objective"]:checked').value,
-          'Broker name: ' + brokerName.value.trim(),
-          'Agency: ' + brokerAgency.value.trim(),
-          'Preferred contact: ' + method.value,
-          'Contact detail: ' + (method.value === 'Email' ? emailInput.value.trim() : phoneInput.value.trim())
-        ];
-        window.location.href = whatsappBase + encodeURIComponent(lines.join('\n'));
-      });
-
-      updateContactInput();
-      showStep(0);
-    })();
-  </script>
 </body>
 </html>
