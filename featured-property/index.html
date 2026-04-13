@@ -446,6 +446,33 @@
       return plots;
     }
 
+    // Fallback data — used when live spreadsheet fetch fails (CORS)
+    var FALLBACK_PLOTS = [
+      { name:"Prime Urban Plot in Al Maireed", area:"Al Maireed", sqft:20034, far:"3", cat:"Mixed-use", price:7200000, priceLabel:"7,200,000 AED" },
+      { name:"Expansive Master Plot in Al Maireed", area:"Al Maireed", sqft:110100, far:"2.625", cat:"Residential", price:38500000, priceLabel:"38,500,000 AED" },
+      { name:"Boutique Development in Al Maireed", area:"Al Maireed", sqft:19375, far:"2.625", cat:"Mixed-use", price:6200000, priceLabel:"6,200,000 AED" },
+      { name:"Strategic Tourism Development Plot", area:"Al Maireed", sqft:58198, far:"2.5", cat:"Hospitality", price:80000000, priceLabel:"80,000,000 AED" },
+      { name:"Strategic High-Rise | Near Wynn Resort", area:"Al Marjan", sqft:116066, far:"4.72", cat:"Residential", price:274177955, priceLabel:"274,177,955 AED" },
+      { name:"Beachfront Residential | Near Wynn Resort", area:"Al Marjan", sqft:121551, far:"4.36", cat:"Residential", price:264981275, priceLabel:"264,981,275 AED" },
+      { name:"Prime High-Rise Investment | Near Wynn", area:"Al Marjan", sqft:124862, far:"3.59", cat:"Residential", price:223892065, priceLabel:"223,892,065 AED" },
+      { name:"High-Potential Tower | Near Wynn Resort", area:"Al Marjan", sqft:128225, far:"3.5", cat:"Residential", price:224480000, priceLabel:"224,480,000 AED" },
+      { name:"Premium High-Rise | Near Wynn Resort", area:"Al Marjan", sqft:129287, far:"3.59", cat:"Residential", price:232793930, priceLabel:"232,793,930 AED" },
+      { name:"Prime Residential Tower", area:"Al Marjan", sqft:140849, far:"3.84", cat:"Residential", price:270268395, priceLabel:"270,268,395 AED" },
+      { name:"Luxury Hospitality Development", area:"Al Marjan", sqft:428635, far:"3.2", cat:"Hospitality", price:1392868560, priceLabel:"1,392,868,560 AED" },
+      { name:"Iconic Resort & Hospitality", area:"Al Marjan", sqft:660744, far:"4.75", cat:"Hospitality", price:573718880, priceLabel:"573,718,880 AED" },
+      { name:"Waterfront Hotel Convention", area:"Al Marjan", sqft:636808, far:"2.5", cat:"Hospitality", price:1592019300, priceLabel:"1,592,019,300 AED" },
+      { name:"Landmark Hotel & Convention", area:"Al Marjan", sqft:1402703, far:"2", cat:"Hospitality", price:2805405800, priceLabel:"2,805,405,800 AED" },
+      { name:"Ultra-Prime Mixed-Use Development", area:"Dafan Khuzam", sqft:169010, far:"1.75", cat:"Mixed-use", price:90000000, priceLabel:"90,000,000 AED" },
+      { name:"Prime Commercial Office & Retail", area:"RAK Central", sqft:134549, far:"5.75", cat:"Commercial", price:541343600, priceLabel:"541,343,600 AED" },
+      { name:"High-Rise Mixed-Use in Al Nakheel", area:"Al Nakheel", sqft:15370, far:"10.5", cat:"Mixed-use", price:6200000, priceLabel:"6,200,000 AED" },
+      { name:"Mixed-Use Development in Al Nakheel", area:"Al Nakheel", sqft:19914, far:"4", cat:"Mixed-use", price:4100000, priceLabel:"4,100,000 AED" },
+      { name:"Waterfront Mixed-Use in Corniche", area:"Corniche Al Qawasim", sqft:14920, far:"4", cat:"Mixed-use", price:16000000, priceLabel:"16,000,000 AED" },
+      { name:"Iconic Mixed-Use in Al Nakheel", area:"Al Nakheel", sqft:12578, far:"18", cat:"Mixed-use", price:20000000, priceLabel:"20,000,000 AED" },
+      { name:"Prestigious Mixed-Use in Al Nakheel", area:"Al Nakheel", sqft:13695, far:"18", cat:"Mixed-use", price:25000000, priceLabel:"25,000,000 AED" },
+      { name:"Exclusive Residential in Al Maireed", area:"Al Maireed", sqft:4844, far:"2.625", cat:"Residential", price:1800000, priceLabel:"1,800,000 AED" },
+      { name:"Mixed-Use in Dafan Al Maireed", area:"Dafan Al Maireed", sqft:9360, far:"3", cat:"Mixed-use", price:4200000, priceLabel:"4,200,000 AED" }
+    ];
+
     // State
     var allPlots = [];
 
@@ -534,17 +561,25 @@
     document.getElementById('filterSize').addEventListener('change', applyFilters);
     document.getElementById('filterBudget').addEventListener('change', applyFilters);
 
-    // Fetch live data from spreadsheet
+    function initWithData(plots) {
+      allPlots = plots;
+      buildAreaFilter(allPlots);
+      renderCards(allPlots);
+    }
+
+    // Try live spreadsheet fetch; fall back to embedded data
     document.getElementById('fpCount').textContent = 'Loading properties\u2026';
     fetch(SHEET_URL)
-      .then(function(r) { return r.text(); })
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
       .then(function(csv) {
-        allPlots = processSheet(parseCSV(csv));
-        buildAreaFilter(allPlots);
-        renderCards(allPlots);
+        var live = processSheet(parseCSV(csv));
+        initWithData(live.length > 0 ? live : FALLBACK_PLOTS);
       })
       .catch(function() {
-        document.getElementById('fpCount').textContent = 'Could not load properties. Please refresh.';
+        initWithData(FALLBACK_PLOTS);
       });
   })();
   </script>
