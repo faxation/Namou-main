@@ -195,6 +195,38 @@
       animation: none !important;
     }
 
+    /* Fallback: all content visible if GSAP fails to load */
+    .hero__title, .hero__subtitle, .router-card, .home-proof,
+    .lane, .stat, .broker-feature, .property-card,
+    .brokers__content, .brokers__image,
+    .featured__header, .section-label, .section-title,
+    .contact__text, .contact__info, .footer__inner {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    /* GSAP sets inline styles which override class-based rules.
+       The !important here is only a safety net — when GSAP loads,
+       it applies inline opacity:0 then animates to opacity:1. */
+    html.gsap-ready .hero__title,
+    html.gsap-ready .hero__subtitle,
+    html.gsap-ready .router-card,
+    html.gsap-ready .home-proof,
+    html.gsap-ready .lane,
+    html.gsap-ready .stat,
+    html.gsap-ready .broker-feature,
+    html.gsap-ready .property-card,
+    html.gsap-ready .brokers__content,
+    html.gsap-ready .brokers__image,
+    html.gsap-ready .featured__header,
+    html.gsap-ready #lanes .section-label,
+    html.gsap-ready #lanes .section-title,
+    html.gsap-ready .contact__text,
+    html.gsap-ready .contact__info,
+    html.gsap-ready .footer__inner {
+      opacity: unset !important;
+      visibility: unset !important;
+    }
+
     /* 3D perspective containers */
     .hero__router { perspective: 1200px; }
     .featured__grid { perspective: 1200px; }
@@ -611,6 +643,9 @@
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
 
+      // Mark GSAP as ready so CSS can hand over opacity control
+      document.documentElement.classList.add('gsap-ready');
+
       // Connect Lenis to ScrollTrigger
       if (lenis) {
         lenis.on('scroll', ScrollTrigger.update);
@@ -630,13 +665,13 @@
         }
       });
 
-      // --- Hero entrance ---
+      // --- Hero entrance (fromTo ensures visible end state) ---
       var heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       heroTl
-        .from('.hero__title', { opacity: 0, y: 80, duration: 1.2 }, 0.2)
-        .from('.hero__subtitle', { opacity: 0, y: 50, duration: 1, }, 0.5)
-        .from('.router-card', { opacity: 0, y: 60, rotateX: 12, stagger: 0.18, duration: 0.9 }, 0.7)
-        .from('.home-proof', { opacity: 0, y: 30, duration: 0.8 }, 1.1);
+        .fromTo('.hero__title', { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 1.2 }, 0.2)
+        .fromTo('.hero__subtitle', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1 }, 0.5)
+        .fromTo('.router-card', { opacity: 0, y: 60, rotateX: 12 }, { opacity: 1, y: 0, rotateX: 0, stagger: 0.18, duration: 0.9 }, 0.7)
+        .fromTo('.home-proof', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, 1.1);
 
       // --- Hero parallax on scroll ---
       gsap.to('.hero__content', {
@@ -674,86 +709,81 @@
       });
 
       // --- Lanes — staggered 3D slide-in ---
-      gsap.from('#lanes .section-label, #lanes .section-title', {
-        scrollTrigger: { trigger: '#lanes', start: 'top 80%' },
-        opacity: 0, y: 40, duration: 0.8, stagger: 0.12, ease: 'power3.out'
-      });
+      gsap.fromTo('#lanes .section-label, #lanes .section-title',
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+          scrollTrigger: { trigger: '#lanes', start: 'top 80%' } }
+      );
 
       gsap.utils.toArray('.lane').forEach(function(lane, i) {
-        gsap.from(lane, {
-          scrollTrigger: { trigger: lane, start: 'top 85%' },
-          opacity: 0,
-          y: 70,
-          rotateY: i === 1 ? 0 : (i === 0 ? -8 : 8),
-          duration: 0.9,
-          delay: i * 0.12,
-          ease: 'power3.out'
-        });
+        gsap.fromTo(lane,
+          { opacity: 0, y: 70, rotateY: i === 1 ? 0 : (i === 0 ? -8 : 8) },
+          { opacity: 1, y: 0, rotateY: 0, duration: 0.9, delay: i * 0.12, ease: 'power3.out',
+            scrollTrigger: { trigger: lane, start: 'top 85%' } }
+        );
       });
 
-      // --- Stats — scale + count up ---
+      // --- Stats — scale + bounce ---
       gsap.utils.toArray('.stat').forEach(function(stat, i) {
-        gsap.from(stat, {
-          scrollTrigger: { trigger: stat, start: 'top 88%' },
-          opacity: 0,
-          y: 50,
-          scale: 0.85,
-          duration: 0.7,
-          delay: i * 0.1,
-          ease: 'back.out(1.4)'
-        });
+        gsap.fromTo(stat,
+          { opacity: 0, y: 50, scale: 0.85 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.7, delay: i * 0.1, ease: 'back.out(1.4)',
+            scrollTrigger: { trigger: stat, start: 'top 88%' } }
+        );
       });
 
       // --- Brokers — split entrance ---
-      gsap.from('.brokers__content', {
-        scrollTrigger: { trigger: '#brokers', start: 'top 75%' },
-        opacity: 0, x: -100, duration: 1, ease: 'power3.out'
-      });
-      gsap.from('.brokers__image', {
-        scrollTrigger: { trigger: '#brokers', start: 'top 75%' },
-        opacity: 0, x: 100, scale: 0.92, duration: 1, ease: 'power3.out'
-      });
+      gsap.fromTo('.brokers__content',
+        { opacity: 0, x: -100 },
+        { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: '#brokers', start: 'top 75%' } }
+      );
+      gsap.fromTo('.brokers__image',
+        { opacity: 0, x: 100, scale: 0.92 },
+        { opacity: 1, x: 0, scale: 1, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: '#brokers', start: 'top 75%' } }
+      );
       gsap.utils.toArray('.broker-feature').forEach(function(feat, i) {
-        gsap.from(feat, {
-          scrollTrigger: { trigger: feat, start: 'top 90%' },
-          opacity: 0, x: -30, duration: 0.5, delay: i * 0.08, ease: 'power2.out'
-        });
+        gsap.fromTo(feat,
+          { opacity: 0, x: -30 },
+          { opacity: 1, x: 0, duration: 0.5, delay: i * 0.08, ease: 'power2.out',
+            scrollTrigger: { trigger: feat, start: 'top 90%' } }
+        );
       });
 
       // --- Featured properties — 3D card cascade ---
-      gsap.from('.featured__header', {
-        scrollTrigger: { trigger: '#featured', start: 'top 80%' },
-        opacity: 0, y: 40, duration: 0.8, ease: 'power3.out'
-      });
+      gsap.fromTo('.featured__header',
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: '#featured', start: 'top 80%' } }
+      );
 
       gsap.utils.toArray('.property-card').forEach(function(card, i) {
-        gsap.from(card, {
-          scrollTrigger: { trigger: card, start: 'top 88%' },
-          opacity: 0,
-          y: 80,
-          rotateX: 15,
-          scale: 0.9,
-          duration: 0.9,
-          delay: i * 0.15,
-          ease: 'power3.out'
-        });
+        gsap.fromTo(card,
+          { opacity: 0, y: 80, rotateX: 15, scale: 0.9 },
+          { opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 0.9, delay: i * 0.15, ease: 'power3.out',
+            scrollTrigger: { trigger: card, start: 'top 88%' } }
+        );
       });
 
       // --- Contact — reveal ---
-      gsap.from('.contact__text', {
-        scrollTrigger: { trigger: '#contact', start: 'top 80%' },
-        opacity: 0, y: 60, duration: 0.8, ease: 'power3.out'
-      });
-      gsap.from('.contact__info', {
-        scrollTrigger: { trigger: '#contact', start: 'top 75%' },
-        opacity: 0, y: 60, duration: 0.8, delay: 0.15, ease: 'power3.out'
-      });
+      gsap.fromTo('.contact__text',
+        { opacity: 0, y: 60 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: '#contact', start: 'top 80%' } }
+      );
+      gsap.fromTo('.contact__info',
+        { opacity: 0, y: 60 },
+        { opacity: 1, y: 0, duration: 0.8, delay: 0.15, ease: 'power3.out',
+          scrollTrigger: { trigger: '#contact', start: 'top 75%' } }
+      );
 
       // --- Footer ---
-      gsap.from('.footer__inner', {
-        scrollTrigger: { trigger: '#footer', start: 'top 92%' },
-        opacity: 0, y: 30, duration: 0.6, ease: 'power3.out'
-      });
+      gsap.fromTo('.footer__inner',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
+          scrollTrigger: { trigger: '#footer', start: 'top 92%' } }
+      );
     }
 
     /* =============================================
