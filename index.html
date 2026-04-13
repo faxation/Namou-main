@@ -34,15 +34,35 @@
     }
     .router-card__actions {
       justify-content: center;
-      flex-wrap: nowrap;
-    }
-    .router-card__actions .btn {
-      white-space: nowrap;
     }
 
     /* Hero subtitle line spacing */
     .hero__subtitle {
       line-height: 2;
+    }
+
+    /* Responsive button rows: side by side when they fit, stack when they don't */
+    .router-card__actions,
+    .brokers__actions,
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .router-card__actions .btn,
+    .brokers__actions .btn,
+    .hero__actions .btn {
+      flex: 1 1 auto;
+      min-width: 0;
+      text-align: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+    @media (max-width: 380px) {
+      .router-card__actions .btn,
+      .hero__actions .btn {
+        flex: 1 1 100%;
+      }
     }
   </style>
 </head>
