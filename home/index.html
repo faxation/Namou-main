@@ -281,7 +281,6 @@
     .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 
     @media (max-width: 768px) {
-      #heroCanvas { display: none; }
       .hero::after { width: 250px; height: 250px; bottom: -60px; right: -40px; }
     }
   </style>
@@ -790,15 +789,16 @@
        THREE.JS — Hero particle field
        ============================================= */
     var canvas = document.getElementById('heroCanvas');
-    if (canvas && typeof THREE !== 'undefined' && window.innerWidth > 768) {
+    if (canvas && typeof THREE !== 'undefined') {
+      var isMobile = window.innerWidth <= 768;
       var scene = new THREE.Scene();
       var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isMobile });
       renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
 
-      // Particle field
-      var particleCount = 600;
+      // Fewer particles on mobile for performance
+      var particleCount = isMobile ? 200 : 600;
       var positions = new Float32Array(particleCount * 3);
       var velocities = new Float32Array(particleCount * 3);
 
@@ -876,7 +876,7 @@
         // Update connecting lines
         var lp = lines.geometry.attributes.position.array;
         var li = 0;
-        var maxDist = 2.5;
+        var maxDist = isMobile ? 3.5 : 2.5;
         for (var a = 0; a < particleCount && li < lp.length - 6; a += 3) {
           for (var b = a + 3; b < Math.min(a + 60, particleCount) && li < lp.length - 6; b += 3) {
             var dx = pos[a * 3] - pos[b * 3];
@@ -916,8 +916,11 @@
     /* =============================================
        3D CARD TILT — Mouse-reactive depth
        ============================================= */
+    var cards = document.querySelectorAll('.router-card, .property-card, .lane');
+
+    // Desktop: mouse-reactive 3D tilt
     if (window.matchMedia('(hover: hover)').matches) {
-      document.querySelectorAll('.router-card, .property-card, .lane').forEach(function(card) {
+      cards.forEach(function(card) {
         card.addEventListener('mousemove', function(e) {
           var rect = this.getBoundingClientRect();
           var x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -925,11 +928,22 @@
           this.style.transform = 'perspective(800px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 8) + 'deg) translateZ(10px)';
           this.style.transition = 'transform 0.1s ease';
         });
-
         card.addEventListener('mouseleave', function() {
           this.style.transform = '';
           this.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         });
+      });
+    } else {
+      // Mobile: subtle press-and-lift on touch
+      cards.forEach(function(card) {
+        card.addEventListener('touchstart', function() {
+          this.style.transform = 'perspective(800px) scale(0.97) translateZ(-5px)';
+          this.style.transition = 'transform 0.2s ease';
+        }, { passive: true });
+        card.addEventListener('touchend', function() {
+          this.style.transform = '';
+          this.style.transition = 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        }, { passive: true });
       });
     }
   });
