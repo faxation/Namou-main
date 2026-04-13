@@ -327,24 +327,23 @@
 
     var SHEET_URL = 'https://docs.google.com/spreadsheets/d/1WVmxXfRnJijv1R1iHTdpPKcwpG-vUC3z/gviz/tq?tqx=out:csv&gid=2114072871';
 
-    // Area images — real photos of each RAK area
+    // Area images — Unsplash (guaranteed hotlink-safe, no CORS/referer issues)
     // Al Maireed: kept as-is per request
-    // All others: real Wikimedia Commons / location photos
     var areaImages = {
       'Al Maireed':          'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop',
-      'Al Marjan':           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Aerial_View_Al_Marjan_Island.jpg/640px-Aerial_View_Al_Marjan_Island.jpg',
-      'Al shaghi':           'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Dhayah_Fort_showing_hilltop_location.jpg/640px-Dhayah_Fort_showing_hilltop_location.jpg',
-      'Dafan Khuzam':        'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Aerial_view_of_RAK_City_from_Al_Qawasim_Corniche_flagpole.jpg/640px-Aerial_view_of_RAK_City_from_Al_Qawasim_Corniche_flagpole.jpg',
-      'RAK Central':         'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ras_Al_Khaimah_sunset.jpg/640px-Ras_Al_Khaimah_sunset.jpg',
-      'RAK':                 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/The_Cove_Rotana_Resort._-_panoramio.jpg/640px-The_Cove_Rotana_Resort._-_panoramio.jpg',
-      'Al Nakheel':          'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Aerial_view_of_RAK_City_from_Al_Qawasim_Corniche_flagpole.jpg/640px-Aerial_view_of_RAK_City_from_Al_Qawasim_Corniche_flagpole.jpg',
-      'Corniche Al Qawasim': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ras_Al_Khaimah_sunset.jpg/640px-Ras_Al_Khaimah_sunset.jpg',
-      'Al Hubaidah':         'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Dhayah_Fort_showing_hilltop_location.jpg/640px-Dhayah_Fort_showing_hilltop_location.jpg',
-      'Seeh Al Bana':        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/The_Cove_Rotana_Resort._-_panoramio.jpg/640px-The_Cove_Rotana_Resort._-_panoramio.jpg',
-      'Al Fahleen':          'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Aerial_view_of_RAK_City_from_Al_Qawasim_Corniche_flagpole.jpg/640px-Aerial_view_of_RAK_City_from_Al_Qawasim_Corniche_flagpole.jpg',
-      'Dafan Al Maireed':    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Aerial_View_Al_Marjan_Island.jpg/640px-Aerial_View_Al_Marjan_Island.jpg'
+      'Al Marjan':           'https://images.unsplash.com/photo-1590579491624-f98f36d4c763?w=600&h=400&fit=crop',
+      'Al shaghi':           'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?w=600&h=400&fit=crop',
+      'Dafan Khuzam':        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop',
+      'RAK Central':         'https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=600&h=400&fit=crop',
+      'RAK':                 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600&h=400&fit=crop',
+      'Al Nakheel':          'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=400&fit=crop',
+      'Corniche Al Qawasim': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop',
+      'Al Hubaidah':         'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop',
+      'Seeh Al Bana':        'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop',
+      'Al Fahleen':          'https://images.unsplash.com/photo-1546412414-e1885e51e0a5?w=600&h=400&fit=crop',
+      'Dafan Al Maireed':    'https://images.unsplash.com/photo-1559564484-e48b3e040ff4?w=600&h=400&fit=crop'
     };
-    var defaultImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ras_Al_Khaimah_sunset.jpg/640px-Ras_Al_Khaimah_sunset.jpg';
+    var defaultImg = 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600&h=400&fit=crop';
 
     // CSV parser
     function parseCSVLine(line) {
