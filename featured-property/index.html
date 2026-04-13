@@ -325,74 +325,147 @@
   (function() {
     'use strict';
 
-    // Area images — real photos via Unsplash
+    var SHEET_URL = 'https://docs.google.com/spreadsheets/d/1WVmxXfRnJijv1R1iHTdpPKcwpG-vUC3z/gviz/tq?tqx=out:csv&gid=2114072871';
+
+    // Area images — Al Maireed kept, all others updated
     var areaImages = {
-      'Al Maireed': 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop',
-      'Al Marjan': 'https://images.unsplash.com/photo-1582407947092-40b90048f542?w=600&h=400&fit=crop',
-      'Al shaghi': 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?w=600&h=400&fit=crop',
-      'Dafan Khuzam': 'https://images.unsplash.com/photo-1559564484-e48b3e040ff4?w=600&h=400&fit=crop',
-      'RAK Central': 'https://images.unsplash.com/photo-1547483238-2cbf881a559f?w=600&h=400&fit=crop',
-      'RAK': 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600&h=400&fit=crop',
-      'Al Nakheel': 'https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=600&h=400&fit=crop',
-      'Corniche Al Qawasim': 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&h=400&fit=crop',
-      'Al Hubaidah': 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?w=600&h=400&fit=crop',
-      'Seeh Al Bana': 'https://images.unsplash.com/photo-1590579491624-f98f36d4c763?w=600&h=400&fit=crop',
-      'Al Fahleen': 'https://images.unsplash.com/photo-1559564484-e48b3e040ff4?w=600&h=400&fit=crop',
-      'Dafan Al Maireed': 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop'
+      'Al Maireed':          'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop',
+      'Al Marjan':           'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop',
+      'Al shaghi':           'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop',
+      'Dafan Khuzam':        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop',
+      'RAK Central':         'https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=600&h=400&fit=crop',
+      'RAK':                 'https://images.unsplash.com/photo-1466442929976-97f336a657be?w=600&h=400&fit=crop',
+      'Al Nakheel':          'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=400&fit=crop',
+      'Corniche Al Qawasim': 'https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=600&h=400&fit=crop',
+      'Al Hubaidah':         'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=400&fit=crop',
+      'Seeh Al Bana':        'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop',
+      'Al Fahleen':          'https://images.unsplash.com/photo-1546412414-e1885e51e0a5?w=600&h=400&fit=crop',
+      'Dafan Al Maireed':    'https://images.unsplash.com/photo-1559564484-e48b3e040ff4?w=600&h=400&fit=crop'
     };
-    var defaultImg = 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=600&h=400&fit=crop';
+    var defaultImg = 'https://images.unsplash.com/photo-1466442929976-97f336a657be?w=600&h=400&fit=crop';
 
-    var plots = [
-      { name:"Prime Urban Plot in Al Maireed", area:"Al Maireed", sqft:20034, far:"3", cat:"Mixed-Use", price:7200000, priceLabel:"7,200,000 AED" },
-      { name:"Expansive Master Plot in Al Maireed", area:"Al Maireed", sqft:110100, far:"2.625", cat:"Residential", price:38500000, priceLabel:"38,500,000 AED" },
-      { name:"Boutique Development in Al Maireed", area:"Al Maireed", sqft:19375, far:"2.625", cat:"Mixed-Use", price:6200000, priceLabel:"6,200,000 AED" },
-      { name:"Strategic Tourism Development Plot", area:"Al Maireed", sqft:58198, far:"2.5", cat:"Hospitality", price:80000000, priceLabel:"80,000,000 AED" },
-      { name:"Strategic High-Rise | Near Wynn Resort", area:"Al Marjan", sqft:116066, far:"4.72", cat:"Residential", price:274177955, priceLabel:"274,177,955 AED" },
-      { name:"Beachfront Residential | Near Wynn Resort", area:"Al Marjan", sqft:121551, far:"4.36", cat:"Residential", price:264981275, priceLabel:"264,981,275 AED" },
-      { name:"Prime High-Rise Investment | Near Wynn", area:"Al Marjan", sqft:124862, far:"3.59", cat:"Residential", price:223892065, priceLabel:"223,892,065 AED" },
-      { name:"High-Potential Tower | Near Wynn Resort", area:"Al Marjan", sqft:128225, far:"3.5", cat:"Residential", price:224480000, priceLabel:"224,480,000 AED" },
-      { name:"Premium High-Rise | Near Wynn Resort", area:"Al Marjan", sqft:129287, far:"3.59", cat:"Residential", price:232793930, priceLabel:"232,793,930 AED" },
-      { name:"Prime Residential Tower", area:"Al Marjan", sqft:140849, far:"3.84", cat:"Residential", price:270268395, priceLabel:"270,268,395 AED" },
-      { name:"Luxury Hospitality Development", area:"Al Marjan", sqft:428635, far:"3.2", cat:"Hospitality", price:1392868560, priceLabel:"1,392,868,560 AED" },
-      { name:"Iconic Resort & Hospitality", area:"Al Marjan", sqft:660744, far:"4.75", cat:"Hospitality", price:573718880, priceLabel:"573,718,880 AED" },
-      { name:"Waterfront Hotel Convention", area:"Al Marjan", sqft:636808, far:"2.5", cat:"Hospitality", price:1592019300, priceLabel:"1,592,019,300 AED" },
-      { name:"Landmark Hotel & Convention", area:"Al Marjan", sqft:1402703, far:"2", cat:"Hospitality", price:2805405800, priceLabel:"2,805,405,800 AED" },
-      { name:"High-Value Agricultural Plot", area:"Al shaghi", sqft:981679, far:"N/A", cat:"Agriculture", price:15000000, priceLabel:"15,000,000 AED" },
-      { name:"Ultra-Prime Mixed-Use Development", area:"Dafan Khuzam", sqft:169010, far:"1.75", cat:"Mixed-Use", price:90000000, priceLabel:"90,000,000 AED" },
-      { name:"Prime Commercial Office & Retail", area:"RAK Central", sqft:134549, far:"5.75", cat:"Commercial", price:541343600, priceLabel:"541,343,600 AED" },
-      { name:"Serene Farm Residential Land", area:"RAK", sqft:146177, far:"N/A", cat:"Residential", price:3300000, priceLabel:"3,300,000 AED" },
-      { name:"High-Rise Mixed-Use in Al Nakheel", area:"Al Nakheel", sqft:15370, far:"10.5", cat:"Mixed-Use", price:6200000, priceLabel:"6,200,000 AED" },
-      { name:"Mixed-Use Development in Al Nakheel", area:"Al Nakheel", sqft:19914, far:"4", cat:"Mixed-Use", price:4100000, priceLabel:"4,100,000 AED" },
-      { name:"Waterfront Mixed-Use in Corniche", area:"Corniche Al Qawasim", sqft:14920, far:"4", cat:"Mixed-Use", price:16000000, priceLabel:"16,000,000 AED" },
-      { name:"Agricultural Farm in Al Hudaibah", area:"Al Hubaidah", sqft:1264714, far:"N/A", cat:"Agriculture", price:15000000, priceLabel:"15,000,000 AED" },
-      { name:"Industrial Land in Seeh El Bana", area:"Seeh Al Bana", sqft:239746, far:"N/A", cat:"Industrial", price:14384760, priceLabel:"14,384,760 AED" },
-      { name:"Iconic Mixed-Use in Al Nakheel", area:"Al Nakheel", sqft:12578, far:"18", cat:"Mixed-Use", price:20000000, priceLabel:"20,000,000 AED" },
-      { name:"Prestigious Mixed-Use in Al Nakheel", area:"Al Nakheel", sqft:13695, far:"18", cat:"Mixed-Use", price:25000000, priceLabel:"25,000,000 AED" },
-      { name:"Commercial Lease \u2013 Al Fahleen", area:"Al Fahleen", sqft:18245, far:"N/A", cat:"Commercial", price:273682, priceLabel:"273,682 AED/yr" },
-      { name:"Prime Plot Lease \u2013 Al Fahleen", area:"Al Fahleen", sqft:19097, far:"N/A", cat:"Commercial", price:286450, priceLabel:"286,450 AED/yr" },
-      { name:"Elite Leasing \u2013 Al Fahleen", area:"Al Fahleen", sqft:19264, far:"N/A", cat:"Commercial", price:288964, priceLabel:"288,964 AED/yr" },
-      { name:"Signature Prime \u2013 Al Fahleen", area:"Al Fahleen", sqft:17595, far:"N/A", cat:"Commercial", price:263920, priceLabel:"263,920 AED/yr" },
-      { name:"Royal Elite \u2013 Al Fahleen", area:"Al Fahleen", sqft:17299, far:"N/A", cat:"Commercial", price:259490, priceLabel:"259,490 AED/yr" },
-      { name:"Exclusive Residential in Al Maireed", area:"Al Maireed", sqft:4844, far:"2.625", cat:"Residential", price:1800000, priceLabel:"1,800,000 AED" },
-      { name:"Mixed-Use in Dafan Al Maireed", area:"Dafan Al Maireed", sqft:9360, far:"3", cat:"Mixed-Use", price:4200000, priceLabel:"4,200,000 AED" }
-    ];
+    // CSV parser
+    function parseCSVLine(line) {
+      var fields = [], field = '', inQuote = false;
+      for (var i = 0; i < line.length; i++) {
+        var c = line[i];
+        if (inQuote) {
+          if (c === '"') {
+            if (i + 1 < line.length && line[i + 1] === '"') { field += '"'; i++; }
+            else inQuote = false;
+          } else field += c;
+        } else {
+          if (c === '"') inQuote = true;
+          else if (c === ',') { fields.push(field.trim()); field = ''; }
+          else field += c;
+        }
+      }
+      fields.push(field.trim());
+      return fields;
+    }
 
-    // Build area filter options
-    var areas = [];
-    plots.forEach(function(p) {
-      if (areas.indexOf(p.area) === -1) areas.push(p.area);
-    });
-    areas.sort();
-    var areaSelect = document.getElementById('filterArea');
-    areas.forEach(function(a) {
-      var opt = document.createElement('option');
-      opt.value = a;
-      opt.textContent = a;
-      areaSelect.appendChild(opt);
-    });
+    function parseCSV(text) {
+      var rows = [], lines = text.split('\n');
+      for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (line) rows.push(parseCSVLine(line));
+      }
+      return rows;
+    }
 
-    function formatSqft(n) {
-      return n.toLocaleString();
+    function parseNum(str) {
+      if (!str) return NaN;
+      return parseFloat(str.replace(/[^0-9.]/g, ''));
+    }
+
+    function findCol(headers, name) {
+      for (var i = 0; i < headers.length; i++) {
+        if (headers[i].toLowerCase().indexOf(name.toLowerCase()) !== -1) return i;
+      }
+      return -1;
+    }
+
+    function isValid(val) {
+      return val && val !== '' && val.toLowerCase() !== 'n/a';
+    }
+
+    function formatPrice(val) {
+      var num = parseNum(val);
+      if (isNaN(num)) return val;
+      var str = Math.round(num).toLocaleString();
+      if (val.toLowerCase().indexOf('year') !== -1 || val.indexOf('/') !== -1) return str + ' AED/yr';
+      return str + ' AED';
+    }
+
+    function processSheet(rows) {
+      if (rows.length < 2) return [];
+      var h = rows[0];
+      var ci = {
+        name:  findCol(h, 'plot name'),
+        area:  findCol(h, 'area'),
+        sqft:  findCol(h, 'plot area'),
+        price: findCol(h, 'asking price'),
+        far:   -1,
+        cat:   findCol(h, 'category')
+      };
+      // FAR column — find exact match
+      for (var i = 0; i < h.length; i++) {
+        if (h[i].trim().toUpperCase() === 'FAR') { ci.far = i; break; }
+      }
+
+      var plots = [];
+      for (var r = 1; r < rows.length; r++) {
+        var row = rows[r];
+        var name  = ci.name  >= 0 ? row[ci.name]  : '';
+        var area  = ci.area  >= 0 ? row[ci.area]  : '';
+        var sqftR = ci.sqft  >= 0 ? row[ci.sqft]  : '';
+        var priceR= ci.price >= 0 ? row[ci.price] : '';
+        var farR  = ci.far   >= 0 ? row[ci.far]   : '';
+        var catR  = ci.cat   >= 0 ? row[ci.cat]   : '';
+
+        // Skip if ANY required field is missing or N/A
+        if (!isValid(name) || !isValid(area) || !isValid(sqftR) ||
+            !isValid(priceR) || !isValid(farR) || !isValid(catR)) continue;
+
+        var sqft = parseNum(sqftR);
+        var price = parseNum(priceR);
+        if (isNaN(sqft) || isNaN(price)) continue;
+
+        plots.push({
+          name: name,
+          area: area,
+          sqft: sqft,
+          far: farR.trim(),
+          cat: catR.charAt(0).toUpperCase() + catR.slice(1).toLowerCase(),
+          price: price,
+          priceLabel: formatPrice(priceR)
+        });
+      }
+      return plots;
+    }
+
+    // State
+    var allPlots = [];
+
+    function buildAreaFilter(plots) {
+      var areas = [], sel = document.getElementById('filterArea');
+      // Clear existing options except first
+      while (sel.options.length > 1) sel.remove(1);
+      plots.forEach(function(p) {
+        if (areas.indexOf(p.area) === -1) areas.push(p.area);
+      });
+      areas.sort();
+      areas.forEach(function(a) {
+        var opt = document.createElement('option');
+        opt.value = a; opt.textContent = a;
+        sel.appendChild(opt);
+      });
+    }
+
+    function escapeHtml(str) {
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
     }
 
     function renderCards(filtered) {
@@ -402,30 +475,26 @@
 
       count.textContent = filtered.length + ' propert' + (filtered.length === 1 ? 'y' : 'ies') + ' found';
 
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        empty.style.display = 'block';
-        return;
-      }
+      if (filtered.length === 0) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
       empty.style.display = 'none';
 
       var html = '';
       filtered.forEach(function(p) {
         var img = areaImages[p.area] || defaultImg;
         var waText = encodeURIComponent('Hi, I\'m interested in: ' + p.name + ' (' + p.area + ')');
-        html += '<div class="fp-card" data-area="' + p.area + '" data-sqft="' + p.sqft + '" data-price="' + p.price + '">';
+        html += '<div class="fp-card">';
         html += '  <div class="fp-card__img">';
-        html += '    <img src="' + img + '" alt="' + p.area + '" loading="lazy" width="600" height="400">';
-        html += '    <span class="fp-card__price">' + p.priceLabel + '</span>';
-        html += '    <span class="fp-card__cat">' + p.cat + '</span>';
+        html += '    <img src="' + img + '" alt="' + escapeHtml(p.area) + '" loading="lazy" width="600" height="400">';
+        html += '    <span class="fp-card__price">' + escapeHtml(p.priceLabel) + '</span>';
+        html += '    <span class="fp-card__cat">' + escapeHtml(p.cat) + '</span>';
         html += '  </div>';
         html += '  <div class="fp-card__body">';
-        html += '    <div class="fp-card__area">' + p.area + '</div>';
+        html += '    <div class="fp-card__area">' + escapeHtml(p.area) + '</div>';
         html += '    <div class="fp-card__details">';
-        html += '      <div class="fp-card__detail"><span class="material-symbols-outlined">straighten</span>' + formatSqft(p.sqft) + ' sqft</div>';
-        html += '      <div class="fp-card__detail"><span class="material-symbols-outlined">layers</span>FAR ' + p.far + '</div>';
-        html += '      <div class="fp-card__detail"><span class="material-symbols-outlined">category</span>' + p.cat + '</div>';
-        html += '      <div class="fp-card__detail"><span class="material-symbols-outlined">location_on</span>' + p.area + '</div>';
+        html += '      <div class="fp-card__detail"><span class="material-symbols-outlined">straighten</span>' + p.sqft.toLocaleString() + ' sqft</div>';
+        html += '      <div class="fp-card__detail"><span class="material-symbols-outlined">layers</span>FAR ' + escapeHtml(p.far) + '</div>';
+        html += '      <div class="fp-card__detail"><span class="material-symbols-outlined">category</span>' + escapeHtml(p.cat) + '</div>';
+        html += '      <div class="fp-card__detail"><span class="material-symbols-outlined">location_on</span>' + escapeHtml(p.area) + '</div>';
         html += '    </div>';
         html += '    <div class="fp-card__cta">';
         html += '      <a href="https://wa.me/971569636360?text=' + waText + '" target="_blank" rel="noopener" class="btn">';
@@ -444,23 +513,18 @@
       var size = document.getElementById('filterSize').value;
       var budget = document.getElementById('filterBudget').value;
 
-      var filtered = plots.filter(function(p) {
+      var filtered = allPlots.filter(function(p) {
         if (area && p.area !== area) return false;
         if (size) {
-          var parts = size.split('-');
-          var min = parseInt(parts[0]);
-          var max = parseInt(parts[1]);
+          var parts = size.split('-'); var min = parseInt(parts[0]); var max = parseInt(parts[1]);
           if (p.sqft < min || p.sqft > max) return false;
         }
         if (budget) {
-          var bparts = budget.split('-');
-          var bmin = parseInt(bparts[0]);
-          var bmax = parseInt(bparts[1]);
+          var bp = budget.split('-'); var bmin = parseInt(bp[0]); var bmax = parseInt(bp[1]);
           if (p.price < bmin || p.price > bmax) return false;
         }
         return true;
       });
-
       renderCards(filtered);
     }
 
@@ -468,8 +532,18 @@
     document.getElementById('filterSize').addEventListener('change', applyFilters);
     document.getElementById('filterBudget').addEventListener('change', applyFilters);
 
-    // Initial render
-    renderCards(plots);
+    // Fetch live data from spreadsheet
+    document.getElementById('fpCount').textContent = 'Loading properties\u2026';
+    fetch(SHEET_URL)
+      .then(function(r) { return r.text(); })
+      .then(function(csv) {
+        allPlots = processSheet(parseCSV(csv));
+        buildAreaFilter(allPlots);
+        renderCards(allPlots);
+      })
+      .catch(function() {
+        document.getElementById('fpCount').textContent = 'Could not load properties. Please refresh.';
+      });
   })();
   </script>
 </body>
