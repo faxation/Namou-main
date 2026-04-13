@@ -64,6 +64,65 @@
         flex: 1 1 100%;
       }
     }
+
+    /* Mobile: center all cards and content */
+    @media (max-width: 900px) {
+      .lane,
+      .property-card__body,
+      .stat {
+        text-align: center;
+        align-items: center;
+      }
+      .lane .btn,
+      .property-card__body .btn {
+        align-self: center;
+      }
+      .section-label,
+      .section-title,
+      .section-text {
+        text-align: center;
+      }
+      .lanes__grid .lane:last-child,
+      .featured__grid .property-card:last-child {
+        max-width: 100%;
+        justify-self: center;
+      }
+      .featured__header {
+        align-items: center;
+        text-align: center;
+      }
+      .brokers__content {
+        text-align: center;
+        align-items: center;
+      }
+      .brokers__features {
+        align-items: center;
+      }
+      .broker-feature {
+        justify-content: center;
+      }
+      .brokers__actions {
+        justify-content: center;
+      }
+      .contact__text {
+        text-align: center;
+        align-items: center;
+      }
+      .contact__inner {
+        text-align: center;
+      }
+      .contact__detail {
+        justify-content: center;
+      }
+      .footer__inner {
+        text-align: center;
+      }
+      .footer__brand,
+      .footer__links {
+        align-items: center;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
