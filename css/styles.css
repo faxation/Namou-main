@@ -1505,6 +1505,11 @@ body::before {
 [data-theme="dark"] .logo-light { display: none; }
 [data-theme="dark"] .logo-dark { display: inline; }
 .logo-dark { display: none; }
+.logo-light,
+.logo-dark {
+  height: 36px;
+  width: auto;
+}
 
 
 /* --- Response Time Badge --- */
