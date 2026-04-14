@@ -1392,6 +1392,12 @@ body::before {
 }
 
 
+/* --- Dark Mode Logo Swap --- */
+[data-theme="dark"] .logo-light { display: none; }
+[data-theme="dark"] .logo-dark { display: inline; }
+.logo-dark { display: none; }
+
+
 /* --- Response Time Badge --- */
 .wa-response {
   display: flex;
