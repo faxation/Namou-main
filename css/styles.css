@@ -1142,107 +1142,111 @@ body::before {
    RESPONSIVE — DESKTOP EXPANSION (>=1200px)
    =========================================== */
 @media (min-width: 1200px) {
+  /* Remove max-width cap — fill the screen */
   :root {
-    --container-max: 1440px;
+    --container-max: 100%;
   }
 
-  /* Nav stretches wider */
+  .container {
+    padding: 0 5vw;
+  }
+
+  /* Nav edge-to-edge */
   .nav__inner {
-    max-width: var(--container-max);
-    padding: 0 48px;
+    max-width: 100%;
+    padding: 0 5vw;
   }
 
-  /* Hero fills viewport width */
+  /* Hero fills viewport */
   .hero {
-    padding-left: 48px;
-    padding-right: 48px;
-    gap: 72px;
+    padding: calc(var(--nav-height) + 80px) 5vw 80px;
+    gap: 56px;
   }
   .hero__content {
-    max-width: 900px;
+    max-width: 960px;
   }
   .hero__title {
-    font-size: 76px;
+    font-size: clamp(60px, 5.5vw, 84px);
+  }
+  .hero__subtitle {
+    max-width: 640px;
+    font-size: clamp(17px, 1.4vw, 22px);
   }
   .hero__router {
-    max-width: var(--container-max);
-    gap: 28px;
+    max-width: 100%;
+    padding: 0;
+    gap: 24px;
   }
   .router-card {
     padding: 40px 36px;
   }
-
-  /* Container wider */
-  .container {
-    padding: 0 48px;
+  .router-card__title {
+    font-size: 22px;
+  }
+  .router-card__text {
+    font-size: 16px;
   }
 
-  /* Why RAK fills width */
+  /* Why RAK */
   .why-rak {
     padding: 100px 0;
   }
   .why-rak__card {
-    padding: 40px 32px;
+    padding: 44px 32px;
+  }
+  .why-rak__card h3 {
+    font-size: 20px;
   }
 
-  /* Lanes breathe more */
+  /* Lanes */
   .lanes {
-    padding: 140px 0;
+    padding: 120px 0;
   }
   .lanes__grid {
-    gap: 28px;
+    gap: 24px;
   }
   .lane {
     padding: 40px 36px;
   }
+  .lane__title {
+    font-size: 24px;
+  }
 
-  /* Broker section wider gap */
+  /* Broker collaboration */
   .brokers {
-    padding: 140px 0;
+    padding: 120px 0;
   }
   .brokers__inner {
-    gap: 80px;
+    gap: 60px;
   }
 
-  /* Video call section wider */
+  /* Video call teaser */
   .videocall {
     padding: 120px 0;
   }
   .videocall__inner {
-    gap: 64px;
+    gap: 60px;
   }
 
-  /* Contact section wider */
+  /* Contact */
   .contact {
-    padding: 140px 0;
+    padding: 120px 0;
   }
   .contact__inner {
-    gap: 100px;
+    gap: 80px;
+  }
+  .contact__title {
+    font-size: clamp(36px, 3.5vw, 56px);
   }
 
-  /* Footer wider */
+  /* Footer */
   .footer__inner {
     gap: 64px;
   }
-}
 
-/* Ultra-wide (>=1600px) */
-@media (min-width: 1600px) {
-  :root {
-    --container-max: 1600px;
-  }
-  .nav__inner {
-    padding: 0 64px;
-  }
-  .container {
-    padding: 0 64px;
-  }
-  .hero {
-    padding-left: 64px;
-    padding-right: 64px;
-  }
-  .hero__router {
-    max-width: var(--container-max);
+  /* Section titles scale up */
+  .section-title {
+    font-size: clamp(32px, 3vw, 52px);
   }
 }
 

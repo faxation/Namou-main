@@ -42,11 +42,17 @@
     .jv { padding: calc(var(--nav-height) + 40px) 20px 80px; }
     .jv-wrap { max-width: 720px; margin: 0 auto; }
     @media (min-width: 1200px) {
-      .jv-wrap { max-width: 900px; }
-      .jv-grid { gap: 20px; }
-      .jv-card { padding: 28px; }
+      .jv { padding-left: 5vw; padding-right: 5vw; }
+      .jv-wrap { max-width: 100%; }
+      .jv-hero h1 { font-size: clamp(36px, 3.5vw, 56px); }
+      .jv-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+      .jv-card { padding: 32px; }
       .jv-step { margin-bottom: 48px; }
-      .jv-screens__grid { gap: 24px; }
+      .jv-step h3 { font-size: 22px; }
+      .jv-tree { max-width: 800px; }
+      .jv-screens { max-width: 960px; margin-left: auto; margin-right: auto; }
+      .jv-screens__grid { gap: 28px; }
+      .jv-cta { max-width: 800px; margin: 0 auto; }
     }
 
     /* Hero */
