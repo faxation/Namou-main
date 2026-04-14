@@ -1392,6 +1392,23 @@ body::before {
 }
 
 
+/* --- Response Time Badge --- */
+.wa-response {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--color-text-light);
+}
+.wa-response .material-symbols-outlined {
+  font-size: 15px;
+  color: var(--color-green);
+}
+
+
 /* --- Floating WhatsApp Button --- */
 .wa-float {
   position: fixed;
