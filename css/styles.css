@@ -830,6 +830,75 @@ img {
 
 
 /* ===========================================
+   VIDEO CALL & SIMULATOR TEASER
+   =========================================== */
+.videocall {
+  padding: 100px 0;
+  border-top: 1px solid var(--color-border);
+}
+.videocall__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.videocall__content .section-text {
+  margin-bottom: 32px;
+}
+.videocall__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.videocall__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.videocall__step > .material-symbols-outlined {
+  font-size: 24px;
+  color: var(--color-green);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.videocall__step strong {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-heading);
+  display: block;
+  margin-bottom: 2px;
+}
+.videocall__step p {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+.videocall__image {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+.videocall__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@media (max-width: 900px) {
+  .videocall__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .videocall__image {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+}
+
+
+/* ===========================================
    8. CONTACT / FINAL CTA
    =========================================== */
 .contact {
