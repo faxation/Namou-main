@@ -1268,3 +1268,57 @@ body::before {
     grid-column: auto;
   }
 }
+
+
+/* --- Floating WhatsApp Button --- */
+.wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+.wa-float:hover {
+  transform: scale(1.08);
+}
+.wa-float__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.wa-float__icon svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+}
+.wa-float__badge {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-heading);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .wa-float {
+    bottom: 20px;
+    right: 20px;
+  }
+  .wa-float__badge {
+    display: none;
+  }
+}
