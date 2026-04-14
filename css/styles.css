@@ -1139,6 +1139,115 @@ body::before {
 
 
 /* ===========================================
+   RESPONSIVE — DESKTOP EXPANSION (>=1200px)
+   =========================================== */
+@media (min-width: 1200px) {
+  :root {
+    --container-max: 1440px;
+  }
+
+  /* Nav stretches wider */
+  .nav__inner {
+    max-width: var(--container-max);
+    padding: 0 48px;
+  }
+
+  /* Hero fills viewport width */
+  .hero {
+    padding-left: 48px;
+    padding-right: 48px;
+    gap: 72px;
+  }
+  .hero__content {
+    max-width: 900px;
+  }
+  .hero__title {
+    font-size: 76px;
+  }
+  .hero__router {
+    max-width: var(--container-max);
+    gap: 28px;
+  }
+  .router-card {
+    padding: 40px 36px;
+  }
+
+  /* Container wider */
+  .container {
+    padding: 0 48px;
+  }
+
+  /* Why RAK fills width */
+  .why-rak {
+    padding: 100px 0;
+  }
+  .why-rak__card {
+    padding: 40px 32px;
+  }
+
+  /* Lanes breathe more */
+  .lanes {
+    padding: 140px 0;
+  }
+  .lanes__grid {
+    gap: 28px;
+  }
+  .lane {
+    padding: 40px 36px;
+  }
+
+  /* Broker section wider gap */
+  .brokers {
+    padding: 140px 0;
+  }
+  .brokers__inner {
+    gap: 80px;
+  }
+
+  /* Video call section wider */
+  .videocall {
+    padding: 120px 0;
+  }
+  .videocall__inner {
+    gap: 64px;
+  }
+
+  /* Contact section wider */
+  .contact {
+    padding: 140px 0;
+  }
+  .contact__inner {
+    gap: 100px;
+  }
+
+  /* Footer wider */
+  .footer__inner {
+    gap: 64px;
+  }
+}
+
+/* Ultra-wide (>=1600px) */
+@media (min-width: 1600px) {
+  :root {
+    --container-max: 1600px;
+  }
+  .nav__inner {
+    padding: 0 64px;
+  }
+  .container {
+    padding: 0 64px;
+  }
+  .hero {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  .hero__router {
+    max-width: var(--container-max);
+  }
+}
+
+
+/* ===========================================
    SCROLL REVEAL ANIMATION
    =========================================== */
 .reveal {
