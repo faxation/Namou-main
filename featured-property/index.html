@@ -317,10 +317,23 @@
 
   <nav class="nav" id="nav">
     <div class="nav__inner">
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
       <a href="/" class="nav__logo">
         <img src="../assets/images/logo.png" alt="Namou Properties" width="120" height="44" class="logo-light">
         <img src="../assets/images/logo-dark.png" alt="Namou Properties" width="120" height="44" class="logo-dark">
       </a>
+
+      <div class="nav__menu" id="navMenu">
+        <a href="/featured-property" class="nav__link">Buy</a>
+        <a href="/landowner" class="nav__link">Sell</a>
+        <a href="/broker" class="nav__link">Brokers</a>
+      </div>
+
       <div class="nav__right">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
           <span class="material-symbols-outlined icon-moon">dark_mode</span>

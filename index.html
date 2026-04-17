@@ -41,15 +41,30 @@
       line-height: 2;
     }
 
-    /* Responsive button rows: side by side when they fit, stack when they don't */
-    .router-card__actions,
+    /* Responsive button rows — router cards always match across all cards */
+    .router-card__actions {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+    }
+    .router-card__actions .btn {
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
+      justify-content: center;
+      white-space: nowrap;
+      padding-left: 12px;
+      padding-right: 12px;
+      font-size: 13px;
+    }
+
+    /* Brokers & hero keep their existing wrap behavior */
     .brokers__actions,
     .hero__actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
     }
-    .router-card__actions .btn,
     .brokers__actions .btn,
     .hero__actions .btn {
       flex: 1 1 auto;
@@ -59,7 +74,6 @@
       white-space: nowrap;
     }
     @media (max-width: 380px) {
-      .router-card__actions .btn,
       .hero__actions .btn {
         flex: 1 1 100%;
       }
