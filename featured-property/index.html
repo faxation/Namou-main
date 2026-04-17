@@ -73,48 +73,110 @@
       color: var(--color-text);
     }
 
-    /* Filters */
+    /* Filters — unified pill bar */
     .fp-filters {
       display: flex;
+      align-items: stretch;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 0;
       justify-content: center;
-      margin-bottom: 36px;
+      margin: 0 auto 32px;
+      max-width: 1000px;
+      padding: 8px;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      background: var(--color-bg);
+      box-shadow: 0 2px 12px rgba(0, 61, 46, 0.04);
+    }
+    [data-theme="dark"] .fp-filters {
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
     }
     .fp-filter {
       position: relative;
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-right: 1px solid var(--color-border);
+    }
+    .fp-filter:last-child {
+      border-right: none;
+    }
+    .fp-filter__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-light);
+      flex-shrink: 0;
+    }
+    .fp-filter__icon .material-symbols-outlined {
+      font-size: 20px;
+    }
+    .fp-filter__body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+    .fp-filter__label {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-heading);
+      letter-spacing: 0.02em;
+      line-height: 1.2;
     }
     .fp-filter select {
       appearance: none;
       -webkit-appearance: none;
-      padding: 12px 40px 12px 16px;
-      border: 1px solid var(--color-border);
-      border-radius: 999px;
-      background: var(--color-bg);
-      font-family: var(--font-heading);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--color-heading);
+      padding: 0 18px 0 0;
+      border: none;
+      background: transparent;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--color-text-light);
       cursor: pointer;
-      transition: all 0.2s ease;
-      min-width: 160px;
+      transition: color 0.2s ease;
+      width: 100%;
+      line-height: 1.4;
+      margin-top: 2px;
     }
     .fp-filter select:focus {
       outline: none;
-      border-color: var(--color-green);
+      color: var(--color-heading);
     }
-    .fp-filter::after {
+    .fp-filter__body::after {
       content: '';
       position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
+      right: 14px;
+      bottom: 14px;
       width: 0;
       height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 5px solid var(--color-text-light);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid var(--color-text-light);
       pointer-events: none;
+    }
+
+    /* Responsive filter */
+    @media (max-width: 900px) {
+      .fp-filters {
+        border-radius: 24px;
+        flex-direction: column;
+        padding: 6px;
+        max-width: 420px;
+      }
+      .fp-filter {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+        padding: 10px 14px;
+      }
+      .fp-filter:last-child {
+        border-bottom: none;
+      }
     }
     .fp-count {
       font-family: var(--font-body);
@@ -279,27 +341,69 @@
       <!-- Filters -->
       <div class="fp-filters">
         <div class="fp-filter">
-          <select id="filterArea">
-            <option value="">All Areas</option>
-          </select>
+          <span class="fp-filter__icon"><span class="material-symbols-outlined">straighten</span></span>
+          <div class="fp-filter__body">
+            <span class="fp-filter__label">Min SQ FT</span>
+            <select id="filterMinSqft">
+              <option value="">Any</option>
+              <option value="5000">5,000+</option>
+              <option value="10000">10,000+</option>
+              <option value="25000">25,000+</option>
+              <option value="50000">50,000+</option>
+              <option value="100000">100,000+</option>
+              <option value="250000">250,000+</option>
+              <option value="500000">500,000+</option>
+            </select>
+          </div>
         </div>
         <div class="fp-filter">
-          <select id="filterSize">
-            <option value="">All Sizes</option>
-            <option value="0-20000">Under 20,000 sqft</option>
-            <option value="20000-100000">20,000 – 100,000 sqft</option>
-            <option value="100000-500000">100,000 – 500,000 sqft</option>
-            <option value="500000-99999999">500,000+ sqft</option>
-          </select>
+          <span class="fp-filter__icon"><span class="material-symbols-outlined">straighten</span></span>
+          <div class="fp-filter__body">
+            <span class="fp-filter__label">Max SQ FT</span>
+            <select id="filterMaxSqft">
+              <option value="">Any</option>
+              <option value="10000">Up to 10,000</option>
+              <option value="25000">Up to 25,000</option>
+              <option value="50000">Up to 50,000</option>
+              <option value="100000">Up to 100,000</option>
+              <option value="250000">Up to 250,000</option>
+              <option value="500000">Up to 500,000</option>
+              <option value="9999999">1M+</option>
+            </select>
+          </div>
         </div>
         <div class="fp-filter">
-          <select id="filterBudget">
-            <option value="">All Budgets</option>
-            <option value="0-5000000">Under 5M AED</option>
-            <option value="5000000-20000000">5M – 20M AED</option>
-            <option value="20000000-100000000">20M – 100M AED</option>
-            <option value="100000000-99999999999">100M+ AED</option>
-          </select>
+          <span class="fp-filter__icon"><span class="material-symbols-outlined">category</span></span>
+          <div class="fp-filter__body">
+            <span class="fp-filter__label">Type</span>
+            <select id="filterType">
+              <option value="">All Types</option>
+            </select>
+          </div>
+        </div>
+        <div class="fp-filter">
+          <span class="fp-filter__icon"><span class="material-symbols-outlined">location_on</span></span>
+          <div class="fp-filter__body">
+            <span class="fp-filter__label">Area</span>
+            <select id="filterArea">
+              <option value="">All Areas</option>
+            </select>
+          </div>
+        </div>
+        <div class="fp-filter">
+          <span class="fp-filter__icon"><span class="material-symbols-outlined">payments</span></span>
+          <div class="fp-filter__body">
+            <span class="fp-filter__label">Budget Range</span>
+            <select id="filterBudget">
+              <option value="">All Prices</option>
+              <option value="0-5000000">AED 0–5M</option>
+              <option value="5000000-15000000">AED 5–15M</option>
+              <option value="15000000-25000000">AED 15–25M</option>
+              <option value="25000000-50000000">AED 25–50M</option>
+              <option value="50000000-100000000">AED 50–100M</option>
+              <option value="100000000-99999999999">AED 100M+</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -491,6 +595,20 @@
       });
     }
 
+    function buildTypeFilter(plots) {
+      var types = [], sel = document.getElementById('filterType');
+      while (sel.options.length > 1) sel.remove(1);
+      plots.forEach(function(p) {
+        if (p.cat && types.indexOf(p.cat) === -1) types.push(p.cat);
+      });
+      types.sort();
+      types.forEach(function(t) {
+        var opt = document.createElement('option');
+        opt.value = t; opt.textContent = t;
+        sel.appendChild(opt);
+      });
+    }
+
     function escapeHtml(str) {
       var div = document.createElement('div');
       div.textContent = str;
@@ -532,16 +650,17 @@
     }
 
     function applyFilters() {
+      var minSqft = document.getElementById('filterMinSqft').value;
+      var maxSqft = document.getElementById('filterMaxSqft').value;
+      var type = document.getElementById('filterType').value;
       var area = document.getElementById('filterArea').value;
-      var size = document.getElementById('filterSize').value;
       var budget = document.getElementById('filterBudget').value;
 
       var filtered = allPlots.filter(function(p) {
         if (area && p.area !== area) return false;
-        if (size) {
-          var parts = size.split('-'); var min = parseInt(parts[0]); var max = parseInt(parts[1]);
-          if (p.sqft < min || p.sqft > max) return false;
-        }
+        if (type && p.cat !== type) return false;
+        if (minSqft && p.sqft < parseInt(minSqft)) return false;
+        if (maxSqft && p.sqft > parseInt(maxSqft)) return false;
         if (budget) {
           var bp = budget.split('-'); var bmin = parseInt(bp[0]); var bmax = parseInt(bp[1]);
           if (p.price < bmin || p.price > bmax) return false;
@@ -551,13 +670,14 @@
       renderCards(filtered);
     }
 
-    document.getElementById('filterArea').addEventListener('change', applyFilters);
-    document.getElementById('filterSize').addEventListener('change', applyFilters);
-    document.getElementById('filterBudget').addEventListener('change', applyFilters);
+    ['filterMinSqft','filterMaxSqft','filterType','filterArea','filterBudget'].forEach(function(id) {
+      document.getElementById(id).addEventListener('change', applyFilters);
+    });
 
     function initWithData(plots) {
       allPlots = plots;
       buildAreaFilter(allPlots);
+      buildTypeFilter(allPlots);
       renderCards(allPlots);
     }
 
