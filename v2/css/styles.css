@@ -1,29 +1,31 @@
 /* =============================================================
    NAMOU V2 — AWARD-LEVEL REIMAGINING
-   Cabinet Grotesk + Instrument Serif + Roboto Mono
-   Deep forest on mint-white base
+   Brand: DM Sans + Roboto Mono, #00B073 on white / #0A0A0A
    ============================================================= */
 
 :root {
-  --bg: #f5f3ef;
-  --bg-alt: #ecebe5;
-  --ink: #0b1a14;
-  --ink-muted: #5a6962;
-  --line: rgba(11, 26, 20, 0.1);
-  --accent: #00b073;
-  --accent-deep: #003d2e;
-  --wa: #25d366;
-  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --bg: #FFFFFF;
+  --bg-alt: #F5F5F5;
+  --ink: #121212;
+  --ink-muted: #555555;
+  --ink-soft: #888888;
+  --line: rgba(0, 0, 0, 0.08);
+  --accent: #00B073;
+  --accent-deep: #00C980;
+  --accent-subtle: rgba(0, 176, 115, 0.1);
+  --wa: #25D366;
+  --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   --nav-h: 72px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] {
-  --bg: #0b0f0d;
-  --bg-alt: #111815;
-  --ink: #f5f3ef;
-  --ink-muted: #8ba59a;
-  --line: rgba(255, 255, 255, 0.1);
+  --bg: #0A0A0A;
+  --bg-alt: #141414;
+  --ink: #FFFFFF;
+  --ink-muted: #B0B0B0;
+  --ink-soft: #808080;
+  --line: rgba(255, 255, 255, 0.08);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -57,7 +59,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 a { color: inherit; text-decoration: none; }
 
-.font-display { font-family: "Cabinet Grotesk", "DM Sans", sans-serif; font-weight: 500; letter-spacing: -0.02em; }
+.font-display { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; letter-spacing: -0.02em; }
 .font-serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
 
 /* =====================================================
@@ -91,7 +93,7 @@ a { color: inherit; text-decoration: none; }
 .nav__links {
   display: flex;
   gap: 28px;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
@@ -197,7 +199,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero__title {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
   font-size: clamp(3.5rem, 9vw, 7.5rem);
   line-height: 0.95;
@@ -246,7 +248,7 @@ a { color: inherit; text-decoration: none; }
    BUTTONS
    ===================================================== */
 .btn {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
   font-size: 15px;
   padding: 16px 28px;
@@ -311,7 +313,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .section__title {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1.02;
@@ -388,7 +390,7 @@ a { color: inherit; text-decoration: none; }
 .bento__cell--image > * { position: relative; z-index: 1; }
 
 .bento__label {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 12px;
   font-weight: 500;
   color: var(--accent);
@@ -397,7 +399,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .bento__heading {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
   font-size: clamp(1.4rem, 2vw, 2rem);
   line-height: 1.1;
@@ -419,7 +421,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .bento__stat {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 500;
   line-height: 1;
@@ -477,11 +479,11 @@ a { color: inherit; text-decoration: none; }
   color: var(--accent);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
 }
 
 .lane__heading {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
   font-size: clamp(1.8rem, 2.5vw, 2.4rem);
   line-height: 1.05;
@@ -538,7 +540,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .reveal__eyebrow {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -549,7 +551,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .reveal__title {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
   font-size: clamp(2.2rem, 4vw, 3.5rem);
   line-height: 1.02;
@@ -581,7 +583,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .reveal__step-num {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 2.5rem;
   font-weight: 500;
   color: var(--accent);
@@ -590,7 +592,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .reveal__step h4 {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
   font-size: 1.3rem;
   letter-spacing: -0.01em;
@@ -628,7 +630,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .marquee__item {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -670,7 +672,7 @@ a { color: inherit; text-decoration: none; }
   cursor: pointer;
   padding: 32px 0;
   position: relative;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: clamp(1.3rem, 2vw, 1.75rem);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -694,7 +696,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 22px;
   font-weight: 300;
   color: var(--ink);
@@ -745,7 +747,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .cta-final__title {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
   font-size: clamp(2.8rem, 7vw, 6rem);
   line-height: 0.98;
@@ -791,7 +793,7 @@ a { color: inherit; text-decoration: none; }
 }
 .footer__brand p { font-size: 14px; color: var(--ink-muted); max-width: 280px; margin-top: 12px; line-height: 1.6; }
 .footer__col h4 {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -877,7 +879,7 @@ a { color: inherit; text-decoration: none; }
   pointer-events: auto;
 }
 .mobile-menu a {
-  font-family: "Cabinet Grotesk", sans-serif;
+  font-family: "DM Sans", -apple-system, sans-serif;
   font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 500;
   letter-spacing: -0.02em;
