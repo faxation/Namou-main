@@ -1618,3 +1618,113 @@ body::before {
     display: none;
   }
 }
+
+
+/* ===========================================
+   FAQ SECTION
+   =========================================== */
+.faq {
+  padding: 100px 0;
+  border-top: 1px solid var(--color-border);
+}
+.faq .container {
+  max-width: 860px;
+}
+.faq__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq__item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.faq__item[open] {
+  border-color: var(--color-green);
+}
+.faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 56px 20px 24px;
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-heading);
+  line-height: 1.4;
+  transition: color var(--transition);
+}
+.faq__item summary::-webkit-details-marker {
+  display: none;
+}
+.faq__item summary::after {
+  content: '+';
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--color-green);
+  transition: transform var(--transition);
+  line-height: 1;
+}
+.faq__item[open] summary::after {
+  content: '–';
+}
+.faq__item summary:hover {
+  color: var(--color-green);
+}
+.faq__body {
+  padding: 0 24px 20px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+.faq__body p {
+  margin-bottom: 12px;
+}
+.faq__body p:last-child {
+  margin-bottom: 0;
+}
+.faq__source {
+  font-size: 12px;
+  color: var(--color-text-light);
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+  margin-top: 4px;
+}
+.faq__source a {
+  color: var(--color-green);
+  transition: color var(--transition);
+}
+.faq__source a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 640px) {
+  .faq {
+    padding: 72px 0;
+  }
+  .faq__item summary {
+    font-size: 15px;
+    padding: 18px 48px 18px 20px;
+  }
+  .faq__item summary::after {
+    right: 20px;
+  }
+  .faq__body {
+    padding: 0 20px 18px;
+    font-size: 13px;
+  }
+}
