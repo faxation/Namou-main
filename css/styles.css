@@ -1728,3 +1728,134 @@ body::before {
     font-size: 13px;
   }
 }
+
+
+/* ===========================================
+   DESIGN POLISH — award-level optimization
+   =========================================== */
+
+/* Cinematic section spacing on desktop */
+@media (min-width: 1024px) {
+  .why-rak { padding: 160px 0; }
+  .lanes { padding: 180px 0; }
+  .brokers { padding: 180px 0; }
+  .videocall { padding: 160px 0; }
+  .faq { padding: 160px 0; }
+  .contact { padding: 160px 0; }
+}
+
+/* Tighter section titles — room to breathe, 2-3 line max */
+.section-title {
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+.why-rak .section-title,
+.faq .section-title {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Why RAK cards — hover physics */
+.why-rak__card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+  cursor: default;
+}
+.why-rak__card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-green);
+  box-shadow: 0 20px 60px rgba(0, 176, 115, 0.12),
+              0 8px 24px rgba(0, 0, 0, 0.06);
+}
+[data-theme="dark"] .why-rak__card:hover {
+  box-shadow: 0 20px 60px rgba(0, 176, 115, 0.18),
+              0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Video call image — scale on hover */
+.videocall__image {
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.videocall__image img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.videocall__image:hover {
+  border-color: var(--color-green);
+  box-shadow: 0 24px 60px rgba(0, 61, 46, 0.12);
+}
+.videocall__image:hover img {
+  transform: scale(1.04);
+}
+
+/* Router cards — subtle lift */
+.router-card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              background 0.4s ease,
+              box-shadow 0.4s ease;
+}
+.router-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-green);
+  box-shadow: 0 20px 50px rgba(0, 176, 115, 0.1);
+}
+
+/* FAQ items — smoother transitions */
+.faq__item {
+  transition: border-color 0.35s ease, transform 0.35s ease;
+}
+.faq__item:hover {
+  border-color: rgba(0, 176, 115, 0.4);
+}
+.faq__item[open] {
+  transform: translateY(-2px);
+}
+
+/* Hero title — wider container for 2-line flow on desktop */
+@media (min-width: 1024px) {
+  .hero__content {
+    max-width: 1080px;
+  }
+  .hero__title {
+    font-size: clamp(56px, 7vw, 96px);
+    letter-spacing: -0.03em;
+  }
+  .hero__subtitle {
+    font-size: 20px;
+    max-width: 680px;
+  }
+}
+
+/* Lane cards — cleaner hover lift */
+.lane {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease,
+              background 0.4s ease,
+              box-shadow 0.4s ease;
+}
+.lane:hover {
+  transform: translateY(-4px);
+}
+
+/* Broker image — subtle zoom on hover */
+.brokers__image {
+  overflow: hidden;
+}
+.brokers__image img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.brokers__image:hover img {
+  transform: scale(1.04);
+}
+
+/* Lock horizontal scroll at all levels */
+html {
+  overflow-x: hidden;
+}
+main, section {
+  overflow-x: clip;
+}
