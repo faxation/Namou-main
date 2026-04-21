@@ -898,3 +898,80 @@ img.logo-dark { display: none; }
   color: var(--ink);
 }
 .mobile-menu a:hover { color: var(--accent); }
+
+
+/* =====================================================
+   DARK MODE — form controls and native dropdowns
+   ===================================================== */
+
+/* Native select option popup — force theme-aware colors
+   (required because <option> elements render via OS layer
+   and ignore most CSS rules on some browsers) */
+select {
+  color-scheme: light;
+  color: var(--ink);
+}
+[data-theme="dark"] select {
+  color-scheme: dark;
+}
+select option {
+  background: var(--bg);
+  color: var(--ink);
+}
+[data-theme="dark"] select option {
+  background: var(--bg-alt);
+  color: var(--ink);
+}
+
+/* Filter bar — ensure placeholder/display value is legible in both themes */
+.filter select {
+  color: var(--ink-muted);
+}
+.filter select:focus,
+.filter select:hover {
+  color: var(--ink);
+}
+.filter__label {
+  color: var(--ink);
+}
+
+/* Filter dropdown arrow — adapt to theme */
+.filter__body::after {
+  border-top-color: var(--ink-muted);
+}
+
+/* Text inputs (any future forms) */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+input[type="number"],
+textarea {
+  background: var(--bg-alt);
+  color: var(--ink);
+  border-color: var(--line);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--ink-soft);
+  opacity: 1;
+}
+
+/* Featured property card details */
+.card__detail {
+  color: var(--ink-muted);
+}
+.card__area,
+.card__price {
+  color: var(--ink);
+}
+
+/* Filters empty-state */
+.empty {
+  color: var(--ink-muted);
+}
+
+/* Count label above grid */
+.count {
+  color: var(--ink-muted);
+}
