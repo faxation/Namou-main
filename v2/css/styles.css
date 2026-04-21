@@ -211,11 +211,11 @@ img.logo-dark { display: none; }
 .hero__title {
   font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
-  font-size: clamp(3.5rem, 9vw, 7.5rem);
-  line-height: 0.95;
+  font-size: clamp(2rem, 6.2vw, 6rem);
+  line-height: 1;
   letter-spacing: -0.04em;
   color: var(--ink);
-  max-width: 1080px;
+  max-width: 100%;
 }
 
 .hero__title .serif {
