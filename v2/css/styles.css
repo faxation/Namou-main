@@ -211,11 +211,21 @@ img.logo-dark { display: none; }
 .hero__title {
   font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 500;
-  font-size: clamp(2rem, 6.2vw, 6rem);
+  font-size: clamp(2.75rem, 9vw, 7.5rem);
   line-height: 1;
   letter-spacing: -0.04em;
   color: var(--ink);
   max-width: 100%;
+}
+
+/* Desktop-only: lock hero title lines to single line (no wrap) */
+@media (min-width: 1024px) {
+  .hero__title .nowrap-lg { white-space: nowrap; }
+  .hero__title { font-size: clamp(4rem, 6.2vw, 6rem); }
+  .section__lede.nowrap-lg-lede {
+    max-width: none;
+    white-space: nowrap;
+  }
 }
 
 .hero__title .serif {
