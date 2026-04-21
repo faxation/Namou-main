@@ -311,6 +311,7 @@ img.logo-dark { display: none; }
 .section__inner {
   max-width: 1320px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .section__title {
@@ -322,7 +323,10 @@ img.logo-dark { display: none; }
   color: var(--ink);
   max-width: 900px;
   text-wrap: balance;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 24px;
+  text-align: center;
 }
 .section__title .serif {
   font-family: "Instrument Serif", serif;
@@ -335,7 +339,8 @@ img.logo-dark { display: none; }
   color: var(--ink-muted);
   max-width: 580px;
   line-height: 1.7;
-  margin-bottom: 64px;
+  margin: 0 auto 64px;
+  text-align: center;
 }
 
 /* =====================================================
@@ -360,6 +365,7 @@ img.logo-dark { display: none; }
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.6s var(--ease), border-color 0.4s ease;
+  text-align: left;
 }
 .bento__cell:hover {
   transform: translateY(-4px);
@@ -464,6 +470,7 @@ img.logo-dark { display: none; }
   flex-direction: column;
   gap: 24px;
   min-height: 380px;
+  text-align: left;
 }
 .lane:hover {
   transform: translateY(-6px);
@@ -533,6 +540,7 @@ img.logo-dark { display: none; }
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
+  text-align: left;
 }
 
 .reveal__text {
@@ -662,6 +670,9 @@ img.logo-dark { display: none; }
   display: flex;
   flex-direction: column;
   border-top: 1px solid var(--line);
+  text-align: left;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .faq__item {
