@@ -113,6 +113,20 @@ Broker partnership sub-site for broker-to-broker collaboration and buyer briefs.
 
 ---
 
+## Site Structure - `/v3` (v3/index.html)
+
+Standalone homepage prototype that keeps the `v1` brand fundamentals but pushes the visual system much further. Still static HTML/CSS/JS, still WhatsApp-first, but with a more editorial layout and motion-heavy storytelling.
+
+1. **Nav** - Floating glass navigation with internal section links, WhatsApp CTA, theme toggle, and mobile menu
+2. **Attention / Hero** - Artistic split hero with wide two-line headline, stacked image composition, and quick route panel for buy, sell, and JV entry points
+3. **Interest / Marquee + Bento** - Infinite market marquee followed by a dense 4-card `grid-auto-flow: dense` market section covering freehold ownership, tax clarity, RAK momentum, and access
+4. **Interest / Route Accordions** - Four horizontally expanding path cards for buyers, landowners, JV investors, and brokers, each linking into the existing site routes
+5. **Desire / Process Section** - Dark cinematic section with scrubbed headline text and GSAP-driven image scale/fade cards explaining how the conversation moves from brief to action
+6. **Desire / Brief Carousel** - Sliding "typical first brief" section that presents the kinds of buyer, seller, broker, and JV conversations Namou is built to handle
+7. **Action / CTA + Footer** - High-contrast CTA that reinforces WhatsApp as the main conversion path, followed by a footer with routes, contact details, and office information
+
+---
+
 ## Reference Notes
 
 - **Primary public reference used:** https://namou.ae/
@@ -136,6 +150,12 @@ namou-website/
 |   |-- index.html
 |-- broker/
 |   |-- index.html
+|-- v3/
+|   |-- index.html
+|   |-- css/
+|   |   |-- styles.css
+|   |-- js/
+|   |   `-- motion.js
 |-- css/
 |   |-- styles.css
 |-- js/
@@ -162,8 +182,9 @@ namou-website/
 ## Technical Details
 
 - **CSS custom properties** for theming - light mode in `:root`, dark mode in `[data-theme="dark"]`
-- **localStorage key:** `namou-theme` (values: `light` or `dark`)
+- **Theme storage:** root site uses `namou-theme`; `v3` uses `namou-v3-theme`
 - **Responsive breakpoints:** shared site styles use 900px and 640px; sub-site pages add narrow-screen handling for tighter mobile widths
+- **V3 interaction model:** `/v3` uses a floating nav, mobile overlay menu, expanding route accordions, an autoplaying brief carousel, and GSAP ScrollTrigger for scroll reveals, image scale/fade motion, and scrubbed headline text
 - **Sub-site interaction model:** `/buy`, `/sell`, and `/broker` use mobile-first single-card steppers with delayed auto-advance on radio selection, manual continue for text steps, inline validation, safe-area-aware padding, and centered content
 - **WhatsApp handoff:** submit compiles the captured answers into a prefilled `wa.me` message and redirects the user to WhatsApp
 - **No backend:** all forms are front-end only in this draft
@@ -203,3 +224,4 @@ namou-website/
 | 2026-04-01 | `06dc4ec` | First draft intent-based sub-sites: `/buy`, `/sell`, and `/broker`, with `/home` routing updated |
 | 2026-04-01 | `e25402f` | Expand `/broker` content to explain how Namou works with brokers after the brief is shared |
 | 2026-04-01 | `pending` | Add proof, value, and what-happens-next content across `/home`, `/buy`, `/sell`, and `/broker`, including buyer/broker video-call pitch-deck references |
+| 2026-04-21 | `pending` | Add `/v3` homepage prototype with editorial split hero, dense market bento, expanding route accordions, GSAP scroll motion, and a WhatsApp-first CTA finish |
