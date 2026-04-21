@@ -57,40 +57,6 @@
     }
   });
 
-  var accordion = document.getElementById("routeAccordion");
-
-  if (accordion) {
-    var items = Array.prototype.slice.call(
-      accordion.querySelectorAll("[data-accordion-item]")
-    );
-
-    function activate(item) {
-      items.forEach(function (entry) {
-        entry.classList.toggle("is-active", entry === item);
-      });
-    }
-
-    items.forEach(function (item) {
-      item.addEventListener("mouseenter", function () {
-        if (window.innerWidth > 720) {
-          activate(item);
-        }
-      });
-
-      item.addEventListener("focusin", function () {
-        activate(item);
-      });
-
-      item.addEventListener("click", function (event) {
-        if (event.target.closest("a")) {
-          return;
-        }
-
-        activate(item);
-      });
-    });
-  }
-
   var carousel = document.querySelector("[data-carousel]");
 
   if (carousel) {
@@ -126,7 +92,7 @@
 
       autoplayId = window.setInterval(function () {
         goTo(currentIndex + 1);
-      }, 5400);
+      }, 5200);
     }
 
     if (prevButton) {
@@ -169,33 +135,32 @@
   window.gsap.registerPlugin(window.ScrollTrigger);
 
   window.gsap.from(".nav__inner", {
-    y: -18,
+    y: -22,
     opacity: 0,
-    duration: 0.85,
+    duration: 0.8,
     ease: "power3.out"
   });
 
-  window.gsap.from(".hero__copy > *", {
-    y: 28,
+  window.gsap.from(".hero__inner > *", {
+    y: 34,
     opacity: 0,
-    duration: 0.95,
+    duration: 1,
     stagger: 0.1,
     delay: 0.12,
     ease: "power3.out"
   });
 
-  window.gsap.from(".hero-card, .decision-panel", {
-    y: 34,
+  window.gsap.from(".hero__stage", {
+    y: 40,
     opacity: 0,
-    duration: 1,
-    stagger: 0.12,
-    delay: 0.24,
+    duration: 1.05,
+    delay: 0.28,
     ease: "power3.out"
   });
 
   window.gsap.utils
     .toArray(
-      ".section__intro, .bento-card, .accordion-card, .journey-card, .conversation-card, .cta__inner"
+      ".section__intro, .route-card, .bento-card, .stack-card, .brief-card, .cta__inner"
     )
     .forEach(function (element) {
       window.gsap.from(element, {
@@ -210,50 +175,65 @@
       });
     });
 
-  window.gsap.utils.toArray(".journey-card").forEach(function (card) {
-    var image = card.querySelector("img");
-
-    if (!image) {
-      return;
-    }
+  window.gsap.utils.toArray(".stack-card").forEach(function (card, index, cards) {
+    card.style.zIndex = String(cards.length - index);
 
     window.gsap.fromTo(
-      image,
+      card,
       {
-        scale: 0.86,
-        opacity: 0.38,
-        y: 40
+        y: index === 0 ? 0 : 160,
+        rotate: index % 2 === 0 ? 1.5 : -1.5,
+        opacity: index === 0 ? 1 : 0.7
       },
       {
-        scale: 1,
-        opacity: 1,
         y: 0,
+        rotate: 0,
+        opacity: 1,
         ease: "none",
         scrollTrigger: {
           trigger: card,
           start: "top 88%",
-          end: "bottom 36%",
+          end: "top 26%",
           scrub: true
         }
       }
     );
+
+    var image = card.querySelector("img");
+
+    if (image) {
+      window.gsap.fromTo(
+        image,
+        {
+          scale: 0.82,
+          opacity: 0.3
+        },
+        {
+          scale: 1,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            end: "bottom 32%",
+            scrub: true
+          }
+        }
+      );
+    }
   });
 
-  var scrubWords = window.gsap.utils.toArray(".scrub-word");
-
-  if (scrubWords.length) {
-    window.gsap.set(scrubWords, { opacity: 0.18 });
-
-    window.gsap.to(scrubWords, {
-      opacity: 1,
-      stagger: 0.18,
-      ease: "none",
+  window.gsap.utils.toArray(".route-card__thumb, .brief-card__portrait").forEach(function (element, index) {
+    window.gsap.from(element, {
+      scale: 0.92,
+      opacity: 0,
+      duration: 0.7,
+      delay: index * 0.03,
+      ease: "power2.out",
       scrollTrigger: {
-        trigger: ".process__headline",
-        start: "top 78%",
-        end: "bottom 30%",
-        scrub: true
+        trigger: element,
+        start: "top 88%"
       }
     });
-  }
+  });
 })();
