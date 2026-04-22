@@ -234,8 +234,10 @@ img.logo-dark { display: none; }
     width: 100%;
   }
   .hero__title {
-    flex: 1;
     margin: 0;
+  }
+  .hero__marquee {
+    margin-top: 48px;
   }
 }
 
