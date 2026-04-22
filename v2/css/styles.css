@@ -174,13 +174,13 @@ img.logo-dark { display: none; }
    HERO — cinematic center with full-bleed backdrop
    ===================================================== */
 .hero {
-  min-height: 100svh;
+  min-height: 82svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 140px 24px 80px;
+  padding: 140px 24px 0;
   position: relative;
   overflow: hidden;
 }
@@ -220,6 +220,27 @@ img.logo-dark { display: none; }
 
 /* Mobile-only <br> inside hero title (between "Real estate" and "done right") */
 .hero__title .br-mobile { display: block; }
+
+/* Mobile: center hero title vertically in the space between nav and subtitle */
+@media (max-width: 1023px) {
+  .hero {
+    justify-content: flex-start;
+    padding: 96px 24px 0;
+    min-height: 90svh;
+  }
+  .hero__inner {
+    flex: 1;
+    gap: 28px;
+    width: 100%;
+  }
+  .hero__title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+}
 
 /* Desktop-only: lock hero title lines to single line (no wrap) */
 @media (min-width: 1024px) {
@@ -266,6 +287,29 @@ img.logo-dark { display: none; }
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* Marquee sitting inside the hero frame — bleeds to viewport edges */
+.hero__marquee {
+  position: relative;
+  z-index: 2;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-top: auto;
+  padding: 20px 0;
+  background: var(--bg);
+}
+.hero__marquee .marquee__item {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  gap: 48px;
+}
+.hero__marquee .marquee__item::after {
+  width: 6px;
+  height: 6px;
+}
+.hero__marquee .marquee__track {
+  gap: 48px;
 }
 
 /* =====================================================
@@ -644,7 +688,7 @@ img.logo-dark { display: none; }
    MARQUEE — infinite scrolling trust strip
    ===================================================== */
 .marquee {
-  padding: 60px 0;
+  padding: 32px 0;
   overflow: hidden;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
