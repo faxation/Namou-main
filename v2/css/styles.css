@@ -429,9 +429,11 @@ img.logo-dark { display: none; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
   transition: transform 0.6s var(--ease), border-color 0.4s ease;
-  text-align: left;
+  text-align: center;
 }
 .bento__cell:hover {
   transform: translateY(-4px);
