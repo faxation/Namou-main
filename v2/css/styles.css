@@ -235,9 +235,6 @@ img.logo-dark { display: none; }
   }
   .hero__title {
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 0;
   }
 }
