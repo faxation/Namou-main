@@ -483,10 +483,10 @@ img.logo-dark { display: none; }
 
 .bento__body {
   font-size: 14px;
-  color: var(--accent);
+  color: var(--ink-muted);
   line-height: 1.6;
 }
-.bento__cell--image .bento__body { color: var(--accent); }
+.bento__cell--image .bento__body { color: rgba(255, 255, 255, 0.8); }
 
 .bento__icon .material-symbols-outlined {
   font-size: 32px;
@@ -502,7 +502,7 @@ img.logo-dark { display: none; }
 }
 .bento__stat-label {
   font-size: 13px;
-  color: var(--accent);
+  color: var(--ink-muted);
   margin-top: 8px;
 }
 
