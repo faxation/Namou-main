@@ -1,8 +1,7 @@
 {
-  "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/faxation-Namou-main/index.html" },
-    { "source": "/:path*", "destination": "/faxation-Namou-main/:path*" }
+    { "source": "/", "destination": "/faxation-Namou-main/v2/index.html" },
+    { "source": "/:path+", "destination": "/faxation-Namou-main/:path+" }
   ]
 }
