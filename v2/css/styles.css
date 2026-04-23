@@ -189,8 +189,8 @@ img.logo-dark { display: none; }
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 120px;
-  height: 30%;
+  bottom: 100px;
+  height: clamp(160px, 22vh, 260px);
   background-image: url("../../assets/images/site-namou-bg.png");
   background-size: cover;
   background-position: center;
