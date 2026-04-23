@@ -170,6 +170,25 @@ img.logo-dark { display: none; }
   .nav__toggle { display: flex; }
 }
 
+/* Desktop: turn the nav into a vertical floating column on the left */
+@media (min-width: 1024px) {
+  .nav {
+    flex-direction: column;
+    top: 24px;
+    left: 24px;
+    transform: none;
+    padding: 20px 14px;
+    border-radius: 32px;
+    gap: 20px;
+  }
+  .nav__links {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
+  }
+}
+
 /* =====================================================
    HERO — cinematic center with full-bleed backdrop
    ===================================================== */
@@ -263,6 +282,7 @@ img.logo-dark { display: none; }
 
 /* Desktop-only: lock hero title lines to single line (no wrap) */
 @media (min-width: 1024px) {
+  .hero { padding: 48px 24px 0; }
   .hero__title .nowrap-lg { white-space: nowrap; }
   .hero__title { font-size: clamp(4rem, 6.2vw, 6rem); }
   .hero__title .br-mobile { display: none; }
