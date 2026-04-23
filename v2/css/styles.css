@@ -677,10 +677,33 @@ img.logo-dark { display: none; }
   line-height: 1.6;
 }
 
+.reveal__showcase {
+  grid-column: 1 / -1;
+  margin-top: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+.reveal__showcase img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.reveal__showcase figcaption {
+  padding: 16px 24px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
 @media (max-width: 900px) {
   .reveal { padding: 100px 24px; }
   .reveal__inner { grid-template-columns: 1fr; gap: 48px; }
   .reveal__text { position: static; }
+  .reveal__showcase { margin-top: 0; }
 }
 
 /* =====================================================
