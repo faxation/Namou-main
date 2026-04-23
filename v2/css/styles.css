@@ -183,10 +183,20 @@ img.logo-dark { display: none; }
   padding: 140px 24px 0;
   position: relative;
   overflow: hidden;
+}
+
+.hero__plan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 120px;
+  height: 30%;
   background-image: url("../../assets/images/site-namou-bg.png");
-  background-size: auto 55%;
-  background-position: center bottom;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero::before {
