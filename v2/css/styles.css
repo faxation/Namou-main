@@ -193,12 +193,16 @@ img.logo-dark { display: none; }
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   margin-top: auto;
-  background-image: url("../../assets/images/site-namou-bg.png");
+  background-image: url("../../assets/images/hero-bg-light.png");
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
   pointer-events: none;
   z-index: 0;
+}
+
+[data-theme="dark"] .hero__plan {
+  background-image: url("../../assets/images/hero-bg-dark.png");
 }
 
 .hero::before {
