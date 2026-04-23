@@ -1,9 +1,5 @@
 {
-  "trailingSlash": true,
   "redirects": [
     { "source": "/", "destination": "/v2/", "permanent": false }
-  ],
-  "rewrites": [
-    { "source": "/:path*", "destination": "/faxation-Namou-main/:path*" }
   ]
 }
