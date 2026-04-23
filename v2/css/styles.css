@@ -249,7 +249,7 @@ img.logo-dark { display: none; }
 
 /* Desktop-only: lock hero title lines to single line (no wrap) */
 @media (min-width: 1024px) {
-  .hero { padding: 48px 24px 0; }
+  .hero { padding: 140px 24px 0; }
   .hero__title .nowrap-lg { white-space: nowrap; }
   .hero__title { font-size: clamp(4rem, 6.2vw, 6rem); }
   .hero__title .br-mobile { display: none; }
