@@ -187,15 +187,13 @@ img.logo-dark { display: none; }
 
 .hero__plan {
   flex: 1 1 auto;
-  min-height: 300px;
-  max-height: 640px;
+  min-height: 280px;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  margin-top: auto;
   background-image: url("../../assets/images/hero-bg-light.png");
-  background-size: cover;
-  background-position: center bottom;
+  background-size: contain;
+  background-position: center center;
   background-repeat: no-repeat;
   pointer-events: none;
   z-index: 0;
@@ -203,18 +201,6 @@ img.logo-dark { display: none; }
 
 [data-theme="dark"] .hero__plan {
   background-image: url("../../assets/images/hero-bg-dark.png");
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  background:
-    radial-gradient(ellipse 60% 40% at 50% 30%, rgba(0, 176, 115, 0.18), transparent 60%),
-    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(0, 61, 46, 0.12), transparent 70%),
-    radial-gradient(ellipse 35% 25% at 85% 75%, rgba(0, 176, 115, 0.1), transparent 70%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 .hero__inner {
