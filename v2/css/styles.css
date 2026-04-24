@@ -502,16 +502,16 @@ h1, h2, h3, h4 { text-transform: capitalize; }
 }
 .section--lanes {
   padding-bottom: 48px;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 .section--lanes .section__inner {
   position: relative;
-  max-width: none;
 }
 .section--lanes .lanes {
   margin-top: 160px;
   gap: 40px;
+  width: calc(100vw - 32px);
+  margin-left: calc(50% - 50vw + 16px);
+  margin-right: calc(50% - 50vw + 16px);
 }
 .section__title-lead {
   display: block;
