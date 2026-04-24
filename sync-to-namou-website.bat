@@ -7,11 +7,11 @@ set REMOTE_NAME=namou-website
 set REMOTE_BRANCH=main
 
 echo ================================================================
-echo   Syncing local repo to %REMOTE_URL%
+echo   Syncing local repo with %REMOTE_URL%
 echo ================================================================
 echo.
 
-:: Ensure the remote is registered (add if missing, update if pointing elsewhere)
+:: Ensure the remote is registered and points at the correct URL
 git remote get-url %REMOTE_NAME% >nul 2>&1
 if errorlevel 1 (
   echo Adding remote "%REMOTE_NAME%" -^> %REMOTE_URL%
@@ -21,10 +21,15 @@ if errorlevel 1 (
 )
 echo.
 
-:: Stage every change in the working tree
+:: Fetch the latest state of the remote branch
+echo Fetching %REMOTE_NAME%/%REMOTE_BRANCH%...
+git fetch %REMOTE_NAME% %REMOTE_BRANCH% || goto :error
+echo.
+
+:: Stage every local change
 git add -A || goto :error
 
-:: Commit only if there is something staged
+:: Commit only if something is staged
 git diff --cached --quiet
 if errorlevel 1 (
   echo Committing local changes...
@@ -34,13 +39,19 @@ if errorlevel 1 (
 )
 echo.
 
-:: Fetch remote state so the push is a fast-forward when possible
-echo Fetching %REMOTE_NAME%...
-git fetch %REMOTE_NAME% %REMOTE_BRANCH% || goto :error
+:: Merge any remote commits into local so local includes everything
+echo Merging %REMOTE_NAME%/%REMOTE_BRANCH% into local...
+git merge %REMOTE_NAME%/%REMOTE_BRANCH% --no-edit --allow-unrelated-histories
+if errorlevel 1 (
+  echo.
+  echo Merge stopped — there are conflicts to resolve by hand.
+  echo Resolve them, run: git commit, then re-run this script.
+  goto :error
+)
 echo.
 
-:: Push the current HEAD to the target branch
-echo Pushing HEAD to %REMOTE_NAME%/%REMOTE_BRANCH%...
+:: Push combined history back to remote
+echo Pushing to %REMOTE_NAME%/%REMOTE_BRANCH%...
 git push %REMOTE_NAME% HEAD:%REMOTE_BRANCH% || goto :error
 
 echo.
