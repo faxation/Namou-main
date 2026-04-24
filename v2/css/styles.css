@@ -488,7 +488,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
    ===================================================== */
 .section--lanes {
   background-image: url("../../assets/images/built-for-every-side.svg");
-  background-size: contain;
+  background-size: 100% auto;
   background-position: center top;
   background-repeat: no-repeat;
 }
@@ -504,7 +504,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   background: rgba(18, 18, 18, 0.75);
 }
 .section--lanes {
-  padding-bottom: 0;
+  padding-bottom: 120px;
 }
 .section--lanes .section__inner {
   position: relative;
