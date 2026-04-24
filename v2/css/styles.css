@@ -518,18 +518,24 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   .section--lanes {
     min-height: 100vh;
   }
+  .section--lanes .section__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 80px;
+  }
   .section--lanes .section__title {
+    grid-column: 2;
+    width: 100%;
     max-width: none;
     white-space: nowrap;
-    width: 50%;
-    margin-left: 50%;
-    margin-top: 24px;
+    margin: 24px 0 0 0;
     font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+    text-align: center;
   }
   .section--lanes .lanes {
-    width: 50%;
-    margin-left: 50%;
-    margin-top: 80px;
+    grid-column: 2;
+    width: 100%;
+    margin: 0;
   }
 }
 
