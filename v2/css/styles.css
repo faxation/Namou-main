@@ -515,6 +515,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   text-transform: capitalize;
   margin-bottom: 16px;
 }
+.section__title-ghost { display: none; }
 
 @media (min-width: 768px) {
   .section--lanes .section__title {
@@ -529,6 +530,10 @@ h1, h2, h3, h4 { text-transform: capitalize; }
     text-align: left;
     margin-bottom: 0;
     white-space: nowrap;
+  }
+  .section__title-ghost {
+    display: inline;
+    visibility: hidden;
   }
 }
 
