@@ -24,6 +24,21 @@
     .benefit .material-symbols-outlined { font-size: 28px; color: var(--accent); margin-bottom: 16px; }
     .benefit h4 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.1rem; margin-bottom: 6px; letter-spacing: -0.01em; }
     .benefit p { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+
+    /* The deck walkthrough */
+    .deck-tour { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 48px auto 0; max-width: 1320px; }
+    .deck-tile { position: relative; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--bg-alt); transition: transform 0.5s var(--ease), border-color 0.4s ease; display: flex; flex-direction: column; }
+    .deck-tile:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .deck-tile__shot { position: relative; aspect-ratio: 16 / 10; background: #000; overflow: hidden; }
+    .deck-tile__shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .deck-tile__num { position: absolute; top: 16px; left: 16px; width: 36px; height: 36px; border-radius: 50%; background: rgba(0,0,0,0.72); color: #fff; font-family: "DM Sans", -apple-system, sans-serif; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+    .deck-tile__body { padding: 20px 22px 22px; }
+    .deck-tile__head { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.1rem; letter-spacing: -0.01em; margin-bottom: 6px; }
+    .deck-tile__body p { font-size: 13px; color: var(--ink-muted); line-height: 1.55; }
+    .deck-intro { text-align: center; max-width: 640px; margin: 0 auto 24px; font-size: 15px; color: var(--ink-muted); line-height: 1.7; }
+    @media (max-width: 1024px) { .deck-tour { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .deck-tour { grid-template-columns: 1fr; } }
+
     @media (max-width: 900px) { .benefits { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 500px) { .benefits { grid-template-columns: 1fr; } .tree__step { grid-template-columns: 1fr; } }
   </style>
@@ -118,6 +133,77 @@
         <div class="benefit motion-fade"><span class="material-symbols-outlined">inventory_2</span><h4>Verified inventory</h4><p>Real listings, realistic pricing, no ghost inventory.</p></div>
         <div class="benefit motion-fade"><span class="material-symbols-outlined">bolt</span><h4>Fast answers</h4><p>Direct video-call access to a decision-maker.</p></div>
         <div class="benefit motion-fade"><span class="material-symbols-outlined">forward_to_inbox</span><h4>Ready to forward</h4><p>Brochures, images, and pins ready to share.</p></div>
+      </div>
+
+      <h2 class="section__title motion-fade" style="margin-top:100px;">Walk <span class="serif">your</span> client through the deck.</h2>
+      <p class="deck-intro motion-fade">Six screens your client sees on a Namou video call — from RAK overview to live ROI to the offer. Use them as your presentation backbone.</p>
+
+      <div class="deck-tour">
+        <div class="deck-tile motion-fade">
+          <div class="deck-tile__shot">
+            <span class="deck-tile__num">01</span>
+            <img src="/assets/images/deck/deck-home.png" alt="Deck home — RAK overview">
+          </div>
+          <div class="deck-tile__body">
+            <h3 class="deck-tile__head">Open the deck</h3>
+            <p>Land on the RAK overview — set the context and anchor your client to the opportunity.</p>
+          </div>
+        </div>
+
+        <div class="deck-tile motion-fade">
+          <div class="deck-tile__shot">
+            <span class="deck-tile__num">02</span>
+            <img src="/assets/images/deck/deck-master-plan.png" alt="Deck master plan — plot layout">
+          </div>
+          <div class="deck-tile__body">
+            <h3 class="deck-tile__head">Review the master plan</h3>
+            <p>Walk through the masterplan, zoning and plot layout — answer "what am I buying?" visually.</p>
+          </div>
+        </div>
+
+        <div class="deck-tile motion-fade">
+          <div class="deck-tile__shot">
+            <span class="deck-tile__num">03</span>
+            <img src="/assets/images/deck/deck-offer.png" alt="Deck offer — payment plan">
+          </div>
+          <div class="deck-tile__body">
+            <h3 class="deck-tile__head">Walk the offer</h3>
+            <p>Show the payment plan and commercial terms — priced per plot, ready to sign.</p>
+          </div>
+        </div>
+
+        <div class="deck-tile motion-fade">
+          <div class="deck-tile__shot">
+            <span class="deck-tile__num">04</span>
+            <img src="/assets/images/deck/deck-roi.png" alt="Deck ROI simulator">
+          </div>
+          <div class="deck-tile__body">
+            <h3 class="deck-tile__head">Model ROI live</h3>
+            <p>Switch inputs in real time — build cost, revenue, margin. Your client sees the numbers change.</p>
+          </div>
+        </div>
+
+        <div class="deck-tile motion-fade">
+          <div class="deck-tile__shot">
+            <span class="deck-tile__num">05</span>
+            <img src="/assets/images/deck/deck-cta.png" alt="Deck CTA — next steps">
+          </div>
+          <div class="deck-tile__body">
+            <h3 class="deck-tile__head">Pitch next steps</h3>
+            <p>Convert momentum — the deck's CTA screen frames the booking and the follow-up.</p>
+          </div>
+        </div>
+
+        <div class="deck-tile motion-fade">
+          <div class="deck-tile__shot">
+            <span class="deck-tile__num">06</span>
+            <img src="/assets/images/deck/deck-thank-you.png" alt="Deck thank-you closing screen">
+          </div>
+          <div class="deck-tile__body">
+            <h3 class="deck-tile__head">Close the session</h3>
+            <p>Leave a clean impression — the thank-you screen hands the recap back to you for WhatsApp.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
