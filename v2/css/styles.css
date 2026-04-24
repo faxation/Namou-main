@@ -519,6 +519,13 @@ img.logo-dark { display: none; }
   .bento__cell--wide { grid-column: span 2; }
   .bento__cell--tall { grid-row: span 1; }
 }
+
+/* Desktop-only: swap the first bento hero card background to the local Al Marjan render */
+@media (min-width: 1024px) {
+  .bento__cell--hero.bento__cell--image {
+    background-image: url("../../assets/images/Diplomatic_hero.webp") !important;
+  }
+}
 @media (max-width: 500px) {
   .bento { grid-template-columns: 1fr; }
   .bento__cell--hero, .bento__cell--wide { grid-column: span 1; }
