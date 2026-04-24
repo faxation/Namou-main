@@ -520,14 +520,13 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   }
   .section--lanes .section__title {
     max-width: none;
-    white-space: nowrap;
-    width: 66.666%;
-    margin-left: 33.333%;
+    width: 50%;
+    margin-left: 50%;
     margin-top: 24px;
   }
   .section--lanes .lanes {
-    width: 66.666%;
-    margin-left: 33.333%;
+    width: 50%;
+    margin-left: 50%;
     margin-top: 80px;
   }
 }
