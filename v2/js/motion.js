@@ -2,20 +2,6 @@
 (function () {
   "use strict";
 
-  // ── Theme toggle
-  var themeToggle = document.getElementById("themeToggle");
-  var saved = localStorage.getItem("namou-v2-theme");
-  if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
-  if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-      var cur = document.documentElement.getAttribute("data-theme");
-      var next = cur === "dark" ? "light" : "dark";
-      if (next === "dark") document.documentElement.setAttribute("data-theme", "dark");
-      else document.documentElement.removeAttribute("data-theme");
-      localStorage.setItem("namou-v2-theme", next);
-    });
-  }
-
   // ── Mobile menu
   var navToggle = document.getElementById("navToggle");
   var mobileMenu = document.getElementById("mobileMenu");

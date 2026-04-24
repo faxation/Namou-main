@@ -1,34 +1,10 @@
 /* ===========================================
    NAMOU PROPERTIES — Main JavaScript
-   Dark mode toggle, mobile nav, scroll reveal, stat counter
+   Mobile nav, scroll reveal, stat counter
    =========================================== */
 
 (function () {
   'use strict';
-
-  // --- Dark Mode Toggle ---
-  var themeToggle = document.getElementById('themeToggle');
-  var root = document.documentElement;
-
-  // Check saved preference or default to light
-  var savedTheme = localStorage.getItem('namou-theme') || 'light';
-  if (savedTheme === 'dark') {
-    root.setAttribute('data-theme', 'dark');
-  }
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function () {
-      var isDark = root.getAttribute('data-theme') === 'dark';
-      if (isDark) {
-        root.removeAttribute('data-theme');
-        localStorage.setItem('namou-theme', 'light');
-      } else {
-        root.setAttribute('data-theme', 'dark');
-        localStorage.setItem('namou-theme', 'dark');
-      }
-    });
-  }
-
 
   // --- Mobile Navigation Toggle ---
   var navToggle = document.getElementById('navToggle');
