@@ -516,37 +516,13 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   margin-left: calc(50% - 50vw + 16px);
   margin-right: calc(50% - 50vw + 16px);
 }
-.section__title-lead {
-  display: block;
-  font-family: "DM Sans", -apple-system, sans-serif;
-  font-weight: 500;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  text-align: center;
-  text-transform: capitalize;
-  margin-bottom: 16px;
-}
-.section__title-ghost { display: none; }
-
 @media (min-width: 768px) {
   .section--lanes .section__title {
     max-width: none;
     white-space: nowrap;
-  }
-  .section__title-lead {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 33.333%;
-    text-align: left;
-    margin-bottom: 0;
-    white-space: nowrap;
-  }
-  .section__title-ghost {
-    display: inline;
-    visibility: hidden;
+    width: 66.666%;
+    margin-left: 33.333%;
+    margin-top: 24px;
   }
 }
 
