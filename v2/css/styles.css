@@ -575,7 +575,7 @@ a { color: inherit; text-decoration: none; }
    PINNED REVEAL — video call section with scrubbing text
    ===================================================== */
 .reveal {
-  padding: 180px 24px;
+  padding: 100px 24px;
   background: var(--ink);
   color: var(--bg);
 }
@@ -671,7 +671,13 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 20px;
+  height: 100%;
+}
+.reveal__showcase .reveal__laptop {
+  width: 100%;
+  max-width: 640px;
 }
 
 .reveal__laptop {
