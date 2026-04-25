@@ -644,9 +644,10 @@ h1, h2, h3, h4 { text-transform: capitalize; }
 }
 
 .reveal__inner {
-  width: 75%;
+  width: 75vw;
   max-width: none;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
