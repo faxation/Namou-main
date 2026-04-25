@@ -51,6 +51,31 @@
     .hero { background-image: url("../../assets/images/al-maareed-corniche.jpg"); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh; }
     .hero .hero__subtitle { color: #ffffff; }
 
+    /* JV CTA-final: 2-col grid with WhatsApp chat phone on the right */
+    .cta-final--jv { padding: 100px 48px; }
+    .cta-final--jv .cta-final__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: stretch; max-width: 1320px; margin: 0 auto; position: relative; }
+    .cta-final--jv .cta-final__copy { display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; }
+    .cta-final--jv .cta-final__title { margin-bottom: 0; }
+    .cta-final--jv .cta-final__sub { margin: 32px auto; }
+    .cta-final--jv .cta-final__actions { margin-top: 0; }
+    .cta-final--jv .cta-final__phone-col { display: flex; align-items: stretch; justify-content: center; }
+    .cta-final__phone { position: relative; height: 100%; aspect-ratio: 9 / 19; padding: 9px; background: #0a0a0a; border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px #1a1a1a, inset 0 0 0 4px #2c2c2c, inset 0 0 0 5px #1a1a1a; max-width: 320px; }
+    .cta-final__phone::before { content: ""; position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 32%; max-width: 88px; height: 2.8%; min-height: 18px; background: #000; border-radius: 999px; z-index: 3; }
+    .cta-final__phone::after { content: ""; position: absolute; top: 24%; right: -3px; width: 3px; height: 12%; background: linear-gradient(180deg, #2c2c2c, #1a1a1a); border-radius: 0 2px 2px 0; }
+    .cta-final__phone-screen { width: 100%; height: 100%; border-radius: 11% / 5.5%; overflow: hidden; background: #efeae2; display: flex; flex-direction: column; position: relative; }
+    .wa-header { background: #075e54; color: #fff; padding: 8% 5% 4%; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .wa-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 13px; color: #fff; }
+    .wa-info { display: flex; flex-direction: column; line-height: 1.2; }
+    .wa-name { font-family: "DM Sans", -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
+    .wa-status { font-size: 9px; opacity: 0.75; margin-top: 2px; }
+    .wa-messages { flex: 1; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+    .wa-msg { padding: 6px 8px 14px; border-radius: 8px; max-width: 84%; font-family: "Roboto Mono", monospace; font-size: 9.5px; line-height: 1.4; color: #303030; position: relative; box-shadow: 0 1px 0.5px rgba(0,0,0,0.13); white-space: normal; }
+    .wa-msg--in { background: #fff; align-self: flex-start; border-top-left-radius: 0; }
+    .wa-msg--out { background: #d9fdd3; align-self: flex-end; border-top-right-radius: 0; }
+    .wa-msg__time { position: absolute; bottom: 2px; right: 6px; font-size: 7.5px; color: rgba(0,0,0,0.45); }
+
+    @media (max-width: 900px) { .cta-final--jv .cta-final__inner { grid-template-columns: 1fr; gap: 48px; } .cta-final--jv .cta-final__copy { order: 1; } .cta-final--jv .cta-final__phone-col { order: 2; } .cta-final__phone { height: auto; width: 240px; aspect-ratio: 9/19; } }
+
     @media (max-width: 1024px) { .tree { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 900px) { .benefits { grid-template-columns: repeat(2, 1fr); } .screens { grid-template-columns: 1fr; } .tree { grid-template-columns: repeat(2, 1fr); } .jv-phones { grid-template-columns: 1fr; } }
     @media (max-width: 500px) { .benefits { grid-template-columns: 1fr; } .tree { grid-template-columns: 1fr; } }
@@ -165,11 +190,35 @@
     </div>
   </section>
 
-  <section class="cta-final">
-    <h2 class="cta-final__title">Model the numbers <span class="serif">on</span> a call.</h2>
-    <p class="cta-final__sub">Tell us what you're looking for — we'll walk you through build cost, GDV, and returns live.</p>
-    <div class="cta-final__actions">
-      <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20book%20a%20video%20call%20to%20model%20a%20JV%20opportunity%20with%20Namou." target="_blank" rel="noopener" class="btn btn--primary">Book a JV video call</a>
+  <section class="cta-final cta-final--jv">
+    <div class="cta-final__inner">
+      <div class="cta-final__copy">
+        <h2 class="cta-final__title">Model the numbers <span class="serif">on</span> a call.</h2>
+        <p class="cta-final__sub">Tell us what you're looking for — we'll walk you through build cost, GDV, and returns live.</p>
+        <div class="cta-final__actions">
+          <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20book%20a%20video%20call%20to%20model%20a%20JV%20opportunity%20with%20Namou." target="_blank" rel="noopener" class="btn btn--primary">Book a JV video call</a>
+        </div>
+      </div>
+      <div class="cta-final__phone-col">
+        <div class="cta-final__phone" aria-label="WhatsApp conversation preview">
+          <div class="cta-final__phone-screen">
+            <div class="wa-header">
+              <div class="wa-avatar">N</div>
+              <div class="wa-info">
+                <div class="wa-name">Namou Properties</div>
+                <div class="wa-status">online</div>
+              </div>
+            </div>
+            <div class="wa-messages">
+              <div class="wa-msg wa-msg--out">Hi! I came across your website — really interested in your JV opportunities. Could we set up a call?<span class="wa-msg__time">10:24</span></div>
+              <div class="wa-msg wa-msg--in">Hello! Thanks for reaching out — happy to walk you through the JV deck. What works this week?<span class="wa-msg__time">10:25</span></div>
+              <div class="wa-msg wa-msg--out">Thursday afternoon would be ideal.<span class="wa-msg__time">10:26</span></div>
+              <div class="wa-msg wa-msg--in">Perfect — I'll send a calendar invite for Thursday at 3pm.<span class="wa-msg__time">10:26</span></div>
+              <div class="wa-msg wa-msg--out">Thanks, looking forward to it.<span class="wa-msg__time">10:27</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
