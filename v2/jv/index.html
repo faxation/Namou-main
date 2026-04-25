@@ -18,10 +18,10 @@
     .tree__tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-family: "DM Sans", -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
     .tag .material-symbols-outlined { font-size: 14px; color: var(--accent); }
-    .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
-    .screen { border-radius: 24px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-alt); }
+    .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 64px; width: 100vw; position: relative; left: 50%; transform: translateX(-50%); padding: 0 36px; box-sizing: border-box; }
+    .screen { border-radius: 32px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-alt); }
     .screen img { width: 100%; display: block; }
-    .screen__cap { padding: 16px 20px; font-family: "DM Sans", -apple-system, sans-serif; font-size: 13px; color: var(--ink); text-align: center; border-top: 1px solid var(--line); }
+    .screen__cap { padding: 24px 28px; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(14px, 1vw, 18px); color: var(--ink); text-align: center; border-top: 1px solid var(--line); }
     .benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
     .benefit { padding: 28px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); transition: transform 0.5s var(--ease); }
     .benefit:hover { transform: translateY(-4px); }
@@ -29,8 +29,8 @@
     .benefit h4 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.1rem; margin-bottom: 6px; }
     .benefit p { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
 
-    /* JV-strategy phones — iPhone frames, 3 across, full section width */
-    .jv-phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; max-width: none; margin: 64px 0 0; align-items: stretch; }
+    /* JV-strategy phones — iPhone frames, 3 across, equal side gutters and inter-phone gaps */
+    .jv-phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; max-width: none; margin: 64px 0 0; padding: 0 36px; align-items: stretch; box-sizing: border-box; }
     .jv-phone { position: relative; aspect-ratio: 9 / 19; padding: 9px; background: #0a0a0a; border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px #1a1a1a, inset 0 0 0 4px #2c2c2c, inset 0 0 0 5px #1a1a1a; }
     /* Dynamic island */
     .jv-phone::before { content: ""; position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 32%; max-width: 88px; height: 2.8%; min-height: 18px; background: #000; border-radius: 999px; z-index: 3; }
