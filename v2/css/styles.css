@@ -741,8 +741,8 @@ h1, h2, h3, h4 { text-transform: capitalize; }
 
 .reveal__tablet {
   position: relative;
-  width: 100%;
-  max-width: 380px;
+  width: 70%;
+  margin: 0 15%;
   flex: 1 1 auto;
   padding: 14px;
   background: linear-gradient(180deg, #1c1c1c 0%, #0f0f0f 100%);
@@ -768,16 +768,13 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   border-radius: 18px;
   overflow: hidden;
   background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
 .reveal__tablet-screen img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
