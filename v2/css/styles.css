@@ -545,12 +545,24 @@ h1, h2, h3, h4 { text-transform: capitalize; }
     text-align: center;
   }
   .section--lanes .lanes {
-    grid-column: 1 / -1;
+    grid-column: 2;
     width: 100%;
     margin: 0;
+    gap: 16px;
+  }
+  .section--lanes .lane {
+    padding: 12%;
   }
   .section--lanes .lane__eyebrow {
     white-space: nowrap;
+    font-size: clamp(1rem, 1.5vw, 1.4rem);
+  }
+  .section--lanes .lane__heading {
+    font-size: clamp(0.8rem, 0.95vw, 0.95rem);
+  }
+  .section--lanes .lane__body {
+    font-size: 12px;
+    max-width: 100%;
   }
 }
 
