@@ -534,6 +534,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 80px;
+    max-width: none;
   }
   .section--lanes .section__title {
     grid-column: 2;
