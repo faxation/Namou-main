@@ -33,10 +33,14 @@
     .jv-phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: none; margin: 64px 0 0; align-items: stretch; }
     .jv-phone { position: relative; aspect-ratio: 9 / 16; padding: 10px; background: linear-gradient(180deg, #1c1c1c 0%, #0f0f0f 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 28px; box-shadow: 0 24px 60px rgba(0,0,0,0.35); }
     .jv-phone::before { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 50px; height: 6px; border-radius: 4px; background: rgba(0,0,0,0.55); z-index: 2; }
-    .jv-phone__screen { width: 100%; height: 100%; border-radius: 18px; overflow: hidden; background-image: url("../../assets/images/jv-strategies.png"); background-repeat: no-repeat; background-size: 320% auto; background-color: #fff; background-position-y: 70%; }
-    .jv-phone--1 .jv-phone__screen { background-position-x: 5%; }
-    .jv-phone--2 .jv-phone__screen { background-position-x: 50%; }
-    .jv-phone--3 .jv-phone__screen { background-position-x: 95%; }
+    .jv-phone__screen { width: 100%; height: 100%; border-radius: 18px; overflow: hidden; background: #fff; padding: 10% 8% 8%; display: flex; flex-direction: column; gap: 8%; color: #121212; }
+    .jv-card { flex: 1; display: flex; flex-direction: column; padding: 6%; border: 1px solid var(--line); border-radius: 14px; background: #fafafa; }
+    .jv-card__badge { align-self: flex-start; background: var(--accent-subtle); color: var(--accent); font-family: "DM Sans", -apple-system, sans-serif; font-size: 9px; font-weight: 500; padding: 3px 8px; border-radius: 999px; margin-bottom: 6%; }
+    .jv-card__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(0.9rem, 1.1vw, 1.15rem); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 8%; color: #121212; }
+    .jv-card__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6%; flex: 1; }
+    .jv-card__list li { font-family: "Roboto Mono", monospace; font-size: clamp(8px, 0.65vw, 11px); line-height: 1.45; color: var(--ink-muted); padding-left: 10px; position: relative; }
+    .jv-card__list li::before { content: "·"; position: absolute; left: 2px; top: -1px; color: var(--accent); font-size: 1.2em; line-height: 1; }
+    .jv-card__cta { margin-top: auto; padding-top: 8%; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(9px, 0.7vw, 11px); font-weight: 500; color: var(--accent); text-align: left; }
 
     @media (max-width: 1024px) { .tree { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 900px) { .benefits { grid-template-columns: repeat(2, 1fr); } .screens { grid-template-columns: 1fr; } .tree { grid-template-columns: repeat(2, 1fr); } .jv-phones { grid-template-columns: 1fr; } }
@@ -86,9 +90,48 @@
       </div>
 
       <div class="jv-phones motion-fade" aria-label="Joint-Venture investment strategies preview">
-        <div class="jv-phone jv-phone--1"><div class="jv-phone__screen"></div></div>
-        <div class="jv-phone jv-phone--2"><div class="jv-phone__screen"></div></div>
-        <div class="jv-phone jv-phone--3"><div class="jv-phone__screen"></div></div>
+        <div class="jv-phone jv-phone--1">
+          <div class="jv-phone__screen">
+            <div class="jv-card">
+              <span class="jv-card__badge">Developer Exit</span>
+              <h4 class="jv-card__title">Sell-Out Model</h4>
+              <ul class="jv-card__list">
+                <li>Build for sale</li>
+                <li>Profit shared at exit</li>
+                <li>Includes comparison vs land sale today</li>
+              </ul>
+              <span class="jv-card__cta">Open simulator →</span>
+            </div>
+          </div>
+        </div>
+        <div class="jv-phone jv-phone--2">
+          <div class="jv-phone__screen">
+            <div class="jv-card">
+              <span class="jv-card__badge">Tenants</span>
+              <h4 class="jv-card__title">Income Model</h4>
+              <ul class="jv-card__list">
+                <li>Build and lease to tenants</li>
+                <li>Recurring income and NOI</li>
+                <li>Tracks yield, ROI, and payback</li>
+              </ul>
+              <span class="jv-card__cta">Open simulator →</span>
+            </div>
+          </div>
+        </div>
+        <div class="jv-phone jv-phone--3">
+          <div class="jv-phone__screen">
+            <div class="jv-card">
+              <span class="jv-card__badge">Operator</span>
+              <h4 class="jv-card__title">Hospitality Model</h4>
+              <ul class="jv-card__list">
+                <li>Build and operate as hotel</li>
+                <li>Operator fees deducted first</li>
+                <li>Profit shared after operations</li>
+              </ul>
+              <span class="jv-card__cta">Open simulator →</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <h2 class="section__title motion-fade" style="margin-top:100px;">The Namou <span class="serif">simulator.</span></h2>
