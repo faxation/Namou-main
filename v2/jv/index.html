@@ -30,7 +30,7 @@
     .benefit p { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
 
     /* JV-strategy phones — iPhone frames, 3 across, equal side gutters and inter-phone gaps */
-    .jv-phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; max-width: none; margin: 64px 0 0; padding: 0 36px; align-items: stretch; box-sizing: border-box; }
+    .jv-phones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; width: 100vw; position: relative; left: 50%; transform: translateX(-50%); margin: 64px 0 0; padding: 0 36px; align-items: stretch; box-sizing: border-box; }
     .jv-phone { position: relative; aspect-ratio: 9 / 19; padding: 9px; background: #0a0a0a; border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px #1a1a1a, inset 0 0 0 4px #2c2c2c, inset 0 0 0 5px #1a1a1a; }
     /* Dynamic island */
     .jv-phone::before { content: ""; position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 32%; max-width: 88px; height: 2.8%; min-height: 18px; background: #000; border-radius: 999px; z-index: 3; }
