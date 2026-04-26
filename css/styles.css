@@ -21,7 +21,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; font-size: 24px; }
 
 body {
   font-family: "Roboto Mono", "SF Mono", ui-monospace, monospace;
