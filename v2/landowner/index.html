@@ -24,13 +24,16 @@
     .stat__num { font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px; }
     .stat__lbl { font-size: 12px; color: var(--ink-muted); line-height: 1.4; }
 
-    /* Compare table — sized for the right column of .process-grid.
-       Cells use 16px body type to avoid the "small text" pitfall;
-       the table itself flexes to fill column height via display: flex. */
-    .compare { width: 100%; flex: 1; border-collapse: collapse; background: var(--bg-alt); border-radius: 20px; overflow: hidden; border: 1px solid var(--line); }
-    .compare th, .compare td { padding: 18px 20px; text-align: left; font-size: 15px; line-height: 1.45; border-bottom: 1px solid var(--line); }
+    /* Compare table — converted to flex layout so its rows distribute
+       space-evenly across the column height, matching the .tree on the
+       left. Visual layout (header row + 6 data rows) stays the same. */
+    .compare { width: 100%; flex: 1; display: flex; flex-direction: column; background: var(--bg-alt); border-radius: 20px; overflow: hidden; border: 1px solid var(--line); }
+    .compare thead, .compare tbody { display: flex; flex-direction: column; }
+    .compare tbody { flex: 1; justify-content: space-evenly; }
+    .compare tr { display: flex; align-items: center; width: 100%; }
+    .compare th, .compare td { flex: 1; padding: 18px 20px; text-align: left; font-size: 15px; line-height: 1.45; border-bottom: 1px solid var(--line); }
     .compare th { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; color: var(--ink-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
-    .compare td:first-child { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 14px; color: var(--ink); width: 34%; }
+    .compare th:first-child, .compare td:first-child { flex: 0 0 34%; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 14px; color: var(--ink); }
     .compare .cell-non { color: var(--ink-muted); }
     .compare .cell-exc { color: var(--ink); font-weight: 500; }
     .compare tr:last-child th, .compare tr:last-child td { border-bottom: none; }
