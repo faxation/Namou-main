@@ -1165,13 +1165,21 @@ textarea::placeholder {
    ============================================================= */
 
 /* Footer + accent panels carry --accent-deep (color drift away from "deep green only in nav"). */
-.footer {
-  background: var(--accent-deep);
-  color: rgba(255, 255, 255, 0.86);
-}
-.footer a { color: rgba(255, 255, 255, 0.86); transition: color 200ms var(--ease); }
-.footer a:hover { color: #fff; }
-.footer h4 { color: #fff; opacity: 1; }
+.footer { background: var(--accent-deep); color: #fff; }
+.footer,
+.footer a,
+.footer span,
+.footer p,
+.footer h4,
+.footer__brand p,
+.footer__col a,
+.footer__col span,
+.footer__col h4,
+.footer__bottom,
+.footer__bottom span,
+.footer__bottom a { color: #fff; opacity: 1; }
+.footer a { transition: opacity 200ms var(--ease); }
+.footer a:hover { opacity: 0.7; }
 .footer__bottom { border-top: 1px solid rgba(255, 255, 255, 0.12); }
 
 /* Primary button — single accent, decisive focus, AA-safe ink.
