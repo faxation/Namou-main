@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Featured Properties — Namou</title>
   <link rel="icon" href="/assets/images/logo.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=bolt,category,compare_arrows,description,directions_car,engineering,forward_to_inbox,gavel,handshake,hub,image,layers,location_on,lock,map,monitoring,paid,payments,public,shield,smart_display,straighten,trending_up,verified&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <style>
     .fp-head { text-align: center; margin-bottom: 48px; padding-top: 120px; }
@@ -20,7 +20,7 @@
     .filter .material-symbols-outlined { font-size: 20px; color: var(--ink-muted); flex-shrink: 0; }
     .filter__body { display: flex; flex-direction: column; flex: 1; min-width: 0; position: relative; }
     .filter__label { font-family: "DM Sans", -apple-system, sans-serif; font-size: 11px; font-weight: 500; color: var(--ink); letter-spacing: 0.04em; }
-    .filter select { appearance: none; -webkit-appearance: none; background: transparent; border: none; padding: 2px 16px 0 0; font-family: "Roboto Mono", monospace; font-size: 13px; color: var(--ink-muted); cursor: pointer; width: 100%; outline: none; }
+    .filter select { appearance: none; -webkit-appearance: none; background: transparent; border: none; padding: 2px 16px 0 0; font-family: "DM Sans", -apple-system, sans-serif; font-size: 13px; color: var(--ink-muted); cursor: pointer; width: 100%; outline: none; }
     .filter select:focus { color: var(--ink); }
     .filter__body::after { content: ""; position: absolute; right: 0; bottom: 12px; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid var(--ink-muted); pointer-events: none; }
 
@@ -56,7 +56,7 @@
     .call-showcase__frames { display: flex; flex-direction: column; gap: 28px; }
     .call-frame { position: relative; padding: 14px; background: linear-gradient(180deg, #1c1c1c 0%, #0f0f0f 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px 20px 8px 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
     .call-frame::before { content: ""; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 44px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.08); }
-    .call-frame__screen { border-radius: 8px; overflow: hidden; background: #000; }
+    .call-frame__screen { border-radius: 8px; overflow: hidden; background: oklch(8% 0.005 160); }
     .call-frame__screen img { width: 100%; height: auto; display: block; }
     .call-frame__cap { font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(13px, 0.95vw, 15px); color: rgba(255,255,255,0.55); text-align: center; margin-top: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
     @media (max-width: 1024px) { .call-showcase { padding: 80px 56px; gap: 60px; } }
@@ -68,7 +68,7 @@
 <body>
   <nav class="nav">
     <a href="/v2/" class="nav__logo">
-      <img src="/assets/images/logo.png" alt="Namou" class="logo-light">
+      <img src="/assets/images/logo.png" alt="Namou" class="logo-light" width="330" height="120">
     </a>
     <div class="nav__links">
       <a href="/v2/featured-property/">Buy</a>
@@ -76,7 +76,7 @@
       <a href="/v2/jv/">Invest</a>
       <a href="/v2/broker/">Brokers</a>
     </div>
-    <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
@@ -110,13 +110,13 @@
       <div class="call-showcase__frames">
         <div class="call-frame">
           <div class="call-frame__screen">
-            <img src="/assets/images/deck/deck-home.png" alt="Namou deck — RAK overview home screen" loading="lazy">
+            <img src="/assets/images/deck/deck-home.png" alt="Namou deck — RAK overview home screen" width="3200" height="2000" loading="lazy" decoding="async">
           </div>
         </div>
         <div class="call-frame__cap">RAK overview · namou-ae1.vercel.app</div>
         <div class="call-frame">
           <div class="call-frame__screen">
-            <img src="/assets/images/roi-simulator.png" alt="Namou deck — live ROI simulator" loading="lazy">
+            <img src="/assets/images/roi-simulator.png" alt="Namou deck — live ROI simulator" width="1909" height="942" loading="lazy" decoding="async">
           </div>
         </div>
         <div class="call-frame__cap">ROI simulator · live on the call</div>
@@ -124,11 +124,11 @@
     </section>
 
     <div class="filters" id="fpFilters">
-      <div class="filter" data-filter="minSqft"><span class="material-symbols-outlined">straighten</span><div class="filter__body"><span class="filter__label">Min SQ FT</span><select id="filterMinSqft" aria-label="Minimum square footage"><option value="">Any</option><option value="5000">5,000+</option><option value="10000">10,000+</option><option value="25000">25,000+</option><option value="50000">50,000+</option><option value="100000">100,000+</option><option value="250000">250,000+</option><option value="500000">500,000+</option></select></div></div>
-      <div class="filter" data-filter="maxSqft"><span class="material-symbols-outlined">straighten</span><div class="filter__body"><span class="filter__label">Max SQ FT</span><select id="filterMaxSqft" aria-label="Maximum square footage"><option value="">Any</option><option value="10000">Up to 10,000</option><option value="25000">Up to 25,000</option><option value="50000">Up to 50,000</option><option value="100000">Up to 100,000</option><option value="250000">Up to 250,000</option><option value="500000">Up to 500,000</option><option value="9999999">1M+</option></select></div></div>
-      <div class="filter" data-filter="type"><span class="material-symbols-outlined">category</span><div class="filter__body"><span class="filter__label">Type</span><select id="filterType" aria-label="Property type"><option value="">All Types</option></select></div></div>
-      <div class="filter" data-filter="area"><span class="material-symbols-outlined">location_on</span><div class="filter__body"><span class="filter__label">Area</span><select id="filterArea" aria-label="Area"><option value="">All Areas</option></select></div></div>
-      <div class="filter" data-filter="budget"><span class="material-symbols-outlined">payments</span><div class="filter__body"><span class="filter__label">Budget Range</span><select id="filterBudget" aria-label="Budget range"><option value="">All Prices</option><option value="0-5000000">AED 0–5M</option><option value="5000000-15000000">AED 5–15M</option><option value="15000000-25000000">AED 15–25M</option><option value="25000000-50000000">AED 25–50M</option><option value="50000000-100000000">AED 50–100M</option><option value="100000000-99999999999">AED 100M+</option></select></div></div>
+      <div class="filter" data-filter="minSqft"><span class="material-symbols-outlined">straighten</span><div class="filter__body"><label class="filter__label" for="filterMinSqft">Min SQ FT</label><select id="filterMinSqft"><option value="">Any</option><option value="5000">5,000+</option><option value="10000">10,000+</option><option value="25000">25,000+</option><option value="50000">50,000+</option><option value="100000">100,000+</option><option value="250000">250,000+</option><option value="500000">500,000+</option></select></div></div>
+      <div class="filter" data-filter="maxSqft"><span class="material-symbols-outlined">straighten</span><div class="filter__body"><label class="filter__label" for="filterMaxSqft">Max SQ FT</label><select id="filterMaxSqft"><option value="">Any</option><option value="10000">Up to 10,000</option><option value="25000">Up to 25,000</option><option value="50000">Up to 50,000</option><option value="100000">Up to 100,000</option><option value="250000">Up to 250,000</option><option value="500000">Up to 500,000</option><option value="9999999">1M+</option></select></div></div>
+      <div class="filter" data-filter="type"><span class="material-symbols-outlined">category</span><div class="filter__body"><label class="filter__label" for="filterType">Type</label><select id="filterType"><option value="">All Types</option></select></div></div>
+      <div class="filter" data-filter="area"><span class="material-symbols-outlined">location_on</span><div class="filter__body"><label class="filter__label" for="filterArea">Area</label><select id="filterArea"><option value="">All Areas</option></select></div></div>
+      <div class="filter" data-filter="budget"><span class="material-symbols-outlined">payments</span><div class="filter__body"><label class="filter__label" for="filterBudget">Budget Range</label><select id="filterBudget"><option value="">All Prices</option><option value="0-5000000">AED 0–5M</option><option value="5000000-15000000">AED 5–15M</option><option value="15000000-25000000">AED 15–25M</option><option value="25000000-50000000">AED 25–50M</option><option value="50000000-100000000">AED 50–100M</option><option value="100000000-99999999999">AED 100M+</option></select></div></div>
       <p class="filter__error" id="fpFilterError">Min square footage cannot exceed max — adjust one to continue.</p>
     </div>
 
@@ -146,7 +146,7 @@
   <footer class="footer" style="margin-top:80px;">
     <div class="footer__inner">
       <div class="footer__brand">
-        <img src="/assets/images/logo.png" alt="Namou" class="logo-light" style="height:32px;">
+        <img src="/assets/images/logo.png" alt="Namou" class="logo-light" width="330" height="120" style="height:32px;">
         <p>Land and commercial real estate in Ras Al Khaimah.</p>
       </div>
       <div class="footer__col"><h4>Explore</h4><a href="/v2/featured-property/">Buy</a><a href="/v2/landowner/">Sell</a><a href="/v2/jv/">Invest</a><a href="/v2/broker/">Brokers</a></div>

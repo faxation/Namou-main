@@ -6,13 +6,18 @@
   var navToggle = document.getElementById("navToggle");
   var mobileMenu = document.getElementById("mobileMenu");
   if (navToggle && mobileMenu) {
+    function setMenuState(open) {
+      mobileMenu.classList.toggle("is-open", open);
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
     navToggle.addEventListener("click", function () {
-      mobileMenu.classList.toggle("is-open");
+      setMenuState(!mobileMenu.classList.contains("is-open"));
     });
     mobileMenu.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        mobileMenu.classList.remove("is-open");
-      });
+      a.addEventListener("click", function () { setMenuState(false); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && mobileMenu.classList.contains("is-open")) setMenuState(false);
     });
   }
 
