@@ -66,22 +66,39 @@
     .cta-final--jv .cta-final__title { margin-bottom: 0; text-align: left; }
     .cta-final--jv .cta-final__sub { margin: 0; text-align: left; }
     .cta-final--jv .cta-final__actions { margin-top: 0; }
-    .cta-final--jv .cta-final__phone-col { display: flex; align-items: stretch; justify-content: center; }
+    /* Phone column shifted slightly right of center so the device sits
+       closer to the section's right edge while staying inside the grid. */
+    .cta-final--jv .cta-final__phone-col { display: flex; align-items: stretch; justify-content: center; transform: translateX(clamp(8px, 1.5vw, 32px)); }
     .cta-final__phone { position: relative; height: 100%; aspect-ratio: 9 / 19; padding: 9px; background: var(--device-shell); border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px var(--device-bezel-1), inset 0 0 0 4px var(--device-bezel-2), inset 0 0 0 5px var(--device-bezel-1); max-width: 320px; }
     .cta-final__phone::before { content: ""; position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 32%; max-width: 88px; height: 2.8%; min-height: 18px; background: var(--device-island); border-radius: 999px; z-index: 3; }
     .cta-final__phone::after { content: ""; position: absolute; top: 24%; right: -3px; width: 3px; height: 12%; background: linear-gradient(180deg, var(--device-bezel-2), var(--device-bezel-1)); border-radius: 0 2px 2px 0; }
-    /* WhatsApp chat mockup — colors below are WhatsApp's brand palette */
+
+    /* WhatsApp chat mockup — colors below are WhatsApp's brand palette.
+       Reproduces real WhatsApp UI cues: header with back-arrow + video/
+       voice/menu icons, sent-message read receipts (double blue check),
+       proper bubble tails and stretched avatar. */
     .cta-final__phone-screen { width: 100%; height: 100%; border-radius: 11% / 5.5%; overflow: hidden; background: #efeae2; display: flex; flex-direction: column; position: relative; }
-    .wa-header { background: #075e54; color: #fff; padding: 8% 5% 4%; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .wa-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 13px; color: var(--mint); }
-    .wa-info { display: flex; flex-direction: column; line-height: 1.2; }
-    .wa-name { font-family: "DM Sans", -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
-    .wa-status { font-size: 10px; opacity: 0.75; margin-top: 2px; }
-    .wa-messages { flex: 1; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
-    .wa-msg { padding: 7px 10px 16px; border-radius: 8px; max-width: 84%; font-family: "DM Sans", -apple-system, sans-serif; font-size: 11.5px; line-height: 1.4; color: #303030; position: relative; box-shadow: 0 1px 0.5px rgba(0,0,0,0.13); white-space: normal; }
-    .wa-msg--in { background: #fff; align-self: flex-start; border-top-left-radius: 0; }
+    .wa-header { background: #075e54; color: #fff; padding: 9% 4% 3.5%; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .wa-back { color: #fff; line-height: 0; opacity: 0.95; flex-shrink: 0; }
+    .wa-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 600; font-size: 12px; color: var(--accent-deep); flex-shrink: 0; }
+    .wa-info { display: flex; flex-direction: column; line-height: 1.2; flex: 1; min-width: 0; }
+    .wa-name { font-family: "DM Sans", -apple-system, sans-serif; font-size: 12.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wa-status { font-size: 10px; opacity: 0.78; margin-top: 1px; }
+    .wa-actions { display: flex; align-items: center; gap: 12px; color: rgba(255, 255, 255, 0.95); flex-shrink: 0; }
+    .wa-actions svg { display: block; }
+
+    .wa-messages { flex: 1; padding: 10px 8px; display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
+    .wa-msg { padding: 6px 8px 4px; border-radius: 7px; max-width: 86%; font-family: "DM Sans", -apple-system, sans-serif; font-size: 11.5px; line-height: 1.38; color: #111b21; position: relative; box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); white-space: normal; }
+    .wa-msg--in { background: #ffffff; align-self: flex-start; border-top-left-radius: 0; }
     .wa-msg--out { background: #d9fdd3; align-self: flex-end; border-top-right-radius: 0; }
-    .wa-msg__time { position: absolute; bottom: 2px; right: 6px; font-size: 10px; color: rgba(0,0,0,0.45); }
+    /* Bubble tails (small triangle pointing toward sender side) */
+    .wa-msg--in::before { content: ""; position: absolute; top: 0; left: -6px; width: 0; height: 0; border: 6px solid transparent; border-top-color: #ffffff; border-right: 0; }
+    .wa-msg--out::before { content: ""; position: absolute; top: 0; right: -6px; width: 0; height: 0; border: 6px solid transparent; border-top-color: #d9fdd3; border-left: 0; }
+    /* Inline meta (timestamp + read receipts) right-aligned at bottom */
+    .wa-msg__meta { float: right; margin: 4px 0 -2px 8px; display: inline-flex; align-items: center; gap: 3px; font-size: 9px; color: rgba(11, 20, 26, 0.45); white-space: nowrap; }
+    .wa-msg__time { font-size: inherit; color: inherit; }
+    .wa-msg__read { width: 14px; height: 11px; flex-shrink: 0; }
+    .wa-msg--out .wa-msg__read { color: #53bdeb; }
 
     @media (max-width: 900px) {
       .cta-final--jv .cta-final__inner--split { grid-template-columns: 1fr; gap: 56px; }
@@ -189,18 +206,23 @@
           <div class="cta-final__phone">
             <div class="cta-final__phone-screen">
               <div class="wa-header">
+                <span class="wa-back" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                 <div class="wa-avatar">N</div>
                 <div class="wa-info">
                   <div class="wa-name">Namou Properties</div>
                   <div class="wa-status">online</div>
                 </div>
+                <div class="wa-actions" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="14" height="14"><path d="M17 10.5V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2.5l4 3.5v-10l-4 3.5z" fill="currentColor"/></svg>
+                  <svg viewBox="0 0 24 24" width="14" height="14"><path d="M6.6 10.8c1.4 2.8 3.7 5.1 6.5 6.5l2.2-2.2a1 1 0 0 1 1-.2c1.1.4 2.3.5 3.5.5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A18 18 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.5 3.5.1.3 0 .7-.2 1l-2.2 2.3z" fill="currentColor"/></svg>
+                  <svg viewBox="0 0 4 16" width="3" height="14"><circle cx="2" cy="3" r="1.6" fill="currentColor"/><circle cx="2" cy="8" r="1.6" fill="currentColor"/><circle cx="2" cy="13" r="1.6" fill="currentColor"/></svg>
+                </div>
               </div>
               <div class="wa-messages">
-                <div class="wa-msg wa-msg--out">Hi! I came across your website — really interested in your JV opportunities. Could we set up a call?<span class="wa-msg__time">10:24</span></div>
-                <div class="wa-msg wa-msg--in">Hello! Thanks for reaching out — happy to walk you through the JV deck. What works this week?<span class="wa-msg__time">10:25</span></div>
-                <div class="wa-msg wa-msg--out">Thursday afternoon would be ideal.<span class="wa-msg__time">10:26</span></div>
-                <div class="wa-msg wa-msg--in">Perfect — I'll send a calendar invite for Thursday at 3pm.<span class="wa-msg__time">10:26</span></div>
-                <div class="wa-msg wa-msg--out">Thanks, looking forward to it.<span class="wa-msg__time">10:27</span></div>
+                <div class="wa-msg wa-msg--out">Hi! I came across your website — interested in your JV opportunities. Could we set up a call?<span class="wa-msg__meta"><span class="wa-msg__time">10:24</span><svg class="wa-msg__read" viewBox="0 0 16 11"><path d="M11.07.65a.5.5 0 0 1 0 .71l-7 7a.5.5 0 0 1-.71 0l-2.5-2.5a.5.5 0 1 1 .71-.71L3.71 7.3 10.36.65a.5.5 0 0 1 .71 0z" fill="currentColor"/><path d="M15.07.65a.5.5 0 0 1 0 .71l-7 7a.5.5 0 0 1-.71 0l-.3-.3a.5.5 0 1 1 .71-.71l7.3-6.7a.5.5 0 0 1 .71 0z" fill="currentColor"/></svg></span></div>
+                <div class="wa-msg wa-msg--in">Hello! Happy to walk you through the JV deck — what works this week?<span class="wa-msg__meta"><span class="wa-msg__time">10:25</span></span></div>
+                <div class="wa-msg wa-msg--out">Thursday afternoon would be ideal.<span class="wa-msg__meta"><span class="wa-msg__time">10:26</span><svg class="wa-msg__read" viewBox="0 0 16 11"><path d="M11.07.65a.5.5 0 0 1 0 .71l-7 7a.5.5 0 0 1-.71 0l-2.5-2.5a.5.5 0 1 1 .71-.71L3.71 7.3 10.36.65a.5.5 0 0 1 .71 0z" fill="currentColor"/><path d="M15.07.65a.5.5 0 0 1 0 .71l-7 7a.5.5 0 0 1-.71 0l-.3-.3a.5.5 0 1 1 .71-.71l7.3-6.7a.5.5 0 0 1 .71 0z" fill="currentColor"/></svg></span></div>
+                <div class="wa-msg wa-msg--in">Perfect — calendar invite sent for Thursday 3pm.<span class="wa-msg__meta"><span class="wa-msg__time">10:26</span></span></div>
               </div>
             </div>
           </div>
