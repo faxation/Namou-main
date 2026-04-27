@@ -14,7 +14,19 @@
        "How it works" on the left, "Two ways to list" on the right.
        Items inside each column stretch to fill, so columns end at
        roughly the same height with no empty trailing space. */
-    .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 64px); align-items: stretch; }
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 4vw, 64px);
+      align-items: stretch;
+      /* Bleed full-width — escape the .section__inner max-width: 1320px cap.
+         Inner padding keeps cards off the viewport edges. */
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 0 clamp(24px, 4vw, 80px);
+      box-sizing: border-box;
+    }
     .process-grid__col { display: flex; flex-direction: column; justify-content: space-evenly; }
     .process-grid__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(1.875rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 28px; }
 
@@ -56,7 +68,10 @@
     }
     .leader-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 64px); align-items: stretch; max-width: 1200px; margin: 0 auto; }
     .leader-grid__col { display: flex; flex-direction: column; }
-    .leader-grid__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(1.875rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 28px; color: #ffffff; }
+    /* min-height: 2 line-heights so both column titles occupy the same
+       vertical space — keeps the left card and the right stats grid
+       starting at the same Y regardless of how each title wraps. */
+    .leader-grid__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(1.875rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 28px; color: #ffffff; min-height: 2.2em; }
     .leader {
       display: flex;
       align-items: center;
