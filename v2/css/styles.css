@@ -1377,7 +1377,22 @@ textarea::placeholder {
   gap: 8px;
   transition: border-color 200ms var(--ease), color 200ms var(--ease);
 }
+.leader__ctas .btn--phone .material-symbols-outlined {
+  font-size: 18px;
+  line-height: 1;
+}
 .leader__ctas .btn--phone:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Footer + nav logo — preserve aspect ratio when only height is constrained.
+   Without width: auto, the explicit width="330" attribute on the <img>
+   stretches the logo flat against any height: 32px override. */
+.footer .logo-light,
+.footer__brand img,
+.nav__logo img {
+  width: auto;
+  height: 32px;
+}
+.nav__logo img { height: 28px; }
 
 /* JV strategy cards — show deal-size + IRR badges, not just a label. */
 .jv-phone__meta {
