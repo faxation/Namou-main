@@ -3,21 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#003D2E">
   <title>Joint Ventures — Namou</title>
   <link rel="icon" href="/assets/images/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=bolt,category,compare_arrows,description,directions_car,engineering,forward_to_inbox,gavel,handshake,hub,image,layers,location_on,lock,map,monitoring,paid,payments,public,shield,smart_display,straighten,trending_up,verified&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=bolt,category,compare_arrows,description,directions_car,diversity_3,engineering,forward_to_inbox,gavel,handshake,hub,image,inventory_2,layers,location_on,lock,map,monitoring,paid,payments,public,shield,smart_display,straighten,trending_up,verified&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <style>
+    /* Page-scoped: .tree / .benefits / .tag / .screens differ across pages
+       so they live inline. Strategy phones (.jv-phone, .jv-card) and the
+       deck-tour grid live in /v2/css/styles.css under "PAGE-SPECIFIC
+       COMPONENTS". WhatsApp chat mockup chrome stays inline — the colors
+       are WhatsApp's brand, not Namou's. */
     .tree { display: flex; justify-content: space-evenly; align-items: stretch; width: 100vw; margin: 32px calc(50% - 50vw) 64px; padding: 0; gap: 0; box-sizing: border-box; }
     .tree__step { flex: 0 0 auto; width: clamp(180px, 14vw, 280px); display: grid; grid-template-columns: 1fr; gap: 16px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-alt); transition: transform 0.5s var(--ease), border-color 0.4s ease; }
     .tree__step:hover { transform: translateY(-4px); border-color: var(--accent); }
-    .tree__num { font-family: "DM Sans", -apple-system, sans-serif; font-size: 2.25rem; font-weight: 500; color: var(--accent); line-height: 1; }
+    .tree__num { font-family: "DM Sans", -apple-system, sans-serif; font-size: 2.25rem; font-weight: 500; color: var(--accent-deep); line-height: 1; }
     .tree__head { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.02em; }
     .tree__body { color: var(--ink-muted); font-size: 13px; line-height: 1.55; margin-bottom: 12px; }
     .tree__tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-family: "DM Sans", -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
-    .tag .material-symbols-outlined { font-size: 14px; color: var(--accent); }
+    .tag .material-symbols-outlined { font-size: 14px; color: var(--accent-deep); }
     .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin: 64px calc(50% - 50vw) 0; width: 100vw; padding: 0 36px; box-sizing: border-box; }
     .screen { border-radius: 32px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-alt); }
     .screen img { width: 100%; display: block; }
@@ -25,30 +31,11 @@
     .benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
     .benefit { padding: 28px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); transition: transform 0.5s var(--ease); }
     .benefit:hover { transform: translateY(-4px); }
-    .benefit .material-symbols-outlined { font-size: 28px; color: var(--accent); margin-bottom: 16px; }
+    .benefit .material-symbols-outlined { font-size: 28px; color: var(--accent-deep); margin-bottom: 16px; }
     .benefit h4 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.1rem; margin-bottom: 6px; }
     .benefit p { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
 
-    /* JV-strategy phones — iPhone frames, 3 across, every gap equal (space-evenly) */
-    .jv-phones { display: flex; justify-content: space-evenly; align-items: stretch; width: 100vw; margin: 64px calc(50% - 50vw) 0; padding: 0; gap: 0; box-sizing: border-box; }
-    .jv-phone { flex: 0 0 auto; width: clamp(260px, 20vw, 392px); }
-    .jv-phone { position: relative; aspect-ratio: 9 / 19; padding: 9px; background: #0a0a0a; border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px #1a1a1a, inset 0 0 0 4px #2c2c2c, inset 0 0 0 5px #1a1a1a; }
-    /* Dynamic island */
-    .jv-phone::before { content: ""; position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 32%; max-width: 88px; height: 2.8%; min-height: 18px; background: oklch(6% 0.005 160); border-radius: 999px; z-index: 3; }
-    /* Right-side button (sleep/wake) */
-    .jv-phone::after { content: ""; position: absolute; top: 24%; right: -3px; width: 3px; height: 12%; background: linear-gradient(180deg, #2c2c2c, #1a1a1a); border-radius: 0 2px 2px 0; }
-    .jv-phone__screen { width: 100%; height: 100%; border-radius: 11% / 5.5%; overflow: hidden; background: #fff; padding: 16% 8% 12%; display: flex; flex-direction: column; gap: 8%; color: #121212; position: relative; }
-    /* Home indicator */
-    .jv-phone__screen::after { content: ""; position: absolute; bottom: 1.6%; left: 50%; transform: translateX(-50%); width: 35%; height: 4px; border-radius: 4px; background: #121212; opacity: 0.85; }
-    .jv-card { flex: 1; display: flex; flex-direction: column; padding: 6%; border: 1px solid var(--line); border-radius: 14px; background: #fafafa; }
-    .jv-card__badge { align-self: flex-start; background: var(--accent-subtle); color: var(--accent); font-family: "DM Sans", -apple-system, sans-serif; font-size: 9px; font-weight: 500; padding: 3px 8px; border-radius: 999px; margin-bottom: 6%; }
-    .jv-card__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(0.9rem, 1.1vw, 1.15rem); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 8%; color: #121212; }
-    .jv-card__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6%; flex: 1; }
-    .jv-card__list li { font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(8px, 0.65vw, 11px); line-height: 1.45; color: var(--ink-muted); padding-left: 10px; position: relative; }
-    .jv-card__list li::before { content: "·"; position: absolute; left: 2px; top: -1px; color: var(--accent); font-size: 1.2em; line-height: 1; }
-    .jv-card__cta { margin-top: auto; padding-top: 8%; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(9px, 0.7vw, 11px); font-weight: 500; color: var(--accent); text-align: left; }
-
-    /* JV hero backdrop */
+    /* JV hero backdrop — page-only */
     .hero { background-image: url("../assets/images/al-maareed-corniche.jpg"); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh; justify-content: center; padding-top: 24px; padding-bottom: 24px; }
     .hero .hero__inner { flex: 0 1 auto; }
     .hero .hero__subtitle { color: #ffffff; }
@@ -61,12 +48,13 @@
     .cta-final--jv .cta-final__sub { margin: 32px auto; }
     .cta-final--jv .cta-final__actions { margin-top: 0; }
     .cta-final--jv .cta-final__phone-col { display: flex; align-items: stretch; justify-content: center; }
-    .cta-final__phone { position: relative; height: 100%; aspect-ratio: 9 / 19; padding: 9px; background: #0a0a0a; border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px #1a1a1a, inset 0 0 0 4px #2c2c2c, inset 0 0 0 5px #1a1a1a; max-width: 320px; }
-    .cta-final__phone::before { content: ""; position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 32%; max-width: 88px; height: 2.8%; min-height: 18px; background: oklch(6% 0.005 160); border-radius: 999px; z-index: 3; }
-    .cta-final__phone::after { content: ""; position: absolute; top: 24%; right: -3px; width: 3px; height: 12%; background: linear-gradient(180deg, #2c2c2c, #1a1a1a); border-radius: 0 2px 2px 0; }
+    .cta-final__phone { position: relative; height: 100%; aspect-ratio: 9 / 19; padding: 9px; background: var(--device-shell); border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px var(--device-bezel-1), inset 0 0 0 4px var(--device-bezel-2), inset 0 0 0 5px var(--device-bezel-1); max-width: 320px; }
+    .cta-final__phone::before { content: ""; position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 32%; max-width: 88px; height: 2.8%; min-height: 18px; background: var(--device-island); border-radius: 999px; z-index: 3; }
+    .cta-final__phone::after { content: ""; position: absolute; top: 24%; right: -3px; width: 3px; height: 12%; background: linear-gradient(180deg, var(--device-bezel-2), var(--device-bezel-1)); border-radius: 0 2px 2px 0; }
+    /* WhatsApp chat mockup — colors below are WhatsApp's brand palette */
     .cta-final__phone-screen { width: 100%; height: 100%; border-radius: 11% / 5.5%; overflow: hidden; background: #efeae2; display: flex; flex-direction: column; position: relative; }
     .wa-header { background: #075e54; color: #fff; padding: 8% 5% 4%; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .wa-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 13px; color: #fff; }
+    .wa-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 13px; color: var(--accent-deep); }
     .wa-info { display: flex; flex-direction: column; line-height: 1.2; }
     .wa-name { font-family: "DM Sans", -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
     .wa-status { font-size: 9px; opacity: 0.75; margin-top: 2px; }
@@ -141,7 +129,7 @@
                 <li>Profit shared at exit</li>
                 <li>Includes comparison vs land sale today</li>
               </ul>
-              <span class="jv-card__cta">Open simulator →</span>
+              <span class="jv-card__cta" aria-hidden="true">Open simulator →</span>
             </div>
           </div>
         </div>
@@ -160,7 +148,7 @@
                 <li>Recurring income and NOI</li>
                 <li>Tracks yield, ROI, and payback</li>
               </ul>
-              <span class="jv-card__cta">Open simulator →</span>
+              <span class="jv-card__cta" aria-hidden="true">Open simulator →</span>
             </div>
           </div>
         </div>
@@ -179,7 +167,7 @@
                 <li>Operator fees deducted first</li>
                 <li>Profit shared after operations</li>
               </ul>
-              <span class="jv-card__cta">Open simulator →</span>
+              <span class="jv-card__cta" aria-hidden="true">Open simulator →</span>
             </div>
           </div>
         </div>

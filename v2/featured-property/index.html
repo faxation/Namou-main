@@ -3,66 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#003D2E">
   <title>Featured Properties — Namou</title>
   <link rel="icon" href="/assets/images/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=bolt,category,compare_arrows,description,directions_car,engineering,forward_to_inbox,gavel,handshake,hub,image,layers,location_on,lock,map,monitoring,paid,payments,public,shield,smart_display,straighten,trending_up,verified&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=bolt,category,compare_arrows,description,directions_car,diversity_3,engineering,forward_to_inbox,gavel,handshake,hub,image,inventory_2,layers,location_on,lock,map,monitoring,paid,payments,public,shield,smart_display,straighten,trending_up,verified&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <style>
+    /* Page-only: Buy hero head. All shared component styles (filter bar,
+       grid + cards, call-showcase laptop frames) live in /v2/css/styles.css
+       under "PAGE-SPECIFIC COMPONENTS". */
     .fp-head { text-align: center; margin-bottom: 48px; padding-top: 120px; }
-    .fp-head h1 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(3rem, 6vw, 5.5rem); letter-spacing: -0.04em; line-height: 1; margin-bottom: 16px; }
-    .fp-head h1 .serif { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
+    .fp-head h1 {
+      font-family: "DM Sans", -apple-system, sans-serif;
+      font-weight: 500;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
     .fp-head p { font-size: 15px; color: var(--ink-muted); }
-
-    .filters { display: flex; align-items: stretch; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 999px; padding: 8px; max-width: 1200px; margin: 0 auto 48px; }
-    .filter { flex: 1; display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-right: 1px solid var(--line); position: relative; }
-    .filter:last-child { border-right: none; }
-    .filter .material-symbols-outlined { font-size: 20px; color: var(--ink-muted); flex-shrink: 0; }
-    .filter__body { display: flex; flex-direction: column; flex: 1; min-width: 0; position: relative; }
-    .filter__label { font-family: "DM Sans", -apple-system, sans-serif; font-size: 11px; font-weight: 500; color: var(--ink); letter-spacing: 0.04em; }
-    .filter select { appearance: none; -webkit-appearance: none; background: transparent; border: none; padding: 2px 16px 0 0; font-family: "DM Sans", -apple-system, sans-serif; font-size: 13px; color: var(--ink-muted); cursor: pointer; width: 100%; outline: none; }
-    .filter select:focus { color: var(--ink); }
-    .filter__body::after { content: ""; position: absolute; right: 0; bottom: 12px; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid var(--ink-muted); pointer-events: none; }
-
     .count { text-align: center; font-size: 13px; color: var(--ink-muted); margin-bottom: 24px; }
-    .grid { display: flex; flex-wrap: wrap; justify-content: space-evenly; gap: 16px; }
-    .card { flex: 0 0 300px; max-width: 320px; padding: 24px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); transition: transform 0.5s var(--ease), border-color 0.4s ease; }
-    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
-    .card__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .card__price { font-family: "DM Sans", -apple-system, sans-serif; font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; }
-    .card__cat { padding: 4px 10px; border-radius: 999px; background: var(--accent); color: #fff; font-family: "DM Sans", -apple-system, sans-serif; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
-    .card__area { font-family: "DM Sans", -apple-system, sans-serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 12px; letter-spacing: -0.01em; }
-    .card__details { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
-    .card__detail { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-muted); }
-    .card__detail .material-symbols-outlined { font-size: 14px; }
-    .card__cta { display: block; text-align: center; padding: 12px; border-radius: 999px; background: var(--wa); color: #fff; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 13px; transition: background 0.2s ease; }
-    .card__cta:hover { background: #1ebe57; }
-    .empty { text-align: center; padding: 80px 24px; color: var(--ink-muted); font-size: 14px; display: none; }
-
-    /* Live on the call showcase — full-width section */
-    .call-showcase { background: var(--ink); color: var(--bg); border-radius: 0; padding: 112px 88px; margin-bottom: 80px; max-width: none; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-evenly; gap: 80px; box-sizing: border-box; }
-    .call-showcase__copy { flex: 1 1 480px; max-width: 720px; }
-    .call-showcase__frames { flex: 1 1 480px; max-width: 720px; }
-    .call-showcase__copy .eyebrow { font-family: "DM Sans", -apple-system, sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: block; }
-    .call-showcase__copy h2 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(2.75rem, 5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 32px; }
-    .call-showcase__copy h2 .serif { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
-    .call-showcase__copy p { font-size: clamp(17px, 1.3vw, 22px); color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 40px; max-width: 620px; }
-    .call-showcase__list { list-style: none; padding: 0; margin: 0 0 48px; }
-    .call-showcase__list li { display: flex; gap: 16px; align-items: flex-start; font-size: clamp(16px, 1.15vw, 19px); color: rgba(255,255,255,0.85); margin-bottom: 18px; }
-    .call-showcase__list li .material-symbols-outlined { font-size: clamp(22px, 1.6vw, 28px); color: var(--accent); flex-shrink: 0; margin-top: 1px; }
-    .call-showcase__cta { display: inline-flex; align-items: center; gap: 12px; padding: 20px 36px; border-radius: 999px; background: var(--bg); color: var(--ink); font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(15px, 1.05vw, 17px); transition: transform 0.3s var(--ease); }
-    .call-showcase__cta:hover { transform: translateY(-2px); background: var(--accent); color: #fff; }
-    .call-showcase__cta svg { width: 20px; height: 20px; fill: currentColor; }
-    .call-showcase__frames { display: flex; flex-direction: column; gap: 28px; }
-    .call-frame { position: relative; padding: 14px; background: linear-gradient(180deg, #1c1c1c 0%, #0f0f0f 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px 20px 8px 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
-    .call-frame::before { content: ""; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 44px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.08); }
-    .call-frame__screen { border-radius: 8px; overflow: hidden; background: oklch(8% 0.005 160); }
-    .call-frame__screen img { width: 100%; height: auto; display: block; }
-    .call-frame__cap { font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(13px, 0.95vw, 15px); color: rgba(255,255,255,0.55); text-align: center; margin-top: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
-    @media (max-width: 1024px) { .call-showcase { padding: 80px 56px; gap: 60px; } }
-    @media (max-width: 900px) { .call-showcase { padding: 56px 32px; gap: 48px; } }
-
-    @media (max-width: 900px) { .filters { flex-direction: column; border-radius: 24px; } .filter { border-right: none; border-bottom: 1px solid var(--line); } .filter:last-child { border-bottom: none; } }
   </style>
 </head>
 <body>
@@ -253,8 +214,8 @@
       if (plots.length === 0) { grid.innerHTML = ''; empty.hidden = false; return; }
       empty.hidden = true;
       grid.innerHTML = plots.map(function(p) {
-        var wa = encodeURIComponent("Hi, I'd like to schedule a video call to review: " + p.name + ' (' + p.area + ', ' + p.sqft.toLocaleString() + ' sqft).');
-        return '<div class="card"><div class="card__top"><span class="card__price">' + esc(p.priceLabel) + '<span class="card__price-usd">' + fmtUSD(p.price) + ' USD</span></span><span class="card__cat">' + esc(p.cat) + '</span></div><div class="card__area">' + esc(p.area) + '</div><div class="card__details"><div class="card__detail"><span class="material-symbols-outlined">straighten</span>' + p.sqft.toLocaleString() + ' sqft</div><div class="card__detail"><span class="material-symbols-outlined">layers</span>FAR ' + esc(p.far) + '</div></div><a href="https://wa.me/971569636360?text=' + wa + '" target="_blank" rel="noopener" class="card__cta">Schedule a video call</a></div>';
+        var waHref = Namou.waUrl("Hi, I'd like to schedule a video call to review: " + p.name + ' (' + p.area + ', ' + p.sqft.toLocaleString() + ' sqft).');
+        return '<div class="card"><div class="card__top"><span class="card__price">' + esc(p.priceLabel) + '<span class="card__price-usd">' + fmtUSD(p.price) + ' USD</span></span><span class="card__cat">' + esc(p.cat) + '</span></div><div class="card__area">' + esc(p.area) + '</div><div class="card__details"><div class="card__detail"><span class="material-symbols-outlined">straighten</span>' + p.sqft.toLocaleString() + ' sqft</div><div class="card__detail"><span class="material-symbols-outlined">layers</span>FAR ' + esc(p.far) + '</div></div><a href="' + waHref + '" target="_blank" rel="noopener" class="card__cta">Schedule a video call</a></div>';
       }).join('');
     }
     function apply() {

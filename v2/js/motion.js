@@ -1,4 +1,16 @@
-/* Namou v2 — motion layer */
+/* Namou v2 — motion layer + shared contact constants */
+window.Namou = window.Namou || {};
+window.Namou.PHONE = "971569636360";
+window.Namou.PHONE_DISPLAY = "+971 56 963 6360";
+window.Namou.EMAIL = "reachus@namou.ae";
+/**
+ * Build a wa.me deep link with a pre-filled message.
+ * @param {string} msg — plain-text message (will be URL-encoded)
+ */
+window.Namou.waUrl = function (msg) {
+  return "https://wa.me/" + window.Namou.PHONE + "?text=" + encodeURIComponent(msg);
+};
+
 (function () {
   "use strict";
 
