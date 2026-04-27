@@ -10,10 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=bolt,call,category,compare_arrows,description,directions_car,diversity_3,engineering,forward_to_inbox,gavel,handshake,hub,image,inventory_2,layers,location_on,lock,map,monitoring,paid,payments,public,shield,smart_display,straighten,trending_up,verified&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <style>
-    /* Page-only: Buy hero head. All shared component styles (filter bar,
-       grid + cards, call-showcase laptop frames) live in /v2/css/styles.css
-       under "PAGE-SPECIFIC COMPONENTS". */
-    .fp-head { text-align: center; margin-bottom: 48px; padding-top: 120px; }
+    /* Page-only: Buy hero head — full-bleed dark band that flows directly
+       into the .call-showcase section below (no margin between them, both
+       sit on var(--ink), reading as one continuous black surface). */
+    .fp-head {
+      text-align: center;
+      width: 100vw;
+      margin: 0 calc(50% - 50vw);
+      padding: 160px 24px 96px;
+      background: var(--ink);
+      color: #ffffff;
+    }
     .fp-head h1 {
       font-family: "DM Sans", -apple-system, sans-serif;
       font-weight: 500;
@@ -21,8 +28,9 @@
       letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 16px;
+      color: #ffffff;
     }
-    .fp-head p { font-size: 15px; color: var(--ink-muted); }
+    .fp-head p { font-size: 15px; color: rgba(255, 255, 255, 0.7); }
     .count { text-align: center; font-size: 13px; color: var(--ink-muted); margin-bottom: 24px; }
   </style>
 </head>
