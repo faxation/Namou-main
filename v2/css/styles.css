@@ -16,6 +16,7 @@
   --accent: #00B073;
   --accent-deep: #003D2E;
   --accent-hover: #009963;
+  --mint: #3FE6A8;
   --accent-subtle: rgba(0, 176, 115, 0.08);
   --wa: #25D366;
   /* Device-mockup chrome — declared once so JV phones, WhatsApp mockup,
@@ -1762,7 +1763,7 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
 .jv-card__badge {
   align-self: flex-start;
   background: var(--accent-subtle);
-  color: var(--accent-deep);
+  color: var(--mint);
   font-family: "DM Sans", -apple-system, sans-serif;
   font-size: 9px;
   font-weight: 600;
@@ -1793,7 +1794,7 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
   position: absolute;
   left: 2px;
   top: -1px;
-  color: var(--accent-deep);
+  color: var(--mint);
   font-size: 1.2em;
   line-height: 1;
 }
@@ -1803,7 +1804,7 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
   font-family: "DM Sans", -apple-system, sans-serif;
   font-size: clamp(9px, 0.7vw, 11px);
   font-weight: 600;
-  color: var(--accent-deep);
+  color: var(--mint);
   text-align: left;
 }
 
