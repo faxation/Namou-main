@@ -67,11 +67,11 @@
       box-sizing: border-box;
     }
     .leader-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 64px); align-items: stretch; max-width: 1200px; margin: 0 auto; }
-    .leader-grid__col { display: flex; flex-direction: column; }
-    /* min-height: 2 line-heights so both column titles occupy the same
-       vertical space — keeps the left card and the right stats grid
-       starting at the same Y regardless of how each title wraps. */
-    .leader-grid__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(1.875rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 28px; color: #ffffff; min-height: 2.2em; }
+    /* Each column distributes its title + card vertically with space-evenly
+       and centers the content horizontally so left and right read as a
+       balanced pair. */
+    .leader-grid__col { display: flex; flex-direction: column; justify-content: space-evenly; align-items: center; }
+    .leader-grid__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(1.875rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; color: #ffffff; min-height: 2.2em; text-align: center; }
     .leader {
       display: flex;
       align-items: center;
@@ -81,7 +81,8 @@
       border-radius: 24px;
       background: rgba(255, 255, 255, 0.04);
       color: rgba(255, 255, 255, 0.88);
-      flex: 1;
+      width: 100%;
+      max-width: 560px;
     }
     img.leader__avatar {
       width: 120px;
@@ -109,7 +110,8 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
       margin-bottom: 0;
-      flex: 1;
+      width: 100%;
+      max-width: 560px;
     }
     .section--leader .stat {
       background: rgba(255, 255, 255, 0.04);
