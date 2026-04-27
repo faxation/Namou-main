@@ -707,9 +707,15 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   display: flex;
   flex-direction: column;
   gap: 48px;
+  height: 100%;
 }
-/* CTA flows naturally after the steps (matches call-showcase alignment) */
-.reveal__cta { align-self: flex-start; }
+/* Title hugs the top of the column (= top of upper tablet); CTA pushed
+   to the bottom (= bottom of lower tablet) so the column visually frames
+   the diagonal pair. Same anchor pattern is applied to call-showcase. */
+.reveal__cta {
+  margin-top: auto;
+  align-self: flex-start;
+}
 
 .reveal__text {
   position: relative;
@@ -1673,12 +1679,20 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
   margin-right: calc(50% - 50vw);
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-evenly;
   gap: 80px;
   box-sizing: border-box;
 }
-.call-showcase__copy { flex: 1 1 480px; max-width: 720px; }
+/* Same anchor pattern as the home Reveal section: title hugs the top
+   (= top of the upper laptop frame on the right), CTA pushes to the
+   bottom (= bottom of the lower laptop frame). */
+.call-showcase__copy {
+  flex: 1 1 480px;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+}
 .call-showcase__frames { flex: 1 1 480px; max-width: 720px; display: flex; flex-direction: column; gap: 28px; }
 .call-showcase__copy .eyebrow {
   font-family: "DM Sans", -apple-system, sans-serif;
@@ -1733,6 +1747,8 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
   font-weight: 500;
   font-size: clamp(15px, 1.05vw, 17px);
   transition: transform 0.3s var(--ease);
+  margin-top: auto;
+  align-self: flex-start;
 }
 .call-showcase__cta:hover { transform: translateY(-2px); background: var(--accent); color: var(--accent-deep); }
 .call-showcase__cta svg { width: 20px; height: 20px; fill: currentColor; }
