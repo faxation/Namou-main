@@ -509,9 +509,15 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   background-position: center;
   background-repeat: no-repeat;
 }
+/* Lanes default to a translucent dark card so the section backdrop
+   (built-for-every-side.svg) reads through, with white type and a
+   ghost button. On hover the card flips to a translucent light card,
+   ink-on-light copy, and an accent-deep ghost. The lift + shadow
+   animation from the global .lane rule is preserved. */
 .section--lanes .lane {
-  background: rgba(245, 245, 245, 0.92);
-  border: 1px solid var(--rule);
+  background: rgba(18, 18, 18, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff;
   padding: 20%;
   min-height: 0;
   gap: 20px;
@@ -524,16 +530,40 @@ h1, h2, h3, h4 { text-transform: capitalize; }
 }
 .section--lanes .lane__eyebrow {
   font-size: clamp(2.25rem, 3.4vw, 3rem);
+  color: #ffffff;
 }
 .section--lanes .lane__heading {
   font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+  color: var(--mint);
 }
 .section--lanes .lane__body {
   font-size: 15px;
   max-width: 300px;
+  color: rgba(255, 255, 255, 0.78);
 }
+.section--lanes .lane .btn--ghost {
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+  background: transparent;
+}
+/* Hover — invert to a white card with dark ink */
 .section--lanes .lane:hover {
-  background: rgba(18, 18, 18, 0.75);
+  background: rgba(245, 245, 245, 0.96);
+  border-color: var(--rule);
+  color: var(--ink);
+}
+.section--lanes .lane:hover .lane__eyebrow { color: var(--ink); }
+.section--lanes .lane:hover .lane__heading { color: var(--accent-deep); }
+.section--lanes .lane:hover .lane__body { color: var(--ink-muted); }
+.section--lanes .lane:hover .btn--ghost {
+  border-color: var(--rule);
+  color: var(--ink);
+  background: transparent;
+}
+.section--lanes .lane:hover .btn--ghost:hover {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
 }
 .section--lanes {
   padding-bottom: 120px;
