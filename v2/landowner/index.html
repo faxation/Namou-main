@@ -119,12 +119,15 @@
       box-shadow: none;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      min-height: 130px;
+      justify-content: center;
+      gap: 8px;
+      min-height: 150px;
+      padding: 24px;
     }
     .section--leader .stat:hover { border-color: var(--mint); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25); }
-    .section--leader .stat__num { color: #ffffff; }
-    .section--leader .stat__lbl { color: rgba(255, 255, 255, 0.7); }
+    /* USP statements use heading-size type, not stat-number type */
+    .section--leader .stat__num { color: #ffffff; font-size: clamp(1.125rem, 1.6vw, 1.4rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 0; }
+    .section--leader .stat__lbl { color: rgba(255, 255, 255, 0.7); font-size: 13px; line-height: 1.5; }
 
     @media (max-width: 900px) {
       .stats { grid-template-columns: repeat(2, 1fr); }
@@ -222,10 +225,10 @@
         <div class="leader-grid__col">
           <h2 class="leader-grid__title">Proven track record.</h2>
           <div class="stats">
-            <div class="stat"><div class="stat__num">1,000+</div><div class="stat__lbl">Residential developers</div></div>
-            <div class="stat"><div class="stat__num">500+</div><div class="stat__lbl">Hospitality families</div></div>
-            <div class="stat"><div class="stat__num">25,000+</div><div class="stat__lbl">Broker network</div></div>
-            <div class="stat"><div class="stat__num">~30M</div><div class="stat__lbl">Avg deal size (AED)</div></div>
+            <div class="stat"><div class="stat__num">Single accountability.</div><div class="stat__lbl">One team, one mandate, listing to legal transfer.</div></div>
+            <div class="stat"><div class="stat__num">Pre-qualified buyers.</div><div class="stat__lbl">Every lead vetted before they reach your plot.</div></div>
+            <div class="stat"><div class="stat__num">Weekly written reports.</div><div class="stat__lbl">Monday brief: leads, intent, next steps.</div></div>
+            <div class="stat"><div class="stat__num">Controlled negotiation.</div><div class="stat__lbl">Pricing, presentation, timing — held under one strategy.</div></div>
           </div>
         </div>
       </div>
