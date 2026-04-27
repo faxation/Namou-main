@@ -164,7 +164,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   margin-top: 48px;
-  background-image: url("../assets/images/hero-bg-light.png");
+  background-image: url("/assets/images/hero-bg-light.png");
   background-size: 100% auto;
   background-position: center center;
   background-repeat: no-repeat;
@@ -489,7 +489,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
 /* Desktop-only: swap the first bento hero card background to the local Al Marjan render */
 @media (min-width: 1024px) {
   .bento__cell--hero.bento__cell--image {
-    background-image: url("../assets/images/Diplomatic_hero.webp") !important;
+    background-image: url("/assets/images/Diplomatic_hero.webp") !important;
   }
 }
 @media (max-width: 500px) {
@@ -501,7 +501,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
    LANES — audience cards with inline pill images
    ===================================================== */
 .section--lanes {
-  background-image: url("../assets/images/built-for-every-side.svg");
+  background-image: url("/assets/images/built-for-every-side.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -785,7 +785,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   height: 100%;
   border-radius: 14px;
   overflow: hidden;
-  background-image: url("../assets/images/roi-simulator.png");
+  background-image: url("/assets/images/roi-simulator.png");
   background-repeat: no-repeat;
   background-size: 200% 100%;
   background-color: oklch(8% 0.005 160);
