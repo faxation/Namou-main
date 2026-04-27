@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Featured Properties — Namou</title>
+  <link rel="icon" href="/assets/images/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .fp-head { text-align: center; margin-bottom: 48px; padding-top: 120px; }
+    .fp-head h1 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(3rem, 6vw, 5.5rem); letter-spacing: -0.04em; line-height: 1; margin-bottom: 16px; }
+    .fp-head h1 .serif { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
+    .fp-head p { font-size: 15px; color: var(--ink-muted); }
+
+    .filters { display: flex; align-items: stretch; background: var(--bg-alt); border: 1px solid var(--line); border-radius: 999px; padding: 8px; max-width: 1200px; margin: 0 auto 48px; }
+    .filter { flex: 1; display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-right: 1px solid var(--line); position: relative; }
+    .filter:last-child { border-right: none; }
+    .filter .material-symbols-outlined { font-size: 20px; color: var(--ink-muted); flex-shrink: 0; }
+    .filter__body { display: flex; flex-direction: column; flex: 1; min-width: 0; position: relative; }
+    .filter__label { font-family: "DM Sans", -apple-system, sans-serif; font-size: 11px; font-weight: 500; color: var(--ink); letter-spacing: 0.04em; }
+    .filter select { appearance: none; -webkit-appearance: none; background: transparent; border: none; padding: 2px 16px 0 0; font-family: "Roboto Mono", monospace; font-size: 13px; color: var(--ink-muted); cursor: pointer; width: 100%; outline: none; }
+    .filter select:focus { color: var(--ink); }
+    .filter__body::after { content: ""; position: absolute; right: 0; bottom: 12px; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid var(--ink-muted); pointer-events: none; }
+
+    .count { text-align: center; font-size: 13px; color: var(--ink-muted); margin-bottom: 24px; }
+    .grid { display: flex; flex-wrap: wrap; justify-content: space-evenly; gap: 16px; }
+    .card { flex: 0 0 300px; max-width: 320px; padding: 24px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); transition: transform 0.5s var(--ease), border-color 0.4s ease; }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .card__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .card__price { font-family: "DM Sans", -apple-system, sans-serif; font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; }
+    .card__cat { padding: 4px 10px; border-radius: 999px; background: var(--accent); color: #fff; font-family: "DM Sans", -apple-system, sans-serif; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+    .card__area { font-family: "DM Sans", -apple-system, sans-serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 12px; letter-spacing: -0.01em; }
+    .card__details { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+    .card__detail { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-muted); }
+    .card__detail .material-symbols-outlined { font-size: 14px; }
+    .card__cta { display: block; text-align: center; padding: 12px; border-radius: 999px; background: var(--wa); color: #fff; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 13px; transition: background 0.2s ease; }
+    .card__cta:hover { background: #1ebe57; }
+    .empty { text-align: center; padding: 80px 24px; color: var(--ink-muted); font-size: 14px; display: none; }
+
+    /* Live on the call showcase — full-width section */
+    .call-showcase { background: var(--ink); color: var(--bg); border-radius: 0; padding: 112px 88px; margin-bottom: 80px; max-width: none; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-evenly; gap: 80px; box-sizing: border-box; }
+    .call-showcase__copy { flex: 1 1 480px; max-width: 720px; }
+    .call-showcase__frames { flex: 1 1 480px; max-width: 720px; }
+    .call-showcase__copy .eyebrow { font-family: "DM Sans", -apple-system, sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; display: block; }
+    .call-showcase__copy h2 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(2.75rem, 5vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 32px; }
+    .call-showcase__copy h2 .serif { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
+    .call-showcase__copy p { font-size: clamp(17px, 1.3vw, 22px); color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 40px; max-width: 620px; }
+    .call-showcase__list { list-style: none; padding: 0; margin: 0 0 48px; }
+    .call-showcase__list li { display: flex; gap: 16px; align-items: flex-start; font-size: clamp(16px, 1.15vw, 19px); color: rgba(255,255,255,0.85); margin-bottom: 18px; }
+    .call-showcase__list li .material-symbols-outlined { font-size: clamp(22px, 1.6vw, 28px); color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+    .call-showcase__cta { display: inline-flex; align-items: center; gap: 12px; padding: 20px 36px; border-radius: 999px; background: var(--bg); color: var(--ink); font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(15px, 1.05vw, 17px); transition: transform 0.3s var(--ease); }
+    .call-showcase__cta:hover { transform: translateY(-2px); background: var(--accent); color: #fff; }
+    .call-showcase__cta svg { width: 20px; height: 20px; fill: currentColor; }
+    .call-showcase__frames { display: flex; flex-direction: column; gap: 28px; }
+    .call-frame { position: relative; padding: 14px; background: linear-gradient(180deg, #1c1c1c 0%, #0f0f0f 100%); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px 20px 8px 8px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+    .call-frame::before { content: ""; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 44px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.08); }
+    .call-frame__screen { border-radius: 8px; overflow: hidden; background: #000; }
+    .call-frame__screen img { width: 100%; height: auto; display: block; }
+    .call-frame__cap { font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(13px, 0.95vw, 15px); color: rgba(255,255,255,0.55); text-align: center; margin-top: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+    @media (max-width: 1024px) { .call-showcase { padding: 80px 56px; gap: 60px; } }
+    @media (max-width: 900px) { .call-showcase { padding: 56px 32px; gap: 48px; } }
+
+    @media (max-width: 900px) { .filters { flex-direction: column; border-radius: 24px; } .filter { border-right: none; border-bottom: 1px solid var(--line); } .filter:last-child { border-bottom: none; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/v2/" class="nav__logo">
+      <img src="/assets/images/logo.png" alt="Namou" class="logo-light">
+    </a>
+    <div class="nav__links">
+      <a href="/v2/featured-property/">Buy</a>
+      <a href="/v2/landowner/">Sell</a>
+      <a href="/v2/jv/">Invest</a>
+      <a href="/v2/broker/">Brokers</a>
+    </div>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/v2/featured-property/">Buy</a>
+    <a href="/v2/landowner/">Sell</a>
+    <a href="/v2/jv/">Invest</a>
+    <a href="/v2/broker/">Brokers</a>
+  </div>
+
+  <main style="padding: 0 24px 80px; max-width: 1400px; margin: 0 auto;">
+    <div class="fp-head">
+      <h1>Featured properties.</h1>
+      <p>Verified land listings across Ras Al Khaimah.</p>
+    </div>
+
+    <section class="call-showcase">
+      <div class="call-showcase__copy">
+        <span class="eyebrow">Live on the call</span>
+        <h2>Your specialist walks you through the <span class="serif">deck,</span> plot by plot.</h2>
+        <p>A 30-minute video call with a Namou specialist. We review RAK opportunities on-screen and model the numbers live for every plot you're considering.</p>
+        <ul class="call-showcase__list">
+          <li><span class="material-symbols-outlined">map</span>RAK overview &amp; shortlisted plots mapped on-screen.</li>
+          <li><span class="material-symbols-outlined">monitoring</span>Live ROI — build cost, revenue, margin on every plot.</li>
+          <li><span class="material-symbols-outlined">compare_arrows</span>Side-by-side pricing and payment-plan scenarios.</li>
+        </ul>
+        <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20book%20a%20video%20call%20to%20walk%20through%20available%20plots%20with%20a%20Namou%20specialist." target="_blank" rel="noopener" class="call-showcase__cta">
+          Schedule a video call
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="call-showcase__frames">
+        <div class="call-frame">
+          <div class="call-frame__screen">
+            <img src="/assets/images/deck/deck-home.png" alt="Namou deck — RAK overview home screen" loading="lazy">
+          </div>
+        </div>
+        <div class="call-frame__cap">RAK overview · namou-ae1.vercel.app</div>
+        <div class="call-frame">
+          <div class="call-frame__screen">
+            <img src="/assets/images/roi-simulator.png" alt="Namou deck — live ROI simulator" loading="lazy">
+          </div>
+        </div>
+        <div class="call-frame__cap">ROI simulator · live on the call</div>
+      </div>
+    </section>
+
+    <div class="filters" id="fpFilters">
+      <div class="filter" data-filter="minSqft"><span class="material-symbols-outlined">straighten</span><div class="filter__body"><span class="filter__label">Min SQ FT</span><select id="filterMinSqft" aria-label="Minimum square footage"><option value="">Any</option><option value="5000">5,000+</option><option value="10000">10,000+</option><option value="25000">25,000+</option><option value="50000">50,000+</option><option value="100000">100,000+</option><option value="250000">250,000+</option><option value="500000">500,000+</option></select></div></div>
+      <div class="filter" data-filter="maxSqft"><span class="material-symbols-outlined">straighten</span><div class="filter__body"><span class="filter__label">Max SQ FT</span><select id="filterMaxSqft" aria-label="Maximum square footage"><option value="">Any</option><option value="10000">Up to 10,000</option><option value="25000">Up to 25,000</option><option value="50000">Up to 50,000</option><option value="100000">Up to 100,000</option><option value="250000">Up to 250,000</option><option value="500000">Up to 500,000</option><option value="9999999">1M+</option></select></div></div>
+      <div class="filter" data-filter="type"><span class="material-symbols-outlined">category</span><div class="filter__body"><span class="filter__label">Type</span><select id="filterType" aria-label="Property type"><option value="">All Types</option></select></div></div>
+      <div class="filter" data-filter="area"><span class="material-symbols-outlined">location_on</span><div class="filter__body"><span class="filter__label">Area</span><select id="filterArea" aria-label="Area"><option value="">All Areas</option></select></div></div>
+      <div class="filter" data-filter="budget"><span class="material-symbols-outlined">payments</span><div class="filter__body"><span class="filter__label">Budget Range</span><select id="filterBudget" aria-label="Budget range"><option value="">All Prices</option><option value="0-5000000">AED 0–5M</option><option value="5000000-15000000">AED 5–15M</option><option value="15000000-25000000">AED 15–25M</option><option value="25000000-50000000">AED 25–50M</option><option value="50000000-100000000">AED 50–100M</option><option value="100000000-99999999999">AED 100M+</option></select></div></div>
+      <p class="filter__error" id="fpFilterError">Min square footage cannot exceed max — adjust one to continue.</p>
+    </div>
+
+    <div class="filter-chips" id="fpChips" hidden></div>
+
+    <div class="count" id="fpCount"></div>
+    <div class="grid" id="fpGrid"></div>
+    <div class="empty" id="fpEmpty" hidden>
+      <p class="empty__title">No plots match those filters.</p>
+      <p class="empty__hint">We have plots from AED 1.8M up to AED 1.4B across 7 RAK areas. Try clearing a filter, or schedule a video call and we'll source one for you.</p>
+      <button type="button" class="empty__action" id="fpClearAll">Clear all filters</button>
+    </div>
+  </main>
+
+  <footer class="footer" style="margin-top:80px;">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="/assets/images/logo.png" alt="Namou" class="logo-light" style="height:32px;">
+        <p>Land and commercial real estate in Ras Al Khaimah.</p>
+      </div>
+      <div class="footer__col"><h4>Explore</h4><a href="/v2/featured-property/">Buy</a><a href="/v2/landowner/">Sell</a><a href="/v2/jv/">Invest</a><a href="/v2/broker/">Brokers</a></div>
+      <div class="footer__col"><h4>Contact</h4><a href="https://wa.me/971569636360">WhatsApp</a><a href="mailto:reachus@namou.ae">reachus@namou.ae</a><span>+971 56 963 6360</span></div>
+      <div class="footer__col"><h4>Office</h4><span>1411, Tower B</span><span>Julphar Towers</span><span>Al Hisn Road, RAK</span></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Namou Properties LLC.</span></div>
+  </footer>
+
+  <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20book%20a%20video%20call%20to%20walk%20through%20available%20plots%20with%20a%20Namou%20specialist." target="_blank" rel="noopener" class="wa-float" aria-label="Schedule a video call">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="../js/motion.js"></script>
+  <script>
+  (function() {
+    'use strict';
+    var FALLBACK_PLOTS = [
+      { name:"Exclusive Residential in Al Maireed", area:"Al Maireed", sqft:4844, far:"2.625", cat:"Residential", price:1800000, priceLabel:"1,800,000 AED" },
+      { name:"Mixed-Use Development in Al Nakheel", area:"Al Nakheel", sqft:19914, far:"4", cat:"Mixed-use", price:4100000, priceLabel:"4,100,000 AED" },
+      { name:"Mixed-Use in Dafan Al Maireed", area:"Dafan Al Maireed", sqft:9360, far:"3", cat:"Mixed-use", price:4200000, priceLabel:"4,200,000 AED" },
+      { name:"High-Rise Mixed-Use in Al Nakheel", area:"Al Nakheel", sqft:15370, far:"10.5", cat:"Mixed-use", price:6200000, priceLabel:"6,200,000 AED" },
+      { name:"Boutique Development in Al Maireed", area:"Al Maireed", sqft:19375, far:"2.625", cat:"Mixed-use", price:6200000, priceLabel:"6,200,000 AED" },
+      { name:"Prime Urban Plot in Al Maireed", area:"Al Maireed", sqft:20034, far:"3", cat:"Mixed-use", price:7200000, priceLabel:"7,200,000 AED" },
+      { name:"Waterfront Mixed-Use in Corniche", area:"Corniche Al Qawasim", sqft:14920, far:"4", cat:"Mixed-use", price:16000000, priceLabel:"16,000,000 AED" },
+      { name:"Iconic Mixed-Use in Al Nakheel", area:"Al Nakheel", sqft:12578, far:"18", cat:"Mixed-use", price:20000000, priceLabel:"20,000,000 AED" },
+      { name:"Prestigious Mixed-Use in Al Nakheel", area:"Al Nakheel", sqft:13695, far:"18", cat:"Mixed-use", price:25000000, priceLabel:"25,000,000 AED" },
+      { name:"Expansive Master Plot in Al Maireed", area:"Al Maireed", sqft:110100, far:"2.625", cat:"Residential", price:38500000, priceLabel:"38,500,000 AED" },
+      { name:"Strategic Tourism Development Plot", area:"Al Maireed", sqft:58198, far:"2.5", cat:"Hospitality", price:80000000, priceLabel:"80,000,000 AED" },
+      { name:"Ultra-Prime Mixed-Use Development", area:"Dafan Khuzam", sqft:169010, far:"1.75", cat:"Mixed-use", price:90000000, priceLabel:"90,000,000 AED" },
+      { name:"Prime Commercial Office & Retail", area:"RAK Central", sqft:134549, far:"5.75", cat:"Commercial", price:541343600, priceLabel:"541,343,600 AED" },
+      { name:"Luxury Hospitality Development", area:"Al Marjan", sqft:428635, far:"3.2", cat:"Hospitality", price:1392868560, priceLabel:"1,392,868,560 AED" }
+    ];
+    var allPlots = FALLBACK_PLOTS;
+    function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+    function buildOptions(sel, values) { while (sel.options.length > 1) sel.remove(1); values.sort().forEach(function(v) { var o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o); }); }
+    function initFilters(plots) {
+      var areas = [], types = [];
+      plots.forEach(function(p) { if (areas.indexOf(p.area) === -1) areas.push(p.area); if (types.indexOf(p.cat) === -1) types.push(p.cat); });
+      buildOptions(document.getElementById('filterArea'), areas);
+      buildOptions(document.getElementById('filterType'), types);
+    }
+    var AED_PER_USD = 3.6725;
+    function fmtUSD(aed) {
+      var usd = Math.round(aed / AED_PER_USD);
+      if (usd >= 1e9) return '~$' + (usd / 1e9).toFixed(2).replace(/\.?0+$/, '') + 'B';
+      if (usd >= 1e6) return '~$' + (usd / 1e6).toFixed(usd >= 1e7 ? 0 : 1).replace(/\.?0+$/, '') + 'M';
+      if (usd >= 1e3) return '~$' + Math.round(usd / 1e3) + 'K';
+      return '~$' + usd.toLocaleString();
+    }
+    function chipLabel(key, value) {
+      switch (key) {
+        case 'minSqft': return 'Min ' + parseInt(value).toLocaleString() + ' sqft';
+        case 'maxSqft': return 'Max ' + parseInt(value).toLocaleString() + ' sqft';
+        case 'type': return value;
+        case 'area': return value;
+        case 'budget':
+          var range = value.split('-');
+          var fmt = function(n) { n = parseInt(n); if (n >= 1e9) return Math.round(n/1e8)/10 + 'B'; if (n >= 1e6) return Math.round(n/1e5)/10 + 'M'; return n.toLocaleString(); };
+          return 'AED ' + fmt(range[0]) + (parseInt(range[1]) >= 1e10 ? '+' : '–' + fmt(range[1]));
+        default: return value;
+      }
+    }
+    var FIELD_BY_KEY = { minSqft: 'filterMinSqft', maxSqft: 'filterMaxSqft', type: 'filterType', area: 'filterArea', budget: 'filterBudget' };
+    function getActive() {
+      var active = [];
+      Object.keys(FIELD_BY_KEY).forEach(function(k) {
+        var v = document.getElementById(FIELD_BY_KEY[k]).value;
+        if (v) active.push({ key: k, value: v });
+      });
+      return active;
+    }
+    function renderChips() {
+      var active = getActive();
+      var box = document.getElementById('fpChips');
+      if (active.length === 0) { box.hidden = true; box.innerHTML = ''; return; }
+      box.hidden = false;
+      box.innerHTML = active.map(function(c) {
+        return '<span class="filter-chip">' + esc(chipLabel(c.key, c.value)) + '<button type="button" class="filter-chip__close" data-clear="' + c.key + '" aria-label="Remove ' + esc(chipLabel(c.key, c.value)) + ' filter">×</button></span>';
+      }).join('') + '<button type="button" class="filter-clear" id="fpClearInline">Clear all</button>';
+    }
+    function validate() {
+      var minS = parseInt(document.getElementById('filterMinSqft').value);
+      var maxS = parseInt(document.getElementById('filterMaxSqft').value);
+      var minF = document.querySelector('[data-filter="minSqft"]');
+      var maxF = document.querySelector('[data-filter="maxSqft"]');
+      var err = document.getElementById('fpFilterError');
+      var invalid = !!(minS && maxS && minS > maxS);
+      [minF, maxF].forEach(function(f) { f.classList.toggle('filter--invalid', invalid); });
+      err.style.display = invalid ? 'block' : 'none';
+      return !invalid;
+    }
+    function clearAll() {
+      Object.values(FIELD_BY_KEY).forEach(function(id) { document.getElementById(id).value = ''; });
+      apply();
+    }
+    function clearOne(key) {
+      document.getElementById(FIELD_BY_KEY[key]).value = '';
+      apply();
+    }
+    function render(plots) {
+      var grid = document.getElementById('fpGrid'), empty = document.getElementById('fpEmpty'), count = document.getElementById('fpCount');
+      count.textContent = plots.length + ' propert' + (plots.length === 1 ? 'y' : 'ies') + ' found';
+      if (plots.length === 0) { grid.innerHTML = ''; empty.hidden = false; return; }
+      empty.hidden = true;
+      grid.innerHTML = plots.map(function(p) {
+        var wa = encodeURIComponent("Hi, I'd like to schedule a video call to review: " + p.name + ' (' + p.area + ', ' + p.sqft.toLocaleString() + ' sqft).');
+        return '<div class="card"><div class="card__top"><span class="card__price">' + esc(p.priceLabel) + '<span class="card__price-usd">' + fmtUSD(p.price) + ' USD</span></span><span class="card__cat">' + esc(p.cat) + '</span></div><div class="card__area">' + esc(p.area) + '</div><div class="card__details"><div class="card__detail"><span class="material-symbols-outlined">straighten</span>' + p.sqft.toLocaleString() + ' sqft</div><div class="card__detail"><span class="material-symbols-outlined">layers</span>FAR ' + esc(p.far) + '</div></div><a href="https://wa.me/971569636360?text=' + wa + '" target="_blank" rel="noopener" class="card__cta">Schedule a video call</a></div>';
+      }).join('');
+    }
+    function apply() {
+      if (!validate()) { renderChips(); return; }
+      var minS = document.getElementById('filterMinSqft').value;
+      var maxS = document.getElementById('filterMaxSqft').value;
+      var t = document.getElementById('filterType').value;
+      var a = document.getElementById('filterArea').value;
+      var b = document.getElementById('filterBudget').value;
+      render(allPlots.filter(function(p) {
+        if (a && p.area !== a) return false;
+        if (t && p.cat !== t) return false;
+        if (minS && p.sqft < parseInt(minS)) return false;
+        if (maxS && p.sqft > parseInt(maxS)) return false;
+        if (b) { var bp = b.split('-'); if (p.price < parseInt(bp[0]) || p.price > parseInt(bp[1])) return false; }
+        return true;
+      }));
+      renderChips();
+    }
+    ['filterMinSqft','filterMaxSqft','filterType','filterArea','filterBudget'].forEach(function(id) { document.getElementById(id).addEventListener('change', apply); });
+    document.getElementById('fpClearAll').addEventListener('click', clearAll);
+    document.getElementById('fpChips').addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-clear]');
+      if (btn) { clearOne(btn.dataset.clear); return; }
+      if (e.target.id === 'fpClearInline') clearAll();
+    });
+    initFilters(allPlots);
+    render(allPlots);
+  })();
+  </script>
+</body>
+</html>

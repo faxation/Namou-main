@@ -1,7 +1,3 @@
 {
-  "trailingSlash": true,
-  "redirects": [
-    { "source": "/v2", "destination": "/", "permanent": true },
-    { "source": "/v2/(.*)", "destination": "/$1", "permanent": true }
-  ]
+  "trailingSlash": true
 }

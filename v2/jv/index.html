@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joint Ventures — Namou</title>
+  <link rel="icon" href="/assets/images/logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .tree { display: flex; justify-content: space-evenly; align-items: stretch; width: 100vw; position: relative; left: 50%; transform: translateX(-50%); margin: 32px 0 64px; padding: 0; gap: 0; box-sizing: border-box; }
+    .tree__step { flex: 0 0 auto; width: clamp(180px, 14vw, 280px); display: grid; grid-template-columns: 1fr; gap: 16px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-alt); transition: transform 0.5s var(--ease), border-color 0.4s ease; }
+    .tree__step:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .tree__num { font-family: "DM Sans", -apple-system, sans-serif; font-size: 2.25rem; font-weight: 500; color: var(--accent); line-height: 1; }
+    .tree__head { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .tree__body { color: var(--ink-muted); font-size: 13px; line-height: 1.55; margin-bottom: 12px; }
+    .tree__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-family: "DM Sans", -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
+    .tag .material-symbols-outlined { font-size: 14px; color: var(--accent); }
+    .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 64px; width: 100vw; position: relative; left: 50%; transform: translateX(-50%); padding: 0 36px; box-sizing: border-box; }
+    .screen { border-radius: 32px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-alt); }
+    .screen img { width: 100%; display: block; }
+    .screen__cap { padding: 24px 28px; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(14px, 1vw, 18px); color: var(--ink); text-align: center; border-top: 1px solid var(--line); }
+    .benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
+    .benefit { padding: 28px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); transition: transform 0.5s var(--ease); }
+    .benefit:hover { transform: translateY(-4px); }
+    .benefit .material-symbols-outlined { font-size: 28px; color: var(--accent); margin-bottom: 16px; }
+    .benefit h4 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.1rem; margin-bottom: 6px; }
+    .benefit p { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+
+    /* JV-strategy phones — iPhone frames, 3 across, every gap equal (space-evenly) */
+    .jv-phones { display: flex; justify-content: space-evenly; align-items: stretch; width: 100vw; position: relative; left: 50%; transform: translateX(-50%); margin: 64px 0 0; padding: 0; gap: 0; box-sizing: border-box; }
+    .jv-phone { flex: 0 0 auto; width: clamp(260px, 20vw, 392px); }
+    .jv-phone { position: relative; aspect-ratio: 9 / 19; padding: 9px; background: #0a0a0a; border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px #1a1a1a, inset 0 0 0 4px #2c2c2c, inset 0 0 0 5px #1a1a1a; }
+    /* Dynamic island */
+    .jv-phone::before { content: ""; position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 32%; max-width: 88px; height: 2.8%; min-height: 18px; background: #000; border-radius: 999px; z-index: 3; }
+    /* Right-side button (sleep/wake) */
+    .jv-phone::after { content: ""; position: absolute; top: 24%; right: -3px; width: 3px; height: 12%; background: linear-gradient(180deg, #2c2c2c, #1a1a1a); border-radius: 0 2px 2px 0; }
+    .jv-phone__screen { width: 100%; height: 100%; border-radius: 11% / 5.5%; overflow: hidden; background: #fff; padding: 16% 8% 12%; display: flex; flex-direction: column; gap: 8%; color: #121212; position: relative; }
+    /* Home indicator */
+    .jv-phone__screen::after { content: ""; position: absolute; bottom: 1.6%; left: 50%; transform: translateX(-50%); width: 35%; height: 4px; border-radius: 4px; background: #121212; opacity: 0.85; }
+    .jv-card { flex: 1; display: flex; flex-direction: column; padding: 6%; border: 1px solid var(--line); border-radius: 14px; background: #fafafa; }
+    .jv-card__badge { align-self: flex-start; background: var(--accent-subtle); color: var(--accent); font-family: "DM Sans", -apple-system, sans-serif; font-size: 9px; font-weight: 500; padding: 3px 8px; border-radius: 999px; margin-bottom: 6%; }
+    .jv-card__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(0.9rem, 1.1vw, 1.15rem); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 8%; color: #121212; }
+    .jv-card__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6%; flex: 1; }
+    .jv-card__list li { font-family: "Roboto Mono", monospace; font-size: clamp(8px, 0.65vw, 11px); line-height: 1.45; color: var(--ink-muted); padding-left: 10px; position: relative; }
+    .jv-card__list li::before { content: "·"; position: absolute; left: 2px; top: -1px; color: var(--accent); font-size: 1.2em; line-height: 1; }
+    .jv-card__cta { margin-top: auto; padding-top: 8%; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(9px, 0.7vw, 11px); font-weight: 500; color: var(--accent); text-align: left; }
+
+    /* JV hero backdrop */
+    .hero { background-image: url("../assets/images/al-maareed-corniche.jpg"); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh; justify-content: center; padding-top: 24px; padding-bottom: 24px; }
+    .hero .hero__inner { flex: 0 1 auto; }
+    .hero .hero__subtitle { color: #ffffff; }
+
+    /* JV CTA-final: 2-col grid with WhatsApp chat phone on the right */
+    .cta-final--jv { padding: 100px 48px; }
+    .cta-final--jv .cta-final__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: stretch; max-width: 1320px; margin: 0 auto; position: relative; }
+    .cta-final--jv .cta-final__copy { display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; }
+    .cta-final--jv .cta-final__title { margin-bottom: 0; }
+    .cta-final--jv .cta-final__sub { margin: 32px auto; }
+    .cta-final--jv .cta-final__actions { margin-top: 0; }
+    .cta-final--jv .cta-final__phone-col { display: flex; align-items: stretch; justify-content: center; }
+    .cta-final__phone { position: relative; height: 100%; aspect-ratio: 9 / 19; padding: 9px; background: #0a0a0a; border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px #1a1a1a, inset 0 0 0 4px #2c2c2c, inset 0 0 0 5px #1a1a1a; max-width: 320px; }
+    .cta-final__phone::before { content: ""; position: absolute; top: 3.2%; left: 50%; transform: translateX(-50%); width: 32%; max-width: 88px; height: 2.8%; min-height: 18px; background: #000; border-radius: 999px; z-index: 3; }
+    .cta-final__phone::after { content: ""; position: absolute; top: 24%; right: -3px; width: 3px; height: 12%; background: linear-gradient(180deg, #2c2c2c, #1a1a1a); border-radius: 0 2px 2px 0; }
+    .cta-final__phone-screen { width: 100%; height: 100%; border-radius: 11% / 5.5%; overflow: hidden; background: #efeae2; display: flex; flex-direction: column; position: relative; }
+    .wa-header { background: #075e54; color: #fff; padding: 8% 5% 4%; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .wa-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 13px; color: #fff; }
+    .wa-info { display: flex; flex-direction: column; line-height: 1.2; }
+    .wa-name { font-family: "DM Sans", -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
+    .wa-status { font-size: 9px; opacity: 0.75; margin-top: 2px; }
+    .wa-messages { flex: 1; padding: 12px 10px; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+    .wa-msg { padding: 7px 10px 16px; border-radius: 8px; max-width: 84%; font-family: "DM Sans", -apple-system, sans-serif; font-size: 11.5px; line-height: 1.4; color: #303030; position: relative; box-shadow: 0 1px 0.5px rgba(0,0,0,0.13); white-space: normal; }
+    .wa-msg--in { background: #fff; align-self: flex-start; border-top-left-radius: 0; }
+    .wa-msg--out { background: #d9fdd3; align-self: flex-end; border-top-right-radius: 0; }
+    .wa-msg__time { position: absolute; bottom: 2px; right: 6px; font-size: 7.5px; color: rgba(0,0,0,0.45); }
+
+    @media (max-width: 900px) { .cta-final--jv .cta-final__inner { grid-template-columns: 1fr; gap: 48px; } .cta-final--jv .cta-final__copy { order: 1; } .cta-final--jv .cta-final__phone-col { order: 2; } .cta-final__phone { height: auto; width: 240px; aspect-ratio: 9/19; } }
+
+    @media (max-width: 1024px) { .tree { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px) { .benefits { grid-template-columns: repeat(2, 1fr); } .screens { grid-template-columns: 1fr; } .tree { grid-template-columns: repeat(2, 1fr); } .jv-phones { grid-template-columns: 1fr; } }
+    @media (max-width: 500px) { .benefits { grid-template-columns: 1fr; } .tree { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/v2/" class="nav__logo">
+      <img src="/assets/images/logo.png" alt="Namou" class="logo-light">
+    </a>
+    <div class="nav__links">
+      <a href="/v2/featured-property/">Buy</a>
+      <a href="/v2/landowner/">Sell</a>
+      <a href="/v2/jv/">Invest</a>
+      <a href="/v2/broker/">Brokers</a>
+    </div>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/v2/featured-property/">Buy</a>
+    <a href="/v2/landowner/">Sell</a>
+    <a href="/v2/jv/">Invest</a>
+    <a href="/v2/broker/">Brokers</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero__inner">
+      <h1 class="hero__title">Invest in the <span class="serif">project,</span><br>not just the land.</h1>
+      <p class="hero__subtitle">Access development-grade returns without managing the build yourself.</p>
+      <div class="hero__actions">
+        <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20book%20a%20video%20call%20to%20explore%20joint-venture%20opportunities%20with%20Namou." target="_blank" rel="noopener" class="btn btn--primary">Schedule a video call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__inner">
+      <h2 class="section__title motion-fade">The process, step by step.</h2>
+      <div class="tree">
+        <div class="tree__step motion-fade"><div class="tree__num">01</div><div><h3 class="tree__head">Schedule a video call</h3><p class="tree__body">A confidential intro call to understand your investment appetite and timeline.</p><div class="tree__tags"><span class="tag"><span class="material-symbols-outlined">lock</span>Fully confidential</span><span class="tag"><span class="material-symbols-outlined">bolt</span>Scheduled within 24h</span></div></div></div>
+        <div class="tree__step motion-fade"><div class="tree__num">02</div><div><h3 class="tree__head">We identify the opportunity</h3><p class="tree__body">We match you with landowners, development partners, and operators from our vetted network.</p><div class="tree__tags"><span class="tag"><span class="material-symbols-outlined">handshake</span>Matchmaking</span><span class="tag"><span class="material-symbols-outlined">verified</span>Vetted partners</span></div></div></div>
+        <div class="tree__step motion-fade"><div class="tree__num">03</div><div><h3 class="tree__head">Model the returns together</h3><p class="tree__body">A private video call where we model build costs, revenues, profit splits, and exit scenarios live.</p><div class="tree__tags"><span class="tag"><span class="material-symbols-outlined">smart_display</span>Live video call</span><span class="tag"><span class="material-symbols-outlined">monitoring</span>Real-time ROI</span></div></div></div>
+        <div class="tree__step motion-fade"><div class="tree__num">04</div><div><h3 class="tree__head">Agree on the structure</h3><p class="tree__body">Partnership agreements, profit-sharing terms, and responsibilities confirmed in writing before capital moves.</p><div class="tree__tags"><span class="tag"><span class="material-symbols-outlined">gavel</span>Legal agreements</span><span class="tag"><span class="material-symbols-outlined">paid</span>Profit split</span></div></div></div>
+        <div class="tree__step motion-fade"><div class="tree__num">05</div><div><h3 class="tree__head">Execution and returns</h3><p class="tree__body">Appointed partners manage the build and operations; returns are distributed as agreed.</p><div class="tree__tags"><span class="tag"><span class="material-symbols-outlined">engineering</span>Managed execution</span><span class="tag"><span class="material-symbols-outlined">trending_up</span>Per agreement</span></div></div></div>
+      </div>
+
+      <div class="jv-phones motion-fade" aria-label="Joint-Venture investment strategies preview">
+        <div class="jv-phone jv-phone--1">
+          <div class="jv-phone__screen">
+            <div class="jv-card">
+              <span class="jv-card__badge">Developer Exit</span>
+              <h4 class="jv-card__title">Sell-Out Model</h4>
+              <dl class="jv-phone__meta">
+                <dt>Deal size</dt><dd>AED 30–80M</dd>
+                <dt>Target IRR</dt><dd>22–28%</dd>
+                <dt>Horizon</dt><dd>30–42 mo</dd>
+              </dl>
+              <ul class="jv-card__list">
+                <li>Build for sale</li>
+                <li>Profit shared at exit</li>
+                <li>Includes comparison vs land sale today</li>
+              </ul>
+              <span class="jv-card__cta">Open simulator →</span>
+            </div>
+          </div>
+        </div>
+        <div class="jv-phone jv-phone--2">
+          <div class="jv-phone__screen">
+            <div class="jv-card">
+              <span class="jv-card__badge">Tenants</span>
+              <h4 class="jv-card__title">Income Model</h4>
+              <dl class="jv-phone__meta">
+                <dt>Deal size</dt><dd>AED 50–150M</dd>
+                <dt>Target yield</dt><dd>8–11% NOI</dd>
+                <dt>Horizon</dt><dd>10+ years</dd>
+              </dl>
+              <ul class="jv-card__list">
+                <li>Build and lease to tenants</li>
+                <li>Recurring income and NOI</li>
+                <li>Tracks yield, ROI, and payback</li>
+              </ul>
+              <span class="jv-card__cta">Open simulator →</span>
+            </div>
+          </div>
+        </div>
+        <div class="jv-phone jv-phone--3">
+          <div class="jv-phone__screen">
+            <div class="jv-card">
+              <span class="jv-card__badge">Operator</span>
+              <h4 class="jv-card__title">Hospitality Model</h4>
+              <dl class="jv-phone__meta">
+                <dt>Deal size</dt><dd>AED 80M–1.4B</dd>
+                <dt>Target IRR</dt><dd>15–20%</dd>
+                <dt>Horizon</dt><dd>15+ years</dd>
+              </dl>
+              <ul class="jv-card__list">
+                <li>Build and operate as hotel</li>
+                <li>Operator fees deducted first</li>
+                <li>Profit shared after operations</li>
+              </ul>
+              <span class="jv-card__cta">Open simulator →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section__title motion-fade" style="margin-top:100px;">The Namou simulator.</h2>
+      <div class="screens">
+        <div class="screen motion-fade">
+          <img src="/assets/images/jv-strategies.png" alt="JV investment strategies">
+          <div class="screen__cap">Choose from three investment structures</div>
+        </div>
+        <div class="screen motion-fade">
+          <img src="/assets/images/jv-simulator.png" alt="JV simulator with live numbers">
+          <div class="screen__cap">Live ROI modelling with real numbers</div>
+        </div>
+      </div>
+
+      <h2 class="section__title motion-fade" style="margin-top:100px;">Why investors choose Namou.</h2>
+      <div class="benefits">
+        <div class="benefit motion-fade"><span class="material-symbols-outlined">hub</span><h4>End-to-end matchmaking</h4><p>Investors paired with landowners, contractors, and operators for each deal.</p></div>
+        <div class="benefit motion-fade"><span class="material-symbols-outlined">shield</span><h4>Vetted partners</h4><p>Every partner selected for track record, financial standing, and delivery capability.</p></div>
+        <div class="benefit motion-fade"><span class="material-symbols-outlined">monitoring</span><h4>Transparent projections</h4><p>Build cost, GDV, and profit margins modelled before you commit.</p></div>
+        <div class="benefit motion-fade"><span class="material-symbols-outlined">diversity_3</span><h4>Accessible entry</h4><p>Participate in large-scale developments at a fraction of standalone cost.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final cta-final--jv">
+    <div class="cta-final__inner">
+      <div class="cta-final__copy">
+        <h2 class="cta-final__title">Model the numbers on a call.</h2>
+        <p class="cta-final__sub">Tell us what you're looking for — we'll walk you through build cost, GDV, and returns live.</p>
+        <div class="cta-final__actions">
+          <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20book%20a%20video%20call%20to%20model%20a%20JV%20opportunity%20with%20Namou." target="_blank" rel="noopener" class="btn btn--primary">Schedule a video call</a>
+        </div>
+      </div>
+      <div class="cta-final__phone-col">
+        <div class="cta-final__phone" aria-label="WhatsApp conversation preview">
+          <div class="cta-final__phone-screen">
+            <div class="wa-header">
+              <div class="wa-avatar">N</div>
+              <div class="wa-info">
+                <div class="wa-name">Namou Properties</div>
+                <div class="wa-status">online</div>
+              </div>
+            </div>
+            <div class="wa-messages">
+              <div class="wa-msg wa-msg--out">Hi! I came across your website — really interested in your JV opportunities. Could we set up a call?<span class="wa-msg__time">10:24</span></div>
+              <div class="wa-msg wa-msg--in">Hello! Thanks for reaching out — happy to walk you through the JV deck. What works this week?<span class="wa-msg__time">10:25</span></div>
+              <div class="wa-msg wa-msg--out">Thursday afternoon would be ideal.<span class="wa-msg__time">10:26</span></div>
+              <div class="wa-msg wa-msg--in">Perfect — I'll send a calendar invite for Thursday at 3pm.<span class="wa-msg__time">10:26</span></div>
+              <div class="wa-msg wa-msg--out">Thanks, looking forward to it.<span class="wa-msg__time">10:27</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="/assets/images/logo.png" alt="Namou" class="logo-light" style="height:32px;">
+        <p>Land and commercial real estate in Ras Al Khaimah.</p>
+      </div>
+      <div class="footer__col"><h4>Explore</h4><a href="/v2/featured-property/">Buy</a><a href="/v2/landowner/">Sell</a><a href="/v2/jv/">Invest</a><a href="/v2/broker/">Brokers</a></div>
+      <div class="footer__col"><h4>Contact</h4><a href="https://wa.me/971569636360">WhatsApp</a><a href="mailto:reachus@namou.ae">reachus@namou.ae</a><span>+971 56 963 6360</span></div>
+      <div class="footer__col"><h4>Office</h4><span>1411, Tower B</span><span>Julphar Towers</span><span>Al Hisn Road, RAK</span></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Namou Properties LLC.</span></div>
+  </footer>
+
+  <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20book%20a%20video%20call%20to%20explore%20a%20JV%20with%20Namou." target="_blank" rel="noopener" class="wa-float" aria-label="Schedule a video call">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="../js/motion.js"></script>
+</body>
+</html>
