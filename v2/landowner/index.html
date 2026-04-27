@@ -38,7 +38,7 @@
     /* Tree — vertical step list, sized for the left column of .process-grid.
        Smaller num column and tighter padding so 5 steps match the height
        of the 6-row compare table without inflating type. */
-    .tree { display: flex; flex-direction: column; gap: 14px; flex: 1; }
+    .tree { display: flex; flex-direction: column; justify-content: space-evenly; gap: 14px; flex: 1; }
     .tree__step { display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-alt); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03); transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
     .tree__step:hover { transform: translateY(-4px); border-color: var(--mint);  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04); }
     .tree__num { font-family: "DM Sans", -apple-system, sans-serif; font-size: 2.25rem; font-weight: 500; color: var(--mint); line-height: 1; letter-spacing: -0.03em; }
@@ -176,7 +176,7 @@
     <div class="section__inner">
       <h2 class="section__title motion-fade">Your legal real estate representative.</h2>
       <div class="leader motion-fade">
-        <img class="leader__avatar" src="/assets/images/Nadim%20profile%20picture.jpeg" alt="Nadim Salameh" width="120" height="120" loading="lazy" decoding="async">
+        <img class="leader__avatar" src="/assets/images/nadim-salameh.jpeg" alt="Nadim Salameh" width="1600" height="1600" loading="lazy" decoding="async">
         <div>
           <div class="leader__name">Nadim Salameh</div>
           <div class="leader__role">Chief Operating Officer · Licensed Real Estate Representative, Namou Properties</div>
