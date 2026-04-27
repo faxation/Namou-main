@@ -15,8 +15,19 @@
 
     /* Process + benefits split-screen: tree on the left, 2x2 benefits
        grid on the right. Both columns space-evenly so their content
-       fills the same height with no trailing gap. */
-    .process-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 64px); align-items: stretch; }
+       fills the same height with no trailing gap. Bleeds full-width
+       to match the Sell page's process-grid. */
+    .process-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 4vw, 64px);
+      align-items: stretch;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 0 clamp(24px, 4vw, 80px);
+      box-sizing: border-box;
+    }
     .process-split__col { display: flex; flex-direction: column; justify-content: space-evenly; }
     .process-split__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(1.875rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 28px; }
 
