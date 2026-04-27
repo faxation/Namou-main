@@ -27,7 +27,8 @@
     .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 64px calc(50% - 50vw) 0; width: 100vw; padding: 0 36px; box-sizing: border-box; }
     .screens .call-frame { margin: 0; }
     .screen__cap { padding: 18px 4px 0; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(14px, 1vw, 17px); color: var(--ink-muted); text-align: center; letter-spacing: 0; text-transform: none; }
-    .benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
+    .benefits { display: flex; flex-wrap: wrap; justify-content: space-evenly; gap: 12px; margin-top: 48px; }
+    .benefit { flex: 0 1 calc(25% - 12px); }
     .benefit { padding: 28px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03); transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
     .benefit:hover { transform: translateY(-4px);  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04); }
     .benefit .material-symbols-outlined { font-size: 28px; color: var(--mint); margin-bottom: 16px; }
