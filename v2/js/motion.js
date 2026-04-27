@@ -3,6 +3,19 @@ window.Namou = window.Namou || {};
 window.Namou.PHONE = "971569636360";
 window.Namou.PHONE_DISPLAY = "+971 56 963 6360";
 window.Namou.EMAIL = "reachus@namou.ae";
+
+/* Active nav state — match the current pathname against nav anchors and
+   tag the matching link with aria-current="page" + .is-active. */
+(function () {
+  var path = window.location.pathname.replace(/\/+$/, "") || "/v2";
+  document.querySelectorAll('.nav__links a, .mobile-menu a').forEach(function (a) {
+    var href = a.getAttribute("href").replace(/\/+$/, "");
+    if (href === path) {
+      a.setAttribute("aria-current", "page");
+      a.classList.add("is-active");
+    }
+  });
+})();
 /**
  * Build a wa.me deep link with a pre-filled message.
  * @param {string} msg — plain-text message (will be URL-encoded)
@@ -21,6 +34,7 @@ window.Namou.waUrl = function (msg) {
     function setMenuState(open) {
       mobileMenu.classList.toggle("is-open", open);
       navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      mobileMenu.setAttribute("aria-hidden", open ? "false" : "true");
     }
     navToggle.addEventListener("click", function () {
       setMenuState(!mobileMenu.classList.contains("is-open"));

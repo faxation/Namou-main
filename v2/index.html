@@ -6,6 +6,19 @@
   <meta name="theme-color" content="#003D2E">
   <title>Namou Properties — Land &amp; Commercial Real Estate in RAK</title>
   <meta name="description" content="Verified freehold land and commercial properties in Ras Al Khaimah. Schedule a video call to see live plots and ROI.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Namou Properties — Land & Commercial Real Estate in RAK">
+  <meta property="og:description" content="Verified freehold land and commercial properties in Ras Al Khaimah. Schedule a video call to see live plots and ROI.">
+  <meta property="og:url" content="https://namou-main.vercel.app/v2/">
+  <meta property="og:image" content="https://namou-main.vercel.app/assets/images/Diplomatic_hero.webp">
+  <meta property="og:image:alt" content="Aerial render of Wynn Al Marjan tower with the surrounding RAK coastline">
+  <meta property="og:site_name" content="Namou Properties">
+  <meta property="og:locale" content="en_AE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Namou Properties — Land & Commercial Real Estate in RAK">
+  <meta name="twitter:description" content="Verified freehold land and commercial properties in Ras Al Khaimah. Schedule a video call to see live plots and ROI.">
+  <meta name="twitter:image" content="https://namou-main.vercel.app/assets/images/Diplomatic_hero.webp">
+  <link rel="canonical" href="https://namou-main.vercel.app/v2/">
   <link rel="icon" href="/assets/images/logo-dark.png" type="image/png">
   <link rel="preload" as="image" href="/assets/images/hero-bg-light.png" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +26,42 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=bolt,call,category,compare_arrows,description,directions_car,diversity_3,engineering,forward_to_inbox,gavel,handshake,hub,image,inventory_2,layers,location_on,lock,map,monitoring,paid,payments,public,shield,smart_display,straighten,trending_up,verified&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "Namou Properties",
+    "url": "https://namou-main.vercel.app/v2/",
+    "logo": "https://namou-main.vercel.app/assets/images/logo-dark.png",
+    "image": "https://namou-main.vercel.app/assets/images/Diplomatic_hero.webp",
+    "description": "Verified freehold land and commercial properties in Ras Al Khaimah, UAE. End-to-end accountability for buyers, landowners, JV investors, and brokers.",
+    "telephone": "+971569636360",
+    "email": "reachus@namou.ae",
+    "areaServed": [
+      { "@type": "Place", "name": "Ras Al Khaimah" },
+      { "@type": "Place", "name": "Al Marjan Island" },
+      { "@type": "Place", "name": "Al Hamra" },
+      { "@type": "Place", "name": "Mina Al Arab" },
+      { "@type": "Place", "name": "RAK Central" },
+      { "@type": "Place", "name": "Al Nakheel" },
+      { "@type": "Place", "name": "Dafan Al Maireed" }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1411, Tower B, Julphar Towers, Al Hisn Road",
+      "addressLocality": "Ras Al Khaimah",
+      "addressCountry": "AE"
+    },
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+971569636360",
+      "contactType": "sales",
+      "areaServed": "AE",
+      "availableLanguage": ["English", "Arabic"]
+    }],
+    "sameAs": []
+  }
+  </script>
 </head>
 <body>
 
@@ -33,7 +82,7 @@
   </nav>
 
   <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <a href="/v2/featured-property/">Buy</a>
     <a href="/v2/landowner/">Sell</a>
     <a href="/v2/jv/">Invest</a>
@@ -84,7 +133,7 @@
       <div class="bento">
         <div class="bento__cell bento__cell--hero bento__cell--image motion-fade"
              style="background-image:url('/assets/images/Diplomatic_hero.webp')">
-          <div class="bento__icon"><span class="material-symbols-outlined">trending_up</span></div>
+          <div class="bento__icon"><span class="material-symbols-outlined" aria-hidden="true">trending_up</span></div>
           <div>
             <h3 class="bento__heading">Wynn Resort &amp; a decade of infrastructure ahead.</h3>
             <p class="bento__body">The first Wynn outside the US lands on Al Marjan. New marinas, hotels, and transport pipelines follow.</p>
@@ -92,7 +141,7 @@
         </div>
 
         <div class="bento__cell bento__cell--wide motion-fade">
-          <div class="bento__icon"><span class="material-symbols-outlined">public</span></div>
+          <div class="bento__icon"><span class="material-symbols-outlined" aria-hidden="true">public</span></div>
           <div>
             <h3 class="bento__heading">100% freehold.<br>No local sponsor.</h3>
             <p class="bento__body">Full ownership rights for international buyers — no residency required.</p>
@@ -105,7 +154,7 @@
         </div>
 
         <div class="bento__cell motion-fade">
-          <div class="bento__icon"><span class="material-symbols-outlined">directions_car</span></div>
+          <div class="bento__icon"><span class="material-symbols-outlined" aria-hidden="true">directions_car</span></div>
           <div>
             <h3 class="bento__heading">45 min</h3>
             <p class="bento__body">From Dubai International Airport.</p>
@@ -281,5 +330,20 @@
   </a>
 
   <script src="js/motion.js"></script>
+  <!-- Mobile sticky contact bar (mobile only) -->
+  <nav class="mobile-contact-bar" aria-label="Quick contact">
+    <a class="is-primary" href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20video%20call%20with%20Namou." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="tel:+971569636360">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.7 5.1 6.5 6.5l2.2-2.2a1 1 0 0 1 1-.2c1.1.4 2.3.5 3.5.5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A18 18 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.5 3.5.1.3 0 .7-.2 1l-2.2 2.3z"/></svg>
+      Call
+    </a>
+    <a href="mailto:reachus@namou.ae">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6zm2 0v.4l7 4.6 7-4.6V6H5zm0 2.6V18h14V8.6l-6.4 4.2a1 1 0 0 1-1.1 0L5 8.6z"/></svg>
+      Email
+    </a>
+  </nav>
 </body>
 </html>
