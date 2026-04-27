@@ -16,8 +16,8 @@
        COMPONENTS". WhatsApp chat mockup chrome stays inline — the colors
        are WhatsApp's brand, not Namou's. */
     .tree { display: flex; justify-content: space-evenly; align-items: stretch; width: 100vw; margin: 32px calc(50% - 50vw) 64px; padding: 0; gap: 0; box-sizing: border-box; }
-    .tree__step { flex: 0 0 auto; width: clamp(180px, 14vw, 280px); display: grid; grid-template-columns: 1fr; gap: 16px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-alt); transition: transform 0.5s var(--ease), border-color 0.4s ease; }
-    .tree__step:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .tree__step { flex: 0 0 auto; width: clamp(180px, 14vw, 280px); display: grid; grid-template-columns: 1fr; gap: 16px; padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: var(--bg-alt); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03); transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+    .tree__step:hover { transform: translateY(-4px); border-color: var(--accent);  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04); }
     .tree__num { font-family: "DM Sans", -apple-system, sans-serif; font-size: 2.25rem; font-weight: 500; color: var(--mint); line-height: 1; }
     .tree__head { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.15rem; margin-bottom: 8px; letter-spacing: -0.02em; }
     .tree__body { color: var(--ink-muted); font-size: 13px; line-height: 1.55; margin-bottom: 12px; }
@@ -29,8 +29,8 @@
     .screen img { width: 100%; display: block; }
     .screen__cap { padding: 24px 28px; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(14px, 1vw, 18px); color: var(--ink); text-align: center; border-top: 1px solid var(--line); }
     .benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
-    .benefit { padding: 28px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); transition: transform 0.5s var(--ease); }
-    .benefit:hover { transform: translateY(-4px); }
+    .benefit { padding: 28px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03); transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+    .benefit:hover { transform: translateY(-4px);  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04); }
     .benefit .material-symbols-outlined { font-size: 28px; color: var(--mint); margin-bottom: 16px; }
     .benefit h4 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.1rem; margin-bottom: 6px; }
     .benefit p { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }

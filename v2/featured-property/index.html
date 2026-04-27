@@ -180,14 +180,36 @@
       });
       return active;
     }
+    /* showAnimated / hideAnimated — toggle .is-visible after a paint so the
+       enter transition (opacity + translateY + blur) actually runs. */
+    function showAnimated(el) {
+      if (!el || el.classList.contains('is-visible')) return;
+      el.removeAttribute('hidden');
+      el.classList.add('is-mounting');
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          el.classList.add('is-visible');
+          el.classList.remove('is-mounting');
+        });
+      });
+    }
+    function hideAnimated(el) {
+      if (!el || !el.classList.contains('is-visible')) { if (el) el.setAttribute('hidden', ''); return; }
+      el.classList.remove('is-visible');
+      var done = function () {
+        el.setAttribute('hidden', '');
+        el.removeEventListener('transitionend', done);
+      };
+      el.addEventListener('transitionend', done);
+    }
     function renderChips() {
       var active = getActive();
       var box = document.getElementById('fpChips');
-      if (active.length === 0) { box.hidden = true; box.innerHTML = ''; return; }
-      box.hidden = false;
+      if (active.length === 0) { hideAnimated(box); box.innerHTML = ''; return; }
       box.innerHTML = active.map(function(c) {
         return '<span class="filter-chip">' + esc(chipLabel(c.key, c.value)) + '<button type="button" class="filter-chip__close" data-clear="' + c.key + '" aria-label="Remove ' + esc(chipLabel(c.key, c.value)) + ' filter">×</button></span>';
       }).join('') + '<button type="button" class="filter-clear" id="fpClearInline">Clear all</button>';
+      showAnimated(box);
     }
     function validate() {
       var minS = parseInt(document.getElementById('filterMinSqft').value);
@@ -197,7 +219,7 @@
       var err = document.getElementById('fpFilterError');
       var invalid = !!(minS && maxS && minS > maxS);
       [minF, maxF].forEach(function(f) { f.classList.toggle('filter--invalid', invalid); });
-      err.style.display = invalid ? 'block' : 'none';
+      if (invalid) showAnimated(err); else hideAnimated(err);
       return !invalid;
     }
     function clearAll() {
@@ -211,12 +233,23 @@
     function render(plots) {
       var grid = document.getElementById('fpGrid'), empty = document.getElementById('fpEmpty'), count = document.getElementById('fpCount');
       count.textContent = plots.length + ' propert' + (plots.length === 1 ? 'y' : 'ies') + ' found';
-      if (plots.length === 0) { grid.innerHTML = ''; empty.hidden = false; return; }
-      empty.hidden = true;
+      if (plots.length === 0) { grid.innerHTML = ''; showAnimated(empty); return; }
+      hideAnimated(empty);
       grid.innerHTML = plots.map(function(p) {
         var waHref = Namou.waUrl("Hi, I'd like to schedule a video call to review: " + p.name + ' (' + p.area + ', ' + p.sqft.toLocaleString() + ' sqft).');
-        return '<div class="card"><div class="card__top"><span class="card__price">' + esc(p.priceLabel) + '<span class="card__price-usd">' + fmtUSD(p.price) + ' USD</span></span><span class="card__cat">' + esc(p.cat) + '</span></div><div class="card__area">' + esc(p.area) + '</div><div class="card__details"><div class="card__detail"><span class="material-symbols-outlined">straighten</span>' + p.sqft.toLocaleString() + ' sqft</div><div class="card__detail"><span class="material-symbols-outlined">layers</span>FAR ' + esc(p.far) + '</div></div><a href="' + waHref + '" target="_blank" rel="noopener" class="card__cta">Schedule a video call</a></div>';
+        return '<div class="card card--enter"><div class="card__top"><span class="card__price">' + esc(p.priceLabel) + '<span class="card__price-usd">' + fmtUSD(p.price) + ' USD</span></span><span class="card__cat">' + esc(p.cat) + '</span></div><div class="card__area">' + esc(p.area) + '</div><div class="card__details"><div class="card__detail"><span class="material-symbols-outlined">straighten</span>' + p.sqft.toLocaleString() + ' sqft</div><div class="card__detail"><span class="material-symbols-outlined">layers</span>FAR ' + esc(p.far) + '</div></div><a href="' + waHref + '" target="_blank" rel="noopener" class="card__cta">Schedule a video call</a></div>';
       }).join('');
+      // Stagger card entrance
+      var cards = grid.querySelectorAll('.card');
+      cards.forEach(function (c, i) {
+        c.style.transitionDelay = (i * 35) + 'ms';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            c.classList.add('card--in');
+            c.classList.remove('card--enter');
+          });
+        });
+      });
     }
     function apply() {
       if (!validate()) { renderChips(); return; }

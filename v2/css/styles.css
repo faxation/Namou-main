@@ -105,7 +105,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   position: relative;
   color: #ffffff;
   opacity: 0.9;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s var(--ease);
 }
 .nav__links a:hover { opacity: 1; }
 .nav__links a::after {
@@ -136,7 +136,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   height: 2px;
   background: #ffffff;
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--ease);
 }
 
 @media (max-width: 768px) {
@@ -406,12 +406,14 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   justify-content: center;
   align-items: center;
   gap: 16px;
-  transition: transform 0.6s var(--ease), border-color 0.4s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
   text-align: center;
 }
 .bento__cell:hover {
   transform: translateY(-4px);
   border-color: var(--accent);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .bento__cell--wide { grid-column: span 2; }
@@ -592,7 +594,8 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   border-radius: 24px;
   background: var(--bg-alt);
   border: 1px solid var(--line);
-  transition: transform 0.6s var(--ease), background 0.4s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -605,6 +608,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   transform: translateY(-6px);
   background: var(--ink);
   color: var(--bg);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18), 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 .lane:hover .lane__body { color: rgba(255, 255, 255, 0.75); }
 .lane:hover .lane__sub { color: rgba(255, 255, 255, 0.9); }
@@ -620,7 +624,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   letter-spacing: -0.02em;
   line-height: 1.05;
   text-transform: none;
-  transition: color 0.4s ease;
+  transition: color 0.4s var(--ease);
 }
 .lane:hover .lane__eyebrow { color: var(--bg); }
 
@@ -639,7 +643,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   font-size: 13px;
   color: var(--ink-muted);
   line-height: 1.6;
-  transition: color 0.4s ease;
+  transition: color 0.4s var(--ease);
   max-width: 280px;
 }
 
@@ -770,6 +774,18 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   bottom: 0;
   right: 0;
 }
+/* Diagonal entrance: top tablet drifts in from upper-left, bottom from lower-right.
+   Matches the diagonal split composition. Triggered when .reveal section is in view. */
+.reveal__tablet--top.motion-fade {
+  transform: translate(-12px, -12px);
+}
+.reveal__tablet--bottom.motion-fade {
+  transform: translate(12px, 12px);
+}
+.reveal__tablet--top.motion-in,
+.reveal__tablet--bottom.motion-in {
+  transform: translate(0, 0);
+}
 .reveal__tablet::before {
   content: "";
   position: absolute;
@@ -823,6 +839,9 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   overflow: hidden;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  /* Edge fade — premium ticker; replaces hard cut-off at viewport edges */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
 }
 
 .marquee__track {
@@ -831,7 +850,11 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   animation: marqueeScroll 40s linear infinite;
   white-space: nowrap;
   width: max-content;
+  /* Pause-on-hover affordance — accessibility + premium "let me read this" */
+  transition: animation-duration 0.4s var(--ease);
 }
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track { animation-play-state: paused; }
 
 .marquee__item {
   font-family: "DM Sans", -apple-system, sans-serif;
@@ -886,7 +909,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   line-height: 1.3;
   color: var(--ink);
   padding-right: 60px;
-  transition: color 0.3s ease;
+  transition: color 0.3s var(--ease);
 }
 .faq__item summary:hover { color: var(--accent); }
 .faq__item summary::-webkit-details-marker { display: none; }
@@ -907,7 +930,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   font-size: 22px;
   font-weight: 300;
   color: var(--ink);
-  transition: transform 0.4s var(--ease), background 0.3s ease;
+  transition: transform 0.4s var(--ease), background 0.3s var(--ease);
 }
 .faq__item[open] summary::after {
   content: "–";
@@ -931,7 +954,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   border-top: 1px solid var(--line);
   margin-top: 4px;
 }
-.faq__source a { color: var(--accent); text-decoration: underline; text-decoration-color: transparent; transition: text-decoration-color 0.3s ease; }
+.faq__source a { color: var(--accent); text-decoration: underline; text-decoration-color: transparent; transition: text-decoration-color 0.3s var(--ease); }
 .faq__source a:hover { text-decoration-color: var(--accent); }
 
 /* =====================================================
@@ -1014,7 +1037,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   font-size: 14px;
   color: var(--ink);
   margin-bottom: 10px;
-  transition: color 0.2s ease;
+  transition: color 0.2s var(--ease);
 }
 .footer__col a:hover { color: var(--accent); }
 .footer__bottom {
@@ -1060,13 +1083,26 @@ h1, h2, h3, h4 { text-transform: capitalize; }
 /* =====================================================
    MOTION — initial hidden state for GSAP
    ===================================================== */
-.motion-fade { opacity: 0; transform: translateY(40px); }
-.motion-in { opacity: 1; transform: translateY(0); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+/* Jakub enter recipe: opacity + translateY(8px) + blur(4px), 0.45s ease-out-quart.
+   Materializing effect — feels physical, not theatrical. Movement caps at 8px so
+   reveals don't read as "this section was elsewhere a moment ago." */
+.motion-fade { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+.motion-in {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition:
+    opacity 0.45s var(--ease),
+    transform 0.45s var(--ease),
+    filter 0.45s var(--ease);
+}
 
-.scrub-word { opacity: 0.2; transition: opacity 0.3s ease; }
+/* Reveal scrub: 0.45 baseline reads as "draft / pending highlight" rather than
+   "broken first paint" before scroll reaches the section. */
+.scrub-word { opacity: 0.45; transition: opacity 0.3s var(--ease); }
 .scrub-word.active { opacity: 1; }
 
-/* Mobile menu overlay */
+/* Mobile menu overlay — translateY + opacity; per-link stagger via nth-child */
 .mobile-menu {
   position: fixed;
   inset: 0;
@@ -1078,11 +1114,13 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   justify-content: center;
   gap: 32px;
   opacity: 0;
+  transform: translateY(-8px);
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
 }
 .mobile-menu.is-open {
   opacity: 1;
+  transform: translateY(0);
   pointer-events: auto;
 }
 .mobile-menu a {
@@ -1091,7 +1129,15 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--ink);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), color 0.2s var(--ease);
 }
+.mobile-menu.is-open a { opacity: 1; transform: translateY(0); }
+.mobile-menu.is-open a:nth-child(1) { transition-delay: 80ms; }
+.mobile-menu.is-open a:nth-child(2) { transition-delay: 130ms; }
+.mobile-menu.is-open a:nth-child(3) { transition-delay: 180ms; }
+.mobile-menu.is-open a:nth-child(4) { transition-delay: 230ms; }
 .mobile-menu a:hover { color: var(--accent); }
 
 
@@ -1192,15 +1238,27 @@ textarea::placeholder {
   padding: 14px 26px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  transition: background-color 200ms var(--ease), transform 200ms var(--ease);
+  box-shadow: 0 1px 2px rgba(0, 61, 46, 0.08);
+  transition:
+    background-color 200ms var(--ease),
+    transform 200ms var(--ease),
+    box-shadow 200ms var(--ease);
   border: none;
 }
-.btn--primary:hover { background: var(--accent-hover); color: var(--accent-deep); }
+.btn--primary:hover {
+  background: var(--accent-hover);
+  color: var(--accent-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 61, 46, 0.18), 0 1px 2px rgba(0, 61, 46, 0.08);
+}
+.btn--primary:active { transform: translateY(0); }
 .btn--primary:focus-visible,
 .btn--ghost:focus-visible {
   outline: 2px solid var(--accent-deep);
   outline-offset: 3px;
 }
+.btn--primary svg { transition: transform 200ms var(--ease); }
+.btn--primary:hover svg { transform: translateX(2px); }
 .btn--primary svg path { stroke: var(--accent-deep); }
 
 /* Italic-serif rationing — one .serif span per page. Subsequent .serif spans
@@ -1526,7 +1584,7 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
   border-radius: 20px;
   background: var(--bg-alt);
   border: 1px solid var(--line);
-  transition: transform 0.5s var(--ease), border-color 0.4s ease;
+  transition: transform 0.5s var(--ease), border-color 0.4s var(--ease);
 }
 .card:hover { transform: translateY(-4px); border-color: var(--accent); }
 .card__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
@@ -1567,7 +1625,7 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
   font-family: "DM Sans", -apple-system, sans-serif;
   font-weight: 600;
   font-size: 13px;
-  transition: background 0.2s ease;
+  transition: background 0.2s var(--ease);
 }
 .card__cta:hover { background: var(--accent-hover); }
 
@@ -1704,8 +1762,17 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
   padding: 9px;
   background: var(--device-shell);
   border-radius: 13% / 6.5%;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
   box-shadow:
     0 32px 70px rgba(0,0,0,0.45),
+    inset 0 0 0 2px var(--device-bezel-1),
+    inset 0 0 0 4px var(--device-bezel-2),
+    inset 0 0 0 5px var(--device-bezel-1);
+}
+.jv-phone:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow:
+    0 44px 90px rgba(0, 0, 0, 0.55),
     inset 0 0 0 2px var(--device-bezel-1),
     inset 0 0 0 4px var(--device-bezel-2),
     inset 0 0 0 5px var(--device-bezel-1);
@@ -1831,7 +1898,7 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
   border-radius: 20px;
   overflow: hidden;
   background: var(--bg-alt);
-  transition: transform 0.5s var(--ease), border-color 0.4s ease;
+  transition: transform 0.5s var(--ease), border-color 0.4s var(--ease);
   display: flex;
   flex-direction: column;
 }
@@ -1891,5 +1958,107 @@ p, li, dd, dt, blockquote, figcaption, label, input, textarea, select, button {
   }
   .marquee__track { animation: none; transform: none; }
   .scrub-word { opacity: 1 !important; }
-  .motion-fade { opacity: 1 !important; transform: none !important; }
+  .motion-fade { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
+/* =============================================================
+   Buy page state animations — chips, empty state, validation, plot grid.
+   Replaces the previous instant `hidden`/`display` toggles with
+   fade + 4px lift + light blur over 200-220ms.
+   ============================================================= */
+.filter-chips,
+.filter__error,
+.empty {
+  opacity: 0;
+  transform: translateY(4px);
+  filter: blur(2px);
+  transition:
+    opacity 0.22s var(--ease),
+    transform 0.22s var(--ease),
+    filter 0.22s var(--ease);
+  pointer-events: none;
+}
+.filter-chips.is-visible,
+.filter__error.is-visible,
+.empty.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  pointer-events: auto;
+}
+.filter-chips:not(.is-visible),
+.filter__error:not(.is-visible),
+.empty:not(.is-visible) { display: none; }
+.filter-chips.is-mounting,
+.filter__error.is-mounting,
+.empty.is-mounting { display: flex; }
+.empty.is-mounting,
+.empty.is-visible { display: block; }
+.filter-chips.is-mounting,
+.filter-chips.is-visible { display: flex; }
+
+/* Plot card stagger on enter (filtered re-render) */
+.card.card--enter {
+  opacity: 0;
+  transform: translateY(8px);
+  filter: blur(4px);
+}
+.card.card--in {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition:
+    opacity 0.32s var(--ease),
+    transform 0.32s var(--ease),
+    filter 0.32s var(--ease);
+}
+
+/* =============================================================
+   View Transitions API — cross-page navigation continuity.
+   Modern browsers cross-fade the page on same-origin nav; nav pill
+   keeps its position via view-transition-name. Gracefully degrades
+   on unsupported browsers (full reload as before).
+   ============================================================= */
+@view-transition { navigation: auto; }
+.nav { view-transition-name: nav-pill; }
+.footer { view-transition-name: footer-panel; }
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =============================================================
+   Scroll-progress indicator — 1px line at the very top of the
+   viewport. Uses scroll-driven animation timeline where supported,
+   no-ops elsewhere. Restraint-first: 1px tall, --mint colored.
+   ============================================================= */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--mint);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 1001;
+  pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: scrollProgress linear;
+    animation-timeline: scroll(root);
+  }
+  @keyframes scrollProgress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+}
+
+/* Stat count-up — set --count via JS; CSS animates the @property numeric */
+@property --stat-count {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
 }
