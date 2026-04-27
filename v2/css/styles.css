@@ -707,16 +707,9 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   display: flex;
   flex-direction: column;
   gap: 48px;
-  height: 100%;
 }
-/* Title hugs top edge of column (= top of upper tablet on the right).
-   CTA is pushed to the bottom edge (= bottom of lower tablet) via
-   margin-top: auto so the column visually frames the diagonal pair. */
-.reveal__text { margin-top: 0; }
-.reveal__cta {
-  margin-top: auto;
-  align-self: flex-start;
-}
+/* CTA flows naturally after the steps (matches call-showcase alignment) */
+.reveal__cta { align-self: flex-start; }
 
 .reveal__text {
   position: relative;
