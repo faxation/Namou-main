@@ -15,7 +15,7 @@
        Items inside each column stretch to fill, so columns end at
        roughly the same height with no empty trailing space. */
     .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 64px); align-items: stretch; }
-    .process-grid__col { display: flex; flex-direction: column; }
+    .process-grid__col { display: flex; flex-direction: column; justify-content: space-evenly; }
     .process-grid__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(1.875rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 28px; }
 
     .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 48px; }
@@ -24,16 +24,11 @@
     .stat__num { font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1; margin-bottom: 8px; }
     .stat__lbl { font-size: 12px; color: var(--ink-muted); line-height: 1.4; }
 
-    /* Compare table — converted to flex layout so its rows distribute
-       space-evenly across the column height, matching the .tree on the
-       left. Visual layout (header row + 6 data rows) stays the same. */
-    .compare { width: 100%; flex: 1; display: flex; flex-direction: column; background: var(--bg-alt); border-radius: 20px; overflow: hidden; border: 1px solid var(--line); }
-    .compare thead, .compare tbody { display: flex; flex-direction: column; }
-    .compare tbody { flex: 1; justify-content: space-evenly; }
-    .compare tr { display: flex; align-items: center; width: 100%; }
-    .compare th, .compare td { flex: 1; padding: 18px 20px; text-align: left; font-size: 15px; line-height: 1.45; border-bottom: 1px solid var(--line); }
+    /* Compare table — native table layout. */
+    .compare { width: 100%; flex: 1; border-collapse: collapse; background: var(--bg-alt); border-radius: 20px; overflow: hidden; border: 1px solid var(--line); }
+    .compare th, .compare td { padding: 18px 20px; text-align: left; font-size: 15px; line-height: 1.45; border-bottom: 1px solid var(--line); }
     .compare th { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; color: var(--ink-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
-    .compare th:first-child, .compare td:first-child { flex: 0 0 34%; font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 14px; color: var(--ink); }
+    .compare td:first-child { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 14px; color: var(--ink); width: 34%; }
     .compare .cell-non { color: var(--ink-muted); }
     .compare .cell-exc { color: var(--ink); font-weight: 500; }
     .compare tr:last-child th, .compare tr:last-child td { border-bottom: none; }
@@ -48,10 +43,9 @@
     .tree__head { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.125rem; letter-spacing: -0.02em; margin-bottom: 4px; }
     .tree__body { color: var(--ink-muted); font-size: 14px; line-height: 1.55; }
 
-    /* Mid-page deep-green moment: Nadim's section sits on var(--accent-deep)
-       and flows directly into the CTA-final (also deep-green) so the
-       closing of the page reads as one continuous trust-+-action band:
-       portrait + bio → "Talk through your proposal" → final CTA. */
+    /* Mid-page deep-green moment: Nadim's section + Proven track record
+       sit side-by-side in a 2-column grid on var(--accent-deep) and flow
+       directly into the CTA-final (also deep-green). */
     .section--leader {
       background: var(--accent-deep);
       color: #ffffff;
@@ -60,18 +54,19 @@
       padding: 96px 24px 72px;
       box-sizing: border-box;
     }
-    .section--leader .section__title { color: #ffffff; text-align: center; }
+    .leader-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 4vw, 64px); align-items: stretch; max-width: 1200px; margin: 0 auto; }
+    .leader-grid__col { display: flex; flex-direction: column; }
+    .leader-grid__title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(1.875rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 28px; color: #ffffff; }
     .leader {
       display: flex;
       align-items: center;
-      gap: 32px;
-      padding: 32px;
+      gap: 28px;
+      padding: 28px;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 24px;
       background: rgba(255, 255, 255, 0.04);
       color: rgba(255, 255, 255, 0.88);
-      max-width: 820px;
-      margin: 48px auto 0;
+      flex: 1;
     }
     img.leader__avatar {
       width: 120px;
@@ -93,12 +88,34 @@
     }
     .leader .btn--phone:hover { border-color: var(--mint); color: var(--mint); }
 
+    /* Stats restyled for the deep-green panel — translucent white cards,
+       white numbers, mint labels, 2x2 grid in the right column. */
+    .section--leader .stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 0;
+      flex: 1;
+    }
+    .section--leader .stat {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 130px;
+    }
+    .section--leader .stat:hover { border-color: var(--mint); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25); }
+    .section--leader .stat__num { color: #ffffff; }
+    .section--leader .stat__lbl { color: rgba(255, 255, 255, 0.7); }
+
     @media (max-width: 900px) {
       .stats { grid-template-columns: repeat(2, 1fr); }
       .process-grid { grid-template-columns: 1fr; gap: 56px; }
       .compare { font-size: 13px; }
       .compare th, .compare td { padding: 14px 16px; font-size: 14px; }
       .leader { flex-direction: column; text-align: center; gap: 20px; padding: 28px; }
+      .leader-grid { grid-template-columns: 1fr; gap: 56px; }
     }
     @media (max-width: 500px) { .tree__step { grid-template-columns: 1fr; gap: 8px; } }
   </style>
@@ -164,29 +181,34 @@
         </div>
       </div>
 
-      <h2 class="section__title motion-fade" style="margin-top:96px;">Proven track record.</h2>
-      <div class="stats">
-        <div class="stat motion-fade"><div class="stat__num">1,000+</div><div class="stat__lbl">Residential developers</div></div>
-        <div class="stat motion-fade"><div class="stat__num">500+</div><div class="stat__lbl">Hospitality families</div></div>
-        <div class="stat motion-fade"><div class="stat__num">25,000+</div><div class="stat__lbl">Broker network</div></div>
-        <div class="stat motion-fade"><div class="stat__num">~30M</div><div class="stat__lbl">Avg deal size (AED)</div></div>
-      </div>
-
     </div>
   </section>
 
   <section class="section section--leader">
     <div class="section__inner">
-      <h2 class="section__title motion-fade">Your legal real estate representative.</h2>
-      <div class="leader motion-fade">
-        <img class="leader__avatar" src="/assets/images/nadim-salameh.jpeg" alt="Nadim Salameh" width="1600" height="1600" loading="lazy" decoding="async">
-        <div>
-          <div class="leader__name">Nadim Salameh</div>
-          <div class="leader__role">Chief Operating Officer · Licensed Real Estate Representative, Namou Properties</div>
-          <p class="leader__bio">10+ years in high-value land transactions across RAK. Your single point of accountability from listing through to legal transfer.</p>
-          <div class="leader__ctas">
-            <a href="https://wa.me/971569636360?text=Hi%20Nadim%2C%20I%27d%20like%20to%20schedule%20a%20video%20call%20to%20list%20my%20land." target="_blank" rel="noopener" class="btn btn--primary">Schedule a video call</a>
-            <a href="tel:+971569636360" class="btn btn--phone"><span class="material-symbols-outlined" aria-hidden="true">call</span>+971 56 963 6360</a>
+      <div class="leader-grid motion-fade">
+        <div class="leader-grid__col">
+          <h2 class="leader-grid__title">Your legal real estate representative.</h2>
+          <div class="leader">
+            <img class="leader__avatar" src="/assets/images/nadim-salameh.jpeg" alt="Nadim Salameh" width="1600" height="1600" loading="lazy" decoding="async">
+            <div>
+              <div class="leader__name">Nadim Salameh</div>
+              <div class="leader__role">Chief Operating Officer · Licensed Real Estate Representative, Namou Properties</div>
+              <p class="leader__bio">10+ years in high-value land transactions across RAK. Your single point of accountability from listing through to legal transfer.</p>
+              <div class="leader__ctas">
+                <a href="https://wa.me/971569636360?text=Hi%20Nadim%2C%20I%27d%20like%20to%20schedule%20a%20video%20call%20to%20list%20my%20land." target="_blank" rel="noopener" class="btn btn--primary">Schedule a video call</a>
+                <a href="tel:+971569636360" class="btn btn--phone"><span class="material-symbols-outlined" aria-hidden="true">call</span>+971 56 963 6360</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="leader-grid__col">
+          <h2 class="leader-grid__title">Proven track record.</h2>
+          <div class="stats">
+            <div class="stat"><div class="stat__num">1,000+</div><div class="stat__lbl">Residential developers</div></div>
+            <div class="stat"><div class="stat__num">500+</div><div class="stat__lbl">Hospitality families</div></div>
+            <div class="stat"><div class="stat__num">25,000+</div><div class="stat__lbl">Broker network</div></div>
+            <div class="stat"><div class="stat__num">~30M</div><div class="stat__lbl">Avg deal size (AED)</div></div>
           </div>
         </div>
       </div>
