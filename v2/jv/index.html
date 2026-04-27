@@ -27,25 +27,44 @@
     .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 64px calc(50% - 50vw) 0; width: 100vw; padding: 0 36px; box-sizing: border-box; }
     .screens .call-frame { margin: 0; }
     .screen__cap { padding: 18px 4px 0; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(14px, 1vw, 17px); color: var(--ink-muted); text-align: center; letter-spacing: 0; text-transform: none; }
-    .benefits { display: flex; flex-wrap: wrap; justify-content: space-evenly; gap: 12px; margin-top: 48px; }
-    .benefit { flex: 0 1 calc(25% - 12px); }
-    .benefit { padding: 28px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03); transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
-    .benefit:hover { transform: translateY(-4px);  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04); }
-    .benefit .material-symbols-outlined { font-size: 28px; color: var(--mint); margin-bottom: 16px; }
-    .benefit h4 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.1rem; margin-bottom: 6px; }
-    .benefit p { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+    /* Benefits restyled for the deep-green cta-final--jv panel.
+       Translucent white cards, white headings, mint icons. 2x2 grid
+       inside the left column of the split. */
+    .cta-final--jv .benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0; }
+    .cta-final--jv .benefit {
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: none;
+      color: rgba(255, 255, 255, 0.88);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+    .cta-final--jv .benefit:hover { transform: translateY(-4px); border-color: var(--mint); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25); }
+    .cta-final--jv .benefit .material-symbols-outlined { font-size: 28px; color: var(--mint); margin-bottom: 8px; }
+    .cta-final--jv .benefit h4 { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: 1.05rem; letter-spacing: -0.01em; color: #ffffff; margin-bottom: 4px; }
+    .cta-final--jv .benefit p { font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.5; }
 
     /* JV hero backdrop — page-only */
     .hero { background-image: url("/assets/images/al-maareed-corniche.jpg"); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh; justify-content: center; padding-top: 24px; padding-bottom: 24px; }
     .hero .hero__inner { flex: 0 1 auto; }
     .hero .hero__subtitle { color: #ffffff; }
 
-    /* JV CTA-final: 2-col grid with WhatsApp chat phone on the right */
+    /* JV CTA-final: 2-column split-screen.
+       Left col: "Why investors choose Namou" + 2x2 benefits grid.
+       Right col: "Model the numbers on a call" + CTA + WhatsApp phone
+       (its own internal copy/phone sub-grid). */
     .cta-final--jv { padding: 100px 48px; }
-    .cta-final--jv .cta-final__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: stretch; max-width: 1320px; margin: 0 auto; position: relative; }
-    .cta-final--jv .cta-final__copy { display: flex; flex-direction: column; justify-content: space-between; align-items: center; text-align: center; }
-    .cta-final--jv .cta-final__title { margin-bottom: 0; }
-    .cta-final--jv .cta-final__sub { margin: 32px auto; }
+    .cta-final--jv .cta-final__inner--split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(48px, 6vw, 96px); align-items: stretch; max-width: 1400px; margin: 0 auto; position: relative; }
+    .cta-final__benefits-col { display: flex; flex-direction: column; justify-content: center; gap: clamp(28px, 3vw, 40px); text-align: left; }
+    .cta-final__split-title { font-family: "DM Sans", -apple-system, sans-serif; font-weight: 500; font-size: clamp(1.875rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -0.03em; color: #ffffff; margin: 0; }
+    .cta-final__action-col { display: grid; grid-template-columns: 1fr auto; gap: clamp(28px, 3vw, 48px); align-items: center; }
+    .cta-final--jv .cta-final__copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; gap: 24px; }
+    .cta-final--jv .cta-final__title { margin-bottom: 0; text-align: left; }
+    .cta-final--jv .cta-final__sub { margin: 0; text-align: left; }
     .cta-final--jv .cta-final__actions { margin-top: 0; }
     .cta-final--jv .cta-final__phone-col { display: flex; align-items: stretch; justify-content: center; }
     .cta-final__phone { position: relative; height: 100%; aspect-ratio: 9 / 19; padding: 9px; background: var(--device-shell); border-radius: 13% / 6.5%; box-shadow: 0 32px 70px rgba(0,0,0,0.45), inset 0 0 0 2px var(--device-bezel-1), inset 0 0 0 4px var(--device-bezel-2), inset 0 0 0 5px var(--device-bezel-1); max-width: 320px; }
@@ -64,7 +83,18 @@
     .wa-msg--out { background: #d9fdd3; align-self: flex-end; border-top-right-radius: 0; }
     .wa-msg__time { position: absolute; bottom: 2px; right: 6px; font-size: 10px; color: rgba(0,0,0,0.45); }
 
-    @media (max-width: 900px) { .cta-final--jv .cta-final__inner { grid-template-columns: 1fr; gap: 48px; } .cta-final--jv .cta-final__copy { order: 1; } .cta-final--jv .cta-final__phone-col { order: 2; } .cta-final__phone { height: auto; width: 240px; aspect-ratio: 9/19; } }
+    @media (max-width: 900px) {
+      .cta-final--jv .cta-final__inner--split { grid-template-columns: 1fr; gap: 56px; }
+      .cta-final__action-col { grid-template-columns: 1fr; gap: 32px; }
+      .cta-final--jv .cta-final__copy { order: 1; align-items: center; text-align: center; }
+      .cta-final--jv .cta-final__title, .cta-final--jv .cta-final__sub { text-align: center; }
+      .cta-final--jv .cta-final__phone-col { order: 2; }
+      .cta-final__phone { height: auto; width: 240px; aspect-ratio: 9/19; }
+      .cta-final--jv .benefits { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .cta-final--jv .benefits { grid-template-columns: 1fr; }
+    }
 
     @media (max-width: 1024px) { .tree { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 900px) { .benefits { grid-template-columns: repeat(2, 1fr); } .screens { grid-template-columns: 1fr; } .tree { grid-template-columns: repeat(2, 1fr); } .jv-phones { grid-template-columns: 1fr; } }
@@ -133,41 +163,45 @@
         </div>
       </div>
 
-      <h2 class="section__title motion-fade" style="margin-top:100px;">Why investors choose Namou.</h2>
-      <div class="benefits">
-        <div class="benefit motion-fade"><span class="material-symbols-outlined">hub</span><h4>End-to-end matchmaking</h4><p>Investors paired with landowners, contractors, and operators for each deal.</p></div>
-        <div class="benefit motion-fade"><span class="material-symbols-outlined">shield</span><h4>Vetted partners</h4><p>Every partner selected for track record, financial standing, and delivery capability.</p></div>
-        <div class="benefit motion-fade"><span class="material-symbols-outlined">monitoring</span><h4>Transparent projections</h4><p>Build cost, GDV, and profit margins modelled before you commit.</p></div>
-        <div class="benefit motion-fade"><span class="material-symbols-outlined">diversity_3</span><h4>Accessible entry</h4><p>Participate in large-scale developments at a fraction of standalone cost.</p></div>
-      </div>
     </div>
   </section>
 
   <section class="cta-final cta-final--jv">
-    <div class="cta-final__inner">
-      <div class="cta-final__copy">
-        <h2 class="cta-final__title">Model the numbers<br>on a call</h2>
-        <p class="cta-final__sub">Tell us what you're looking for — we'll walk you through build cost, GDV, and returns live.</p>
-        <div class="cta-final__actions">
-          <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20book%20a%20video%20call%20to%20model%20a%20JV%20opportunity%20with%20Namou." target="_blank" rel="noopener" class="btn btn--primary">Schedule a video call</a>
+    <div class="cta-final__inner cta-final__inner--split">
+      <div class="cta-final__benefits-col motion-fade">
+        <h3 class="cta-final__split-title">Why investors choose Namou.</h3>
+        <div class="benefits">
+          <div class="benefit"><span class="material-symbols-outlined">hub</span><h4>End-to-end matchmaking</h4><p>Investors paired with landowners, contractors, and operators for each deal.</p></div>
+          <div class="benefit"><span class="material-symbols-outlined">shield</span><h4>Vetted partners</h4><p>Every partner selected for track record, financial standing, and delivery capability.</p></div>
+          <div class="benefit"><span class="material-symbols-outlined">monitoring</span><h4>Transparent projections</h4><p>Build cost, GDV, and profit margins modelled before you commit.</p></div>
+          <div class="benefit"><span class="material-symbols-outlined">diversity_3</span><h4>Accessible entry</h4><p>Participate in large-scale developments at a fraction of standalone cost.</p></div>
         </div>
       </div>
-      <div class="cta-final__phone-col" aria-hidden="true">
-        <div class="cta-final__phone">
-          <div class="cta-final__phone-screen">
-            <div class="wa-header">
-              <div class="wa-avatar">N</div>
-              <div class="wa-info">
-                <div class="wa-name">Namou Properties</div>
-                <div class="wa-status">online</div>
+      <div class="cta-final__action-col motion-fade">
+        <div class="cta-final__copy">
+          <h2 class="cta-final__title">Model the numbers<br>on a call</h2>
+          <p class="cta-final__sub">Tell us what you're looking for — we'll walk you through build cost, GDV, and returns live.</p>
+          <div class="cta-final__actions">
+            <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20book%20a%20video%20call%20to%20model%20a%20JV%20opportunity%20with%20Namou." target="_blank" rel="noopener" class="btn btn--primary">Schedule a video call</a>
+          </div>
+        </div>
+        <div class="cta-final__phone-col" aria-hidden="true">
+          <div class="cta-final__phone">
+            <div class="cta-final__phone-screen">
+              <div class="wa-header">
+                <div class="wa-avatar">N</div>
+                <div class="wa-info">
+                  <div class="wa-name">Namou Properties</div>
+                  <div class="wa-status">online</div>
+                </div>
               </div>
-            </div>
-            <div class="wa-messages">
-              <div class="wa-msg wa-msg--out">Hi! I came across your website — really interested in your JV opportunities. Could we set up a call?<span class="wa-msg__time">10:24</span></div>
-              <div class="wa-msg wa-msg--in">Hello! Thanks for reaching out — happy to walk you through the JV deck. What works this week?<span class="wa-msg__time">10:25</span></div>
-              <div class="wa-msg wa-msg--out">Thursday afternoon would be ideal.<span class="wa-msg__time">10:26</span></div>
-              <div class="wa-msg wa-msg--in">Perfect — I'll send a calendar invite for Thursday at 3pm.<span class="wa-msg__time">10:26</span></div>
-              <div class="wa-msg wa-msg--out">Thanks, looking forward to it.<span class="wa-msg__time">10:27</span></div>
+              <div class="wa-messages">
+                <div class="wa-msg wa-msg--out">Hi! I came across your website — really interested in your JV opportunities. Could we set up a call?<span class="wa-msg__time">10:24</span></div>
+                <div class="wa-msg wa-msg--in">Hello! Thanks for reaching out — happy to walk you through the JV deck. What works this week?<span class="wa-msg__time">10:25</span></div>
+                <div class="wa-msg wa-msg--out">Thursday afternoon would be ideal.<span class="wa-msg__time">10:26</span></div>
+                <div class="wa-msg wa-msg--in">Perfect — I'll send a calendar invite for Thursday at 3pm.<span class="wa-msg__time">10:26</span></div>
+                <div class="wa-msg wa-msg--out">Thanks, looking forward to it.<span class="wa-msg__time">10:27</span></div>
+              </div>
             </div>
           </div>
         </div>
