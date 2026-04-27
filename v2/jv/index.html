@@ -24,10 +24,9 @@
     .tree__tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); font-family: "DM Sans", -apple-system, sans-serif; font-size: 12px; font-weight: 500; }
     .tag .material-symbols-outlined { font-size: 14px; color: var(--mint); }
-    .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin: 64px calc(50% - 50vw) 0; width: 100vw; padding: 0 36px; box-sizing: border-box; }
-    .screen { border-radius: 32px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-alt); }
-    .screen img { width: 100%; display: block; }
-    .screen__cap { padding: 24px 28px; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(14px, 1vw, 18px); color: var(--ink); text-align: center; border-top: 1px solid var(--line); }
+    .screens { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin: 64px calc(50% - 50vw) 0; width: 100vw; padding: 0 36px; box-sizing: border-box; }
+    .screens .call-frame { margin: 0; }
+    .screen__cap { padding: 18px 4px 0; font-family: "DM Sans", -apple-system, sans-serif; font-size: clamp(14px, 1vw, 17px); color: var(--ink-muted); text-align: center; letter-spacing: 0; text-transform: none; }
     .benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
     .benefit { padding: 28px; border-radius: 20px; background: var(--bg-alt); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03); transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
     .benefit:hover { transform: translateY(-4px);  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04); }
@@ -113,74 +112,22 @@
         <div class="tree__step motion-fade"><div class="tree__num">05</div><div><h3 class="tree__head">Execution and returns</h3><p class="tree__body">Appointed partners manage the build and operations; returns are distributed as agreed.</p><div class="tree__tags"><span class="tag"><span class="material-symbols-outlined">engineering</span>Managed execution</span><span class="tag"><span class="material-symbols-outlined">trending_up</span>Per agreement</span></div></div></div>
       </div>
 
-      <div class="jv-phones motion-fade" aria-label="Joint-Venture investment strategies preview">
-        <div class="jv-phone jv-phone--1">
-          <div class="jv-phone__screen">
-            <div class="jv-card">
-              <span class="jv-card__badge">Developer Exit</span>
-              <h4 class="jv-card__title">Sell-Out Model</h4>
-              <dl class="jv-phone__meta">
-                <dt>Deal size</dt><dd>AED 30–80M</dd>
-                <dt>Target IRR</dt><dd>22–28%</dd>
-                <dt>Horizon</dt><dd>30–42 mo</dd>
-              </dl>
-              <ul class="jv-card__list">
-                <li>Build for sale</li>
-                <li>Profit shared at exit</li>
-                <li>Includes comparison vs land sale today</li>
-              </ul>
-              <span class="jv-card__cta" aria-hidden="true">Open simulator →</span>
-            </div>
-          </div>
-        </div>
-        <div class="jv-phone jv-phone--2">
-          <div class="jv-phone__screen">
-            <div class="jv-card">
-              <span class="jv-card__badge">Tenants</span>
-              <h4 class="jv-card__title">Income Model</h4>
-              <dl class="jv-phone__meta">
-                <dt>Deal size</dt><dd>AED 50–150M</dd>
-                <dt>Target yield</dt><dd>8–11% NOI</dd>
-                <dt>Horizon</dt><dd>10+ years</dd>
-              </dl>
-              <ul class="jv-card__list">
-                <li>Build and lease to tenants</li>
-                <li>Recurring income and NOI</li>
-                <li>Tracks yield, ROI, and payback</li>
-              </ul>
-              <span class="jv-card__cta" aria-hidden="true">Open simulator →</span>
-            </div>
-          </div>
-        </div>
-        <div class="jv-phone jv-phone--3">
-          <div class="jv-phone__screen">
-            <div class="jv-card">
-              <span class="jv-card__badge">Operator</span>
-              <h4 class="jv-card__title">Hospitality Model</h4>
-              <dl class="jv-phone__meta">
-                <dt>Deal size</dt><dd>AED 80M–1.4B</dd>
-                <dt>Target IRR</dt><dd>15–20%</dd>
-                <dt>Horizon</dt><dd>15+ years</dd>
-              </dl>
-              <ul class="jv-card__list">
-                <li>Build and operate as hotel</li>
-                <li>Operator fees deducted first</li>
-                <li>Profit shared after operations</li>
-              </ul>
-              <span class="jv-card__cta" aria-hidden="true">Open simulator →</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <h2 class="section__title motion-fade" style="margin-top:100px;">The Namou simulator.</h2>
       <div class="screens">
-        <div class="screen motion-fade">
-          <img src="/assets/images/jv-strategies.png" alt="JV investment strategies" width="1280" height="900" loading="lazy" decoding="async">
+        <div class="screens__item motion-fade">
+          <div class="call-frame">
+            <div class="call-frame__screen">
+              <img src="/assets/images/jv-strategies.png" alt="JV investment strategies" width="1280" height="900" loading="lazy" decoding="async">
+            </div>
+          </div>
           <div class="screen__cap">Choose from three investment structures</div>
         </div>
-        <div class="screen motion-fade">
-          <img src="/assets/images/jv-simulator.png" alt="JV simulator with live numbers" width="1280" height="900" loading="lazy" decoding="async">
+        <div class="screens__item motion-fade">
+          <div class="call-frame">
+            <div class="call-frame__screen">
+              <img src="/assets/images/jv-simulator.png" alt="JV simulator with live numbers" width="1280" height="900" loading="lazy" decoding="async">
+            </div>
+          </div>
           <div class="screen__cap">Live ROI modelling with real numbers</div>
         </div>
       </div>
