@@ -162,20 +162,18 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   overflow: clip;
 }
 
-/* Masterplan progressive reveal — 150vh outer container holds a sticky 100vh
-   frame. The base masterplan image sits underneath; ten <div> masks tinted to
-   var(--bg) cover the five plots and five building floors. As the page scrolls
-   through the 150vh container, motion.js fades each mask out across its own
-   slice of [0, 1] progress, revealing the plan beneath. CSS divs (not PNGs)
-   so the masks always match the page background and the bounding boxes stay
-   tweakable in DevTools. */
+/* Masterplan progressive reveal — 11 pre-rendered frames (1672×941) cross-fade
+   through a 150vh sticky section as the page scrolls. motion.js maps scroll
+   progress through the section to a frame index and toggles .is-active. The
+   container is full-bleed (matching the old static plan's footprint) and the
+   frame stack uses absolute positioning so swaps never reflow layout. */
 .hero__plan-reveal {
+  position: relative;
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   margin-top: 48px;
   height: 150vh;
-  position: relative;
   pointer-events: none;
   z-index: 0;
 }
@@ -187,43 +185,34 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
-.hero__plan-frame {
+.hero__plan-frames {
   position: relative;
   width: 100%;
-  aspect-ratio: 1792 / 678;
+  aspect-ratio: 1672 / 941;
   max-height: 100vh;
 }
-.hero__plan-base {
+.hero__plan-frame {
   position: absolute;
   inset: 0;
-  background-image: url("/assets/images/hero-bg-light.png");
-  background-size: 100% auto;
-  background-position: center center;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 120ms ease-out;
+  pointer-events: none;
+  user-select: none;
 }
-.hero__plan-mask {
-  position: absolute;
-  background: var(--bg);
-  opacity: 1;
-  transform: translateY(0);
-  will-change: opacity, transform;
-}
-.hero__plan-mask[data-mask="plot-01"] { left: 4%;  top: 42%;   width: 23%; height: 36%; }
-.hero__plan-mask[data-mask="plot-02"] { left: 28%; top: 50%;   width: 14%; height: 28%; }
-.hero__plan-mask[data-mask="plot-03"] { left: 43%; top: 50%;   width: 14%; height: 28%; }
-.hero__plan-mask[data-mask="plot-04"] { left: 58%; top: 50%;   width: 14%; height: 28%; }
-.hero__plan-mask[data-mask="plot-05"] { left: 73%; top: 42%;   width: 23%; height: 36%; }
-.hero__plan-mask[data-mask="floor-1"] { left: 36%; top: 40.4%; width: 28%; height: 5.6%; }
-.hero__plan-mask[data-mask="floor-2"] { left: 36%; top: 34.8%; width: 28%; height: 5.6%; }
-.hero__plan-mask[data-mask="floor-3"] { left: 36%; top: 29.2%; width: 28%; height: 5.6%; }
-.hero__plan-mask[data-mask="floor-4"] { left: 36%; top: 23.6%; width: 28%; height: 5.6%; }
-.hero__plan-mask[data-mask="floor-5"] { left: 36%; top: 18%;   width: 28%; height: 5.6%; }
+.hero__plan-frame.is-active { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   .hero__plan-reveal { height: auto; }
-  .hero__plan-sticky { position: static; height: auto; }
-  .hero__plan-mask { display: none; }
+  .hero__plan-sticky { position: static; height: auto; overflow: visible; }
+  .hero__plan-frames { aspect-ratio: 1672 / 941; max-height: none; }
+  .hero__plan-frame { display: none; }
+  .hero__plan-frame[data-frame="10"] { display: block; opacity: 1; }
 }
 
 .hero__inner {

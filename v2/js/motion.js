@@ -277,57 +277,88 @@ window.Namou.waUrl = function (msg) {
     updateProgress();
   }
 
-  // ── Masterplan progressive reveal — fades 10 mask divs across the 150vh
-  //    container that sits in place of the static hero plan. Bands 0.05–0.40
-  //    reveal five plots left-to-right; 0.45–0.80 peel the building's floors
-  //    bottom-to-top. rAF-throttled; honors reduced-motion (skips entirely,
-  //    matching CSS that flattens the layout for that user).
-  var reveal = document.querySelector(".hero__plan-reveal");
-  if (reveal && !prefersReducedMotion) {
-    var BANDS = [
-      { sel: "plot-01", start: 0.05, end: 0.12 },
-      { sel: "plot-02", start: 0.12, end: 0.19 },
-      { sel: "plot-03", start: 0.19, end: 0.26 },
-      { sel: "plot-04", start: 0.26, end: 0.33 },
-      { sel: "plot-05", start: 0.33, end: 0.40 },
-      { sel: "floor-1", start: 0.45, end: 0.52 },
-      { sel: "floor-2", start: 0.52, end: 0.59 },
-      { sel: "floor-3", start: 0.59, end: 0.66 },
-      { sel: "floor-4", start: 0.66, end: 0.73 },
-      { sel: "floor-5", start: 0.73, end: 0.80 }
-    ];
-    var masks = [];
-    BANDS.forEach(function (b) {
-      var el = reveal.querySelector('[data-mask="' + b.sel + '"]');
-      if (el) masks.push({ el: el, start: b.start, end: b.end });
-    });
-    if (masks.length) {
-      var smoothstep = function (a, b, x) {
-        var t = Math.max(0, Math.min(1, (x - a) / (b - a)));
-        return t * t * (3 - 2 * t);
-      };
-      var revealTicking = false;
-      var updateReveal = function () {
-        var rect = reveal.getBoundingClientRect();
-        var vh = window.innerHeight;
-        var range = rect.height - vh;
-        var progress = range > 0 ? Math.max(0, Math.min(1, -rect.top / range)) : 0;
-        for (var i = 0; i < masks.length; i++) {
-          var m = masks[i];
-          var t = smoothstep(m.start, m.end, progress);
-          m.el.style.opacity = (1 - t).toFixed(3);
-          m.el.style.transform = "translateY(" + (-8 * t).toFixed(2) + "px)";
-        }
-        revealTicking = false;
-      };
-      window.addEventListener("scroll", function () {
-        if (!revealTicking) {
-          revealTicking = true;
-          requestAnimationFrame(updateReveal);
-        }
-      }, { passive: true });
-      window.addEventListener("resize", updateReveal);
-      updateReveal();
+})();
+
+/* Masterplan stop-motion reveal — swaps among 11 pre-rendered frames as the
+   page scrolls through the .hero__plan-reveal section. Threshold table maps
+   scroll progress (0…1 across the 150vh section) to a frame index. CSS handles
+   the 120ms cross-fade via .is-active. Frames preload before the listener
+   activates so the first swap doesn't flash a blank image. Reduced-motion
+   bails out and lets CSS render the final frame statically. */
+(function () {
+  var section = document.querySelector(".hero__plan-reveal");
+  if (!section) return;
+  var frames = section.querySelectorAll(".hero__plan-frame");
+  if (!frames.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var FRAME_THRESHOLDS = [
+    { threshold: 0.00, frame: 0 },
+    { threshold: 0.05, frame: 1 },
+    { threshold: 0.12, frame: 2 },
+    { threshold: 0.19, frame: 3 },
+    { threshold: 0.26, frame: 4 },
+    { threshold: 0.33, frame: 5 },
+    { threshold: 0.45, frame: 6 },
+    { threshold: 0.52, frame: 7 },
+    { threshold: 0.59, frame: 8 },
+    { threshold: 0.66, frame: 9 },
+    { threshold: 0.73, frame: 10 }
+  ];
+
+  var activeFrame = 0;
+  var ticking = false;
+
+  function getFrameForProgress(progress) {
+    var frame = 0;
+    for (var i = 0; i < FRAME_THRESHOLDS.length; i++) {
+      if (progress >= FRAME_THRESHOLDS[i].threshold) {
+        frame = FRAME_THRESHOLDS[i].frame;
+      } else {
+        break;
+      }
+    }
+    return frame;
+  }
+
+  function updateFrame() {
+    ticking = false;
+    var rect = section.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var range = rect.height - vh;
+    if (range <= 0) return;
+    var progress = Math.max(0, Math.min(1, -rect.top / range));
+    var target = getFrameForProgress(progress);
+    if (target !== activeFrame) {
+      frames[activeFrame].classList.remove("is-active");
+      frames[target].classList.add("is-active");
+      activeFrame = target;
     }
   }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateFrame);
+    }
+  }
+
+  function preloadFrames() {
+    var pending = [];
+    for (var i = 0; i < frames.length; i++) {
+      var img = frames[i];
+      if (img.complete && img.naturalWidth > 0) continue;
+      pending.push(new Promise(function (resolve) {
+        img.addEventListener("load", resolve, { once: true });
+        img.addEventListener("error", resolve, { once: true });
+      }));
+    }
+    return Promise.all(pending);
+  }
+
+  preloadFrames().then(function () {
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    updateFrame();
+  });
 })();
