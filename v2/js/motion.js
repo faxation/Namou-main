@@ -323,11 +323,16 @@ window.Namou.waUrl = function (msg) {
 
   function updateFrame() {
     ticking = false;
-    var rect = section.getBoundingClientRect();
+    // Map progress against total page scroll from y=0 to the section's bottom
+    // edge — so the first pixel of scroll already nudges Frame-1 toward Frame-2.
+    // Anchoring to the section's own height (rect-relative) waited for the
+    // section to reach the viewport top before progressing, which left the
+    // user staring at Frame-1 through all 60vh of hero copy above.
     var vh = window.innerHeight;
-    var range = rect.height - vh;
-    if (range <= 0) return;
-    var progress = Math.max(0, Math.min(1, -rect.top / range));
+    var sectionBottom = section.offsetTop + section.offsetHeight;
+    var totalScrollable = sectionBottom - vh;
+    if (totalScrollable <= 0) return;
+    var progress = Math.max(0, Math.min(1, window.scrollY / totalScrollable));
     var target = getFrameForProgress(progress);
     if (target !== activeFrame) {
       frames[activeFrame].classList.remove("is-active");
