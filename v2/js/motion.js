@@ -292,18 +292,16 @@ window.Namou.waUrl = function (msg) {
   if (!frames.length) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  // Initial visible state is Frame-6 (data-frame=0) — all five plots rendered,
+  // no building yet. Scroll progression then peels the building's floors
+  // bottom-to-top across Frame-7 through Frame-11 (data-frames 1..5).
   var FRAME_THRESHOLDS = [
     { threshold: 0.00, frame: 0 },
     { threshold: 0.05, frame: 1 },
-    { threshold: 0.12, frame: 2 },
-    { threshold: 0.19, frame: 3 },
-    { threshold: 0.26, frame: 4 },
-    { threshold: 0.33, frame: 5 },
-    { threshold: 0.45, frame: 6 },
-    { threshold: 0.52, frame: 7 },
-    { threshold: 0.59, frame: 8 },
-    { threshold: 0.66, frame: 9 },
-    { threshold: 0.73, frame: 10 }
+    { threshold: 0.20, frame: 2 },
+    { threshold: 0.40, frame: 3 },
+    { threshold: 0.60, frame: 4 },
+    { threshold: 0.80, frame: 5 }
   ];
 
   var activeFrame = 0;

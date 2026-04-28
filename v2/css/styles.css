@@ -212,7 +212,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   .hero__plan-sticky { position: static; height: auto; overflow: visible; }
   .hero__plan-frames { aspect-ratio: 1672 / 941; max-height: none; }
   .hero__plan-frame { display: none; }
-  .hero__plan-frame[data-frame="10"] { display: block; opacity: 1; }
+  .hero__plan-frame[data-frame="5"] { display: block; opacity: 1; }
 }
 
 .hero__inner {
