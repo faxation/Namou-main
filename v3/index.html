@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namou — A next-generation brokerage for RAK real estate</title>
+  <meta name="description" content="Video-first, numbers-live, every plot walked. Namou is a Ras Al Khaimah brokerage for serious land and commercial buyers, sellers, investors, and brokers.">
+  <meta property="og:title" content="Namou — A next-generation brokerage for RAK real estate">
+  <meta property="og:description" content="Video-first, numbers-live, every plot walked. Namou is a Ras Al Khaimah brokerage for serious land and commercial buyers, sellers, investors, and brokers.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://namou-main.vercel.app/v3/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://namou-main.vercel.app/v3/">
+  <link rel="icon" href="/assets/images/logo-dark.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/v3.css">
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/v3/" class="nav__logo">
+      <img src="/assets/images/logo-dark.png" alt="Namou" class="logo-light" width="330" height="120">
+    </a>
+    <div class="nav__links">
+      <a href="/v3/buy/">Buy</a>
+      <a href="/v3/sell/">Sell</a>
+      <a href="/v3/invest/">Invest</a>
+      <a href="/v3/broker/">Brokers</a>
+    </div>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="/v3/buy/">Buy</a>
+    <a href="/v3/sell/">Sell</a>
+    <a href="/v3/invest/">Invest</a>
+    <a href="/v3/broker/">Brokers</a>
+  </div>
+
+  <!-- 1. HERO — positioning -->
+  <section class="v3-section v3-hero">
+    <div class="v3-section__inner v3-hero__inner">
+      <p class="v3-eyebrow">Ras Al Khaimah · land &amp; commercial</p>
+      <h1 class="v3-h1">A next-generation brokerage for <span class="v3-serif">RAK real estate</span>.</h1>
+      <p class="v3-lede">Video-first, numbers run live, every plot walked in person. Namou removes the guesswork from RAK so serious capital can move at the speed of the deal.</p>
+      <div class="v3-cta-row">
+        <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20video%20call%20with%20Namou%20to%20explore%20RAK%20real%20estate." target="_blank" rel="noopener" class="btn btn--primary">
+          Schedule a video call
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. AUDIENCE ROUTER -->
+  <section class="v3-section v3-section--alt" id="audience">
+    <div class="v3-section__inner">
+      <div class="v3-router__intro">
+        <div>
+          <p class="v3-eyebrow">Audience</p>
+          <h2 class="v3-h2">Where do you fit in?</h2>
+        </div>
+        <p class="v3-lede" style="margin:0;max-width:38ch;">Four entry points into Namou. Pick the one that matches what you're trying to do — each opens its own page with the specifics.</p>
+      </div>
+
+      <div class="v3-router__cards">
+        <a href="/v3/buy/" class="v3-router__card">
+          <div>
+            <p class="v3-router__eyebrow">For buyers</p>
+            <h3 class="v3-router__heading">Verified plots, ROI on the call.</h3>
+            <p class="v3-router__line">Walk shortlisted freehold plots on a 30-minute video call. See live ROI per plot. Decide before you book a flight.</p>
+          </div>
+          <span class="v3-router__arrow">Open the buyer page</span>
+        </a>
+        <a href="/v3/sell/" class="v3-router__card">
+          <div>
+            <p class="v3-router__eyebrow">For landowners</p>
+            <h3 class="v3-router__heading">Sell with mandates, not flyers.</h3>
+            <p class="v3-router__line">A brokerage that prices your land defensibly, vets every buyer, and reports every interaction in writing.</p>
+          </div>
+          <span class="v3-router__arrow">Open the seller page</span>
+        </a>
+        <a href="/v3/invest/" class="v3-router__card">
+          <div>
+            <p class="v3-router__eyebrow">For investors</p>
+            <h3 class="v3-router__heading">Co-invest in JV deals already structured.</h3>
+            <p class="v3-router__line">Skip raw land. Three JV structures, all RAK freehold — deck, projections, and exit options modeled live.</p>
+          </div>
+          <span class="v3-router__arrow">Open the investor page</span>
+        </a>
+        <a href="/v3/broker/" class="v3-router__card">
+          <div>
+            <p class="v3-router__eyebrow">For brokers</p>
+            <h3 class="v3-router__heading">Co-broker with a fair partner.</h3>
+            <p class="v3-router__line">50/50 default split, written before introduction. Buyer-protection clause in every MOU. Same-day responses.</p>
+          </div>
+          <span class="v3-router__arrow">Open the broker page</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. THE VIDEO DECK — why we're different -->
+  <section class="v3-section">
+    <div class="v3-section__inner">
+      <div class="v3-deck__grid">
+        <div class="v3-deck__copy">
+          <p class="v3-eyebrow">How we work</p>
+          <h2 class="v3-h2">We don't just show you land. We run the numbers, <span class="v3-serif">live</span>.</h2>
+          <p class="v3-body">The 30-minute video call IS the offering. Live ROI, comparable transactions, freehold confirmation — all in one screen-share, on the first call. No glossy PDFs, no week-long follow-ups.</p>
+          <div class="v3-cta-row">
+            <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20video%20call%20with%20Namou%20to%20see%20the%20live%20deck." target="_blank" rel="noopener" class="btn btn--primary">
+              Schedule a video call
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="v3-deck__visual">
+            <img src="/assets/images/roi-simulator.png" alt="Namou ROI simulator showing live yield, comparable transactions, and freehold confirmation on a single screen.">
+          </div>
+          <p class="v3-deck__caption">The live ROI screen — yield, comparables, and freehold status, all on one page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="/assets/images/logo-dark.png" alt="Namou" class="logo-light" width="330" height="120" style="height:32px;">
+        <p>Land and commercial real estate in Ras Al Khaimah.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Explore</h4>
+        <a href="/v3/buy/">Buy</a>
+        <a href="/v3/sell/">Sell</a>
+        <a href="/v3/invest/">Invest</a>
+        <a href="/v3/broker/">Brokers</a>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <a href="https://wa.me/971569636360">WhatsApp</a>
+        <a href="mailto:reachus@namou.ae">reachus@namou.ae</a>
+        <span>+971 56 963 6360</span>
+      </div>
+      <div class="footer__col">
+        <h4>Office</h4>
+        <span>1411, Tower B</span>
+        <span>Julphar Towers</span>
+        <span>Al Hisn Road, RAK</span>
+        <a href="https://maps.google.com/?q=Julphar+Towers+Tower+B+Ras+Al+Khaimah" target="_blank" rel="noopener">Map →</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Namou Properties LLC.</span>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20video%20call%20with%20Namou." target="_blank" rel="noopener" class="wa-float" aria-label="Schedule a video call">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <nav class="mobile-contact-bar" aria-label="Quick contact">
+    <a class="is-primary" href="https://wa.me/971569636360?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20video%20call%20with%20Namou." target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="tel:+971569636360">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.7 5.1 6.5 6.5l2.2-2.2a1 1 0 0 1 1-.2c1.1.4 2.3.5 3.5.5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A18 18 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.5 3.5.1.3 0 .7-.2 1l-2.2 2.3z"/></svg>
+      Call
+    </a>
+    <a href="mailto:reachus@namou.ae">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6zm2 0v.4l7 4.6 7-4.6V6H5zm0 2.6V18h14V8.6l-6.4 4.2a1 1 0 0 1-1.1 0L5 8.6z"/></svg>
+      Email
+    </a>
+  </nav>
+
+  <script src="js/motion.js"></script>
+</body>
+</html>
