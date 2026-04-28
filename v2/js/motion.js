@@ -24,6 +24,108 @@ window.Namou.waUrl = function (msg) {
   return "https://wa.me/" + window.Namou.PHONE + "?text=" + encodeURIComponent(msg);
 };
 
+/* Intent modal — intercept generic "Schedule a video call" CTAs and
+   prompt the user to pick Buy / Sell / Invest / Broker. Each option
+   then opens WhatsApp with a tailored message. Plot-card CTAs and
+   any anchor flagged data-direct-wa="true" bypass the modal. */
+(function () {
+  var INTENTS = [
+    { key: "buy",    label: "Buy",     desc: "I'm looking for plots in RAK",         msg: "Hi, I'd like to schedule a video call to explore RAK plots with Namou." },
+    { key: "sell",   label: "Sell",    desc: "I want to list my land",                msg: "Hi, I'd like to schedule a video call to discuss listing my land with Namou." },
+    { key: "invest", label: "Invest",  desc: "I'm exploring JV opportunities",        msg: "Hi, I'd like to schedule a video call to explore JV opportunities with Namou." },
+    { key: "broker", label: "Broker",  desc: "I'm a broker with a client",            msg: "Hi, I'm a broker and I'd like to schedule a video call to walk through the Namou deck." }
+  ];
+
+  var modal = document.createElement("div");
+  modal.className = "intent-modal";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute("aria-labelledby", "intentModalTitle");
+  modal.setAttribute("aria-hidden", "true");
+  modal.innerHTML =
+    '<div class="intent-modal__backdrop" data-intent-close></div>' +
+    '<div class="intent-modal__panel">' +
+      '<button class="intent-modal__close" type="button" aria-label="Close" data-intent-close>×</button>' +
+      '<h2 id="intentModalTitle" class="intent-modal__title">What brings you to Namou?</h2>' +
+      '<p class="intent-modal__sub">Pick one and we\'ll start the right conversation on WhatsApp.</p>' +
+      '<div class="intent-modal__options">' +
+        INTENTS.map(function (it) {
+          return '<button class="intent-option" type="button" data-intent="' + it.key + '">' +
+                   '<span class="intent-option__label">' + it.label + '</span>' +
+                   '<span class="intent-option__desc">' + it.desc + '</span>' +
+                 '</button>';
+        }).join("") +
+      '</div>' +
+    '</div>';
+
+  var lastTrigger = null;
+  var bodyPrevOverflow = "";
+
+  function attachToBody() {
+    if (!modal.isConnected) document.body.appendChild(modal);
+  }
+
+  function open(trigger) {
+    attachToBody();
+    lastTrigger = trigger;
+    bodyPrevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    modal.setAttribute("aria-hidden", "false");
+    requestAnimationFrame(function () {
+      var first = modal.querySelector(".intent-option");
+      if (first) first.focus();
+    });
+  }
+  function close() {
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = bodyPrevOverflow;
+    if (lastTrigger && typeof lastTrigger.focus === "function") lastTrigger.focus();
+    lastTrigger = null;
+  }
+
+  // Listeners (attach once)
+  modal.addEventListener("click", function (e) {
+    if (e.target.closest("[data-intent-close]")) {
+      e.preventDefault();
+      close();
+    }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") close();
+  });
+  modal.addEventListener("click", function (e) {
+    var btn = e.target.closest(".intent-option");
+    if (!btn) return;
+    var key = btn.getAttribute("data-intent");
+    var intent = INTENTS.find(function (i) { return i.key === key; });
+    if (intent && window.Namou && window.Namou.waUrl) {
+      window.open(window.Namou.waUrl(intent.msg), "_blank", "noopener");
+    }
+    close();
+  });
+
+  // Intercept generic Schedule-a-video-call CTAs
+  var INTERCEPT = '.btn--primary[href*="wa.me"], .call-showcase__cta[href*="wa.me"], .wa-float[href*="wa.me"], .mobile-contact-bar a.is-primary[href*="wa.me"]';
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest(INTERCEPT);
+    if (!trigger) return;
+    // Bypass: plot-card CTAs already carry plot context
+    if (trigger.classList.contains("card__cta")) return;
+    // Bypass: explicit data-direct-wa="true" flag
+    if (trigger.getAttribute("data-direct-wa") === "true") return;
+    e.preventDefault();
+    open(trigger);
+  });
+
+  // Defer body-append until DOM is ready so it lands after existing
+  // content (which puts it at the end of the stacking context).
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", attachToBody);
+  } else {
+    attachToBody();
+  }
+})();
+
 (function () {
   "use strict";
 
