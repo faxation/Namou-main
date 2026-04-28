@@ -106,7 +106,7 @@
   padding-bottom: clamp(80px, 10vh, 144px);
   text-align: left;
 }
-.v3-hero__inner { max-width: 1180px; }
+.v3-hero__inner { max-width: none; }
 
 /* ── HOME audience router ────────────────────────────────────── */
 .v3-router__intro {
