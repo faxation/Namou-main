@@ -5,7 +5,7 @@
    ============================================================= */
 
 :root {
-  --bg: #FFFFFF;
+  --bg: #FDFDFD;
   --bg-alt: #F5F5F5;
   --bg-deep: #003D2E;
   --ink: #121212;
@@ -172,7 +172,7 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  margin-top: 48px;
+  margin-top: 0;
   height: 150vh;
   pointer-events: none;
   z-index: 0;
@@ -183,14 +183,16 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   height: 100vh;
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   overflow: hidden;
 }
 .hero__plan-frames {
   position: relative;
   width: 100%;
-  aspect-ratio: 1672 / 941;
+  /* 1672/816 instead of 1672/941 crops the ~13% top whitespace baked into
+     each PNG, pulling the masterplan content up against the hero CTAs. */
+  aspect-ratio: 1672 / 816;
   max-height: 100vh;
 }
 .hero__plan-frame {
@@ -198,8 +200,8 @@ h1, h2, h3, h4 { text-transform: capitalize; }
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: 50% 100%;
   opacity: 0;
   transition: opacity 120ms ease-out;
   pointer-events: none;
