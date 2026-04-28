@@ -32,7 +32,7 @@ window.Namou.waUrl = function (msg) {
   var INTENTS = [
     { key: "buy",    label: "Buy",     desc: "I'm looking for plots in RAK",         msg: "Hi, I'd like to schedule a video call to explore RAK plots with Namou." },
     { key: "sell",   label: "Sell",    desc: "I want to list my land",                msg: "Hi, I'd like to schedule a video call to discuss listing my land with Namou." },
-    { key: "invest", label: "Invest",  desc: "I'm exploring JV opportunities",        msg: "Hi, I'd like to schedule a video call to explore JV opportunities with Namou." },
+    { key: "invest", label: "Invest",  desc: "I'm exploring Joint-venture deals",    msg: "Hi, I'd like to schedule a video call to explore Joint-venture deals with Namou." },
     { key: "broker", label: "Broker",  desc: "I'm a broker with a client",            msg: "Hi, I'm a broker and I'd like to schedule a video call to walk through the Namou deck." }
   ];
 
