@@ -276,4 +276,58 @@ window.Namou.waUrl = function (msg) {
     }, { passive: true });
     updateProgress();
   }
+
+  // ── Masterplan progressive reveal — fades 10 mask divs across the 150vh
+  //    container that sits in place of the static hero plan. Bands 0.05–0.40
+  //    reveal five plots left-to-right; 0.45–0.80 peel the building's floors
+  //    bottom-to-top. rAF-throttled; honors reduced-motion (skips entirely,
+  //    matching CSS that flattens the layout for that user).
+  var reveal = document.querySelector(".hero__plan-reveal");
+  if (reveal && !prefersReducedMotion) {
+    var BANDS = [
+      { sel: "plot-01", start: 0.05, end: 0.12 },
+      { sel: "plot-02", start: 0.12, end: 0.19 },
+      { sel: "plot-03", start: 0.19, end: 0.26 },
+      { sel: "plot-04", start: 0.26, end: 0.33 },
+      { sel: "plot-05", start: 0.33, end: 0.40 },
+      { sel: "floor-1", start: 0.45, end: 0.52 },
+      { sel: "floor-2", start: 0.52, end: 0.59 },
+      { sel: "floor-3", start: 0.59, end: 0.66 },
+      { sel: "floor-4", start: 0.66, end: 0.73 },
+      { sel: "floor-5", start: 0.73, end: 0.80 }
+    ];
+    var masks = [];
+    BANDS.forEach(function (b) {
+      var el = reveal.querySelector('[data-mask="' + b.sel + '"]');
+      if (el) masks.push({ el: el, start: b.start, end: b.end });
+    });
+    if (masks.length) {
+      var smoothstep = function (a, b, x) {
+        var t = Math.max(0, Math.min(1, (x - a) / (b - a)));
+        return t * t * (3 - 2 * t);
+      };
+      var revealTicking = false;
+      var updateReveal = function () {
+        var rect = reveal.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var range = rect.height - vh;
+        var progress = range > 0 ? Math.max(0, Math.min(1, -rect.top / range)) : 0;
+        for (var i = 0; i < masks.length; i++) {
+          var m = masks[i];
+          var t = smoothstep(m.start, m.end, progress);
+          m.el.style.opacity = (1 - t).toFixed(3);
+          m.el.style.transform = "translateY(" + (-8 * t).toFixed(2) + "px)";
+        }
+        revealTicking = false;
+      };
+      window.addEventListener("scroll", function () {
+        if (!revealTicking) {
+          revealTicking = true;
+          requestAnimationFrame(updateReveal);
+        }
+      }, { passive: true });
+      window.addEventListener("resize", updateReveal);
+      updateReveal();
+    }
+  }
 })();
